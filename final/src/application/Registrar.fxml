@@ -1,0 +1,182 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.text.Font?>
+
+<BorderPane prefHeight="527.0" prefWidth="676.0" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.RegistrarController">
+   <top>
+      <Label alignment="TOP_LEFT" cache="true" contentDisplay="CENTER" nodeOrientation="LEFT_TO_RIGHT" prefHeight="42.0" prefWidth="642.0" text="Datos" BorderPane.alignment="CENTER">
+         <font>
+            <Font size="22.0" />
+         </font>
+         <opaqueInsets>
+            <Insets />
+         </opaqueInsets>
+         <BorderPane.margin>
+            <Insets />
+         </BorderPane.margin>
+      </Label>
+   </top>
+   <center>
+      <GridPane prefHeight="485.0" prefWidth="621.0" BorderPane.alignment="CENTER">
+        <columnConstraints>
+          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+        </columnConstraints>
+        <rowConstraints>
+          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+        </rowConstraints>
+         <children>
+            <Label text="Nombres" textFill="#1285a4">
+               <GridPane.margin>
+                  <Insets left="20.0" top="-75.0" />
+               </GridPane.margin>
+               <font>
+                  <Font name="Cambria" size="15.0" />
+               </font>
+            </Label>
+            <TextField fx:id="texNombre" promptText="__________________________________________________________________">
+               <GridPane.margin>
+                  <Insets left="20.0" right="20.0" />
+               </GridPane.margin>
+            </TextField>
+            <Label text="Apellidos" textFill="#1285a4" GridPane.rowIndex="1">
+               <font>
+                  <Font name="Cambria" size="15.0" />
+               </font>
+               <padding>
+                  <Insets left="20.0" top="-60.0" />
+               </padding>
+            </Label>
+            <TextField fx:id="texApellido" promptText="__________________________________________________________________" GridPane.rowIndex="1">
+               <GridPane.margin>
+                  <Insets left="20.0" right="20.0" />
+               </GridPane.margin>
+            </TextField>
+            <Label text="Sexo" textFill="#1285a4" GridPane.rowIndex="2">
+               <padding>
+                  <Insets left="20.0" top="-70.0" />
+               </padding>
+               <font>
+                  <Font name="Calibri" size="15.0" />
+               </font>
+            </Label>
+            <Button fx:id="btHombre" mnemonicParsing="false" prefHeight="33.0" prefWidth="138.0" text="Hombre" GridPane.rowIndex="2">
+               <GridPane.margin>
+                  <Insets left="20.0" />
+               </GridPane.margin>
+            </Button>
+            <Button fx:id="btMujer" mnemonicParsing="false" prefHeight="33.0" prefWidth="131.0" text="Mujer" GridPane.rowIndex="2">
+               <GridPane.margin>
+                  <Insets left="180.0" right="20.0" />
+               </GridPane.margin>
+            </Button>
+            <Label text="Cédula de identificación" textFill="#1285a4" GridPane.rowIndex="3">
+               <font>
+                  <Font name="Cambria" size="15.0" />
+               </font>
+               <padding>
+                  <Insets left="20.0" top="-70.0" />
+               </padding>
+            </Label>
+            <TextField fx:id="texCedula" promptText="C.C.     EJ:52220808" GridPane.rowIndex="3">
+               <GridPane.margin>
+                  <Insets left="20.0" right="20.0" />
+               </GridPane.margin>
+               <font>
+                  <Font size="13.0" />
+               </font>
+            </TextField>
+            <Label text="Edad" textFill="#1285a4" GridPane.rowIndex="4">
+               <font>
+                  <Font name="Cambria" size="15.0" />
+               </font>
+               <padding>
+                  <Insets left="20.0" top="-70.0" />
+               </padding>
+            </Label>
+            <TextField fx:id="texEdad" promptText="__________________________________________________________________" GridPane.rowIndex="4">
+               <GridPane.margin>
+                  <Insets left="20.0" right="20.0" />
+               </GridPane.margin>
+            </TextField>
+            <Label text="Email" textFill="#1285a4" GridPane.columnIndex="1">
+               <font>
+                  <Font name="Cambria" size="15.0" />
+               </font>
+               <padding>
+                  <Insets left="20.0" top="-80.0" />
+               </padding>
+            </Label>
+            <TextField fx:id="texEmail" promptText="__________________________________________________________________" GridPane.columnIndex="1">
+               <GridPane.margin>
+                  <Insets left="20.0" right="20.0" />
+               </GridPane.margin>
+            </TextField>
+            <Label text="Confirmar Email" textFill="#1285a4" GridPane.columnIndex="1" GridPane.rowIndex="1">
+               <font>
+                  <Font name="Cambria" size="15.0" />
+               </font>
+               <padding>
+                  <Insets left="20.0" top="-70.0" />
+               </padding>
+            </Label>
+            <Label text="Contraseña" textFill="#1285a4" GridPane.columnIndex="1" GridPane.rowIndex="2">
+               <font>
+                  <Font name="Cambria" size="15.0" />
+               </font>
+               <padding>
+                  <Insets left="20.0" top="-70.0" />
+               </padding>
+            </Label>
+            <Label text="Confirmar contraseña" textFill="#1285a4" GridPane.columnIndex="1" GridPane.rowIndex="3">
+               <font>
+                  <Font name="Cambria" size="15.0" />
+               </font>
+               <padding>
+                  <Insets left="20.0" top="-70.0" />
+               </padding>
+            </Label>
+            <Button fx:id="btVolver" mnemonicParsing="false" onAction="#openMenu" prefHeight="39.0" prefWidth="134.0" text="VOLVER" GridPane.columnIndex="1" GridPane.rowIndex="4">
+               <GridPane.margin>
+                  <Insets left="20.0" />
+               </GridPane.margin>
+            </Button>
+            <Button fx:id="btRegistrarse" mnemonicParsing="false" prefHeight="45.0" prefWidth="118.0" text="REGISTRARSE" textFill="#2210f2" GridPane.columnIndex="1" GridPane.rowIndex="4">
+               <GridPane.margin>
+                  <Insets left="200.0" right="20.0" />
+               </GridPane.margin>
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font>
+            </Button>
+            <TextField fx:id="texConfirmarEmail" promptText="__________________________________________________________________" GridPane.columnIndex="1" GridPane.rowIndex="1">
+               <GridPane.margin>
+                  <Insets left="20.0" right="20.0" />
+               </GridPane.margin>
+            </TextField>
+            <TextField fx:id="texContrasena" promptText="__________________________________________________________________" GridPane.columnIndex="1" GridPane.rowIndex="2">
+               <GridPane.margin>
+                  <Insets left="20.0" right="20.0" />
+               </GridPane.margin>
+            </TextField>
+            <TextField fx:id="texConfirmarContrasena" promptText="__________________________________________________________________" GridPane.columnIndex="1" GridPane.rowIndex="3">
+               <GridPane.margin>
+                  <Insets left="20.0" right="20.0" />
+               </GridPane.margin>
+            </TextField>
+         </children>
+      </GridPane>
+   </center>
+</BorderPane>
