@@ -11,7 +11,8 @@ public class Usuario implements Comparable<Usuario>{
 	private int genero;
 	private double dinero;
 	private String claveUsuario;
-    private String correoElectronico;	
+    private String correoElectronico;
+    private int apuestasGanadas;
     private Usuario derecho;
     private Usuario izquierdo;
     
