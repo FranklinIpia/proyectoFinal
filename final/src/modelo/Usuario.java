@@ -1,6 +1,8 @@
 package modelo;
 
-public class Usuario implements Comparable<Usuario>{
+import java.io.Serializable;
+
+public class Usuario implements Comparable<Usuario>,Serializable{
 	
 	
 	
@@ -11,12 +13,26 @@ public class Usuario implements Comparable<Usuario>{
 	private int genero;
 	private double dinero;
 	private String claveUsuario;
-    private String correoElectronico;	
-    private Usuario derecho;
+    private String correoElectronico;
+    private int apuestasGanadas;
+    private Apuesta apuestaUsuario;
+    public Apuesta getApuestaUsuario() {
+		return apuestaUsuario;
+	}
+
+
+
+	public void setApuestaUsuario(Apuesta apuestaUsuario) {
+		this.apuestaUsuario = apuestaUsuario;
+	}
+
+
+
+	private Usuario derecho;
     private Usuario izquierdo;
     
     public Usuario(String nombre, String apellido, String cedula, int edad, int genero, double dinero, String claveUsuario,
-			String correoElectronico) {
+			String correoElectronico,int apuestasGanadas) {
 	
 		this.nombre = nombre;
 		this.apellido = apellido;
@@ -26,6 +42,7 @@ public class Usuario implements Comparable<Usuario>{
 		this.dinero = dinero;
 		this.claveUsuario = claveUsuario;
 		this.correoElectronico = correoElectronico;
+		this.apuestasGanadas=apuestasGanadas;
 	}
     
   
@@ -193,6 +210,18 @@ public class Usuario implements Comparable<Usuario>{
 	
 
 
+
+
+
+	public int getApuestasGanadas() {
+		return apuestasGanadas;
+	}
+
+
+
+	public void setApuestasGanadas(int apuestasGanadas) {
+		this.apuestasGanadas = apuestasGanadas;
+	}
 
 
 
