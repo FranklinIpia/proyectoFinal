@@ -7,7 +7,7 @@ public class SimuladorApuesta {
 	private Usuario raiz;
 	
 	
-	public void insertarUsuario() {
+	public void insertarUsuario(String nombre, String contraseña) {
 		
 	}
 	
