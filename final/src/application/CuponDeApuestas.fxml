@@ -333,7 +333,7 @@
                       <RowConstraints maxHeight="74.0" minHeight="10.0" prefHeight="10.0" vgrow="SOMETIMES" />
                     </rowConstraints>
                      <children>
-                        <Button mnemonicParsing="false" prefHeight="21.0" prefWidth="210.0" style="-fx-background-color: #FF0000;" text="Empezar carrera" textFill="#042c40" GridPane.rowIndex="2">
+                        <Button fx:id="btEmpezarCarrera" mnemonicParsing="false" prefHeight="21.0" prefWidth="210.0" style="-fx-background-color: #FF0000;" text="Empezar carrera" textFill="#042c40" GridPane.rowIndex="2">
                            <GridPane.margin>
                               <Insets bottom="9.0" left="5.0" right="5.0" top="5.0" />
                            </GridPane.margin>
@@ -359,22 +359,22 @@
                                     <Font name="Britannic Bold" size="14.0" />
                                  </font>
                               </Label>
-                              <Button mnemonicParsing="false" text="edad">
+                              <Button fx:id="btOrdenarEdad" mnemonicParsing="false" text="edad">
                                  <GridPane.margin>
                                     <Insets top="10.0" />
                                  </GridPane.margin>
                               </Button>
-                              <Button mnemonicParsing="false" text="Carreras ganadas">
+                              <Button fx:id="btOrdenarCarrerasGanadas" mnemonicParsing="false" text="Carreras ganadas">
                                  <GridPane.margin>
                                     <Insets left="43.0" top="10.0" />
                                  </GridPane.margin>
                               </Button>
-                              <Button mnemonicParsing="false" text="velocidad">
+                              <Button fx:id="btOrdenarVelocidad" mnemonicParsing="false" text="velocidad">
                                  <GridPane.margin>
                                     <Insets left="150.0" top="10.0" />
                                  </GridPane.margin>
                               </Button>
-                              <TextField alignment="CENTER" prefHeight="13.0" prefWidth="120.0" promptText="Numero" GridPane.rowIndex="1">
+                              <TextField fx:id="txtNumeroCaballo" alignment="CENTER" prefHeight="13.0" prefWidth="120.0" promptText="Numero" GridPane.rowIndex="1">
                                  <GridPane.margin>
                                     <Insets bottom="25.0" left="100.0" right="5.0" top="5.0" />
                                  </GridPane.margin>
@@ -382,7 +382,7 @@
                                     <Insets bottom="4.0" top="1.0" />
                                  </padding>
                               </TextField>
-                              <TextField alignment="CENTER" prefHeight="13.0" prefWidth="120.0" promptText="Nombre" GridPane.rowIndex="1">
+                              <TextField fx:id="txtNombreJinete" alignment="CENTER" prefHeight="13.0" prefWidth="120.0" promptText="Nombre" GridPane.rowIndex="1">
                                  <padding>
                                     <Insets top="3.0" />
                                  </padding>
@@ -390,7 +390,7 @@
                                     <Insets left="100.0" right="5.0" top="21.0" />
                                  </GridPane.margin>
                               </TextField>
-                              <Button mnemonicParsing="false" text="Buscar caballo" GridPane.rowIndex="1">
+                              <Button fx:id="btBuscarCaballo" mnemonicParsing="false" text="Buscar caballo" GridPane.rowIndex="1">
                                  <GridPane.margin>
                                     <Insets top="-23.0" />
                                  </GridPane.margin>
@@ -398,7 +398,7 @@
                                     <Font name="Bell MT Bold" size="12.0" />
                                  </font>
                               </Button>
-                              <Button mnemonicParsing="false" prefHeight="22.0" prefWidth="94.0" text="Buscar jinete" GridPane.rowIndex="1">
+                              <Button fx:id="btBuscarJinete" mnemonicParsing="false" prefHeight="22.0" prefWidth="94.0" text="Buscar jinete" GridPane.rowIndex="1">
                                  <font>
                                     <Font name="Bell MT Bold" size="12.0" />
                                  </font>
@@ -408,8 +408,8 @@
                               </Button>
                            </children>
                         </GridPane>
-                        <Button mnemonicParsing="false" prefHeight="38.0" prefWidth="67.0" text="Perfil" />
-                        <Button mnemonicParsing="false" prefHeight="36.0" prefWidth="96.0" text="Cerrar sesion">
+                        <Button fx:id="btPerfil" mnemonicParsing="false" prefHeight="38.0" prefWidth="67.0" text="Perfil" />
+                        <Button fx:id="btCerrarSecion" mnemonicParsing="false" prefHeight="36.0" prefWidth="96.0" text="Cerrar sesion">
                            <GridPane.margin>
                               <Insets left="80.0" />
                            </GridPane.margin>
@@ -439,7 +439,7 @@
                             <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                           </rowConstraints>
                            <children>
-                              <TextField alignment="TOP_RIGHT" promptText="\$0" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                              <TextField fx:id="txtDinero" alignment="TOP_RIGHT" promptText="\$0" GridPane.columnIndex="1" GridPane.rowIndex="1">
                                  <GridPane.margin>
                                     <Insets left="5.0" right="3.0" />
                                  </GridPane.margin>
@@ -457,7 +457,7 @@
                                     <Insets left="5.0" />
                                  </GridPane.margin>
                               </Label>
-                              <Label mouseTransparent="true" prefHeight="20.0" prefWidth="36.0" text="31.00" GridPane.columnIndex="1">
+                              <Label fx:id="txtCuota" mouseTransparent="true" prefHeight="20.0" prefWidth="36.0" text="31.00" GridPane.columnIndex="1">
                                  <GridPane.margin>
                                     <Insets left="60.0" right="5.0" />
                                  </GridPane.margin>
@@ -483,19 +483,19 @@
                                     <Insets left="5.0" />
                                  </GridPane.margin>
                               </Label>
-                              <Label alignment="TOP_RIGHT" mouseTransparent="true" prefHeight="20.0" prefWidth="106.0" text="\$0" GridPane.columnIndex="1" GridPane.rowIndex="3">
+                              <Label fx:id="txtImporteApostado" alignment="TOP_RIGHT" mouseTransparent="true" prefHeight="20.0" prefWidth="106.0" text="\$0" GridPane.columnIndex="1" GridPane.rowIndex="3">
                                  <GridPane.margin>
                                     <Insets left="5.0" right="5.0" />
                                  </GridPane.margin>
                               </Label>
-                              <Label alignment="TOP_RIGHT" mouseTransparent="true" prefHeight="20.0" prefWidth="109.0" text="\$0" GridPane.columnIndex="1" GridPane.rowIndex="4">
+                              <Label fx:id="txtPagoPontencial" alignment="TOP_RIGHT" mouseTransparent="true" prefHeight="20.0" prefWidth="109.0" text="\$0" GridPane.columnIndex="1" GridPane.rowIndex="4">
                                  <GridPane.margin>
                                     <Insets left="5.0" right="5.0" />
                                  </GridPane.margin>
                               </Label>
                            </children>
                         </GridPane>
-                        <Button defaultButton="true" mnemonicParsing="false" prefHeight="25.0" prefWidth="215.0" style="-fx-background-color: #FFF000;" text="Colocar apuesta" GridPane.rowIndex="2">
+                        <Button fx:id="btColocarApuesta" defaultButton="true" mnemonicParsing="false" prefHeight="25.0" prefWidth="215.0" style="-fx-background-color: #FFF000;" text="Colocar apuesta" GridPane.rowIndex="2">
                            <GridPane.margin>
                               <Insets left="5.0" right="5.0" />
                            </GridPane.margin>

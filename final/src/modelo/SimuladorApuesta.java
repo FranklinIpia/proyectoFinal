@@ -12,43 +12,43 @@ public class SimuladorApuesta {
 	// metodo insertar, recibe por parametro todos los atributos 
 	//del obejto usuario y creo un nuevo usuario
 	//llama al meotod insertarUusario . metodo recursivo que agrega un nuevo usuario
-	public void insertar(String nombre,String apellido,String cedula,int edad, int genero,double dinero,String claveUsuario,String correoElectronico) {
-		Usuario nuevoUsuario= new Usuario(nombre,apellido,cedula,edad,genero,dinero,claveUsuario,correoElectronico);
-		insertarUsuario(nuevoUsuario,raiz);
-	}
-	public void insertarUsuario(Usuario nuevoUsuario, Usuario raiz) {
-		
-		if(this.raiz==null) {
-			this.raiz=nuevoUsuario;
-		}
-		
-		else {
-			
-			if(raiz.compareTo(nuevoUsuario)>0) {
-				if(raiz.getIzquierdo()==null) {
-					raiz.setIzquierdo(nuevoUsuario);
-				}else {
-					insertarUsuario(nuevoUsuario, raiz.getIzquierdo());
-				}
-				
-				
-			}else {
-				
-				if(raiz.getDerecho()==null) {
-					raiz.setDerecho(nuevoUsuario);
-				}else {
-					insertarUsuario(nuevoUsuario, raiz.getDerecho());
-				}
-				
-				
-			}
-			
-			
-		}
-		
-		
-	}
-	
+//	public void insertar(String nombre,String apellido,String cedula,int edad, int genero,double dinero,String claveUsuario,String correoElectronico) {
+//		Usuario nuevoUsuario= new Usuario(nombre,apellido,cedula,edad,genero,dinero,claveUsuario,correoElectronico);
+//		insertarUsuario(nuevoUsuario,raiz);
+//	}
+//	public void insertarUsuario(Usuario nuevoUsuario, Usuario raiz) {
+//		
+//		if(this.raiz==null) {
+//			this.raiz=nuevoUsuario;
+//		}
+//		
+//		else {
+//			
+//			if(raiz.compareTo(nuevoUsuario)>0) {
+//				if(raiz.getIzquierdo()==null) {
+//					raiz.setIzquierdo(nuevoUsuario);
+//				}else {
+//					insertarUsuario(nuevoUsuario, raiz.getIzquierdo());
+//				}
+//				
+//				
+//			}else {
+//				
+//				if(raiz.getDerecho()==null) {
+//					raiz.setDerecho(nuevoUsuario);
+//				}else {
+//					insertarUsuario(nuevoUsuario, raiz.getDerecho());
+//				}
+//				
+//				
+//			}
+//			
+//			
+//		}
+//		
+//		
+//	}
+//	
 
 	
 	//Metodo retorna la  cantidad de usuarios que hay en el sistema
