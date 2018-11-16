@@ -38,7 +38,7 @@ public class MenuController {
 	
 	public void openRegistrar(ActionEvent event) throws Exception {
 		try {
-			Parent showBegginer = FXMLLoader.load(getClass().getResource("CuponDeApuestas.fxml"));
+			Parent showBegginer = FXMLLoader.load(getClass().getResource("Registrar.fxml"));
 			Scene sceneBegginer = new Scene(showBegginer);
 			Stage windowBegginer = (Stage)((Node) event.getSource()).getScene().getWindow();
 			windowBegginer.setScene(sceneBegginer);
@@ -47,6 +47,9 @@ public class MenuController {
 			e.printStackTrace();
 		}
 	}
+	
+	
+	
 	
 	
 	

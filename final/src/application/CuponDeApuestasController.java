@@ -32,7 +32,7 @@ public class CuponDeApuestasController {
 	
 	
 	
-	
+	///Este metodo carga los jinetes del archivo txt
 public void cargarJinetes() {
 	
 	File file= new File("archivos/jinetes.txt");
@@ -72,7 +72,7 @@ public void cargarJinetes() {
 	
 	
 	
-	
+	//Este metodoc carga los caballos del archivo txt
 	
 	public void cargarCaballos() {
 			
@@ -119,6 +119,8 @@ public void cargarJinetes() {
 		main.darSimulador().mostrarJinetes();
 	}
 	
+	
+	//Este metodo busca un jinete dado el numero del jinete
 	public void buscarJinete(int numero) {
 		Jinete jinete=main.darSimulador().buscarJinete(numero);
 		System.out.println("Numero del jiente encontrado"+ jinete.getNumero());
