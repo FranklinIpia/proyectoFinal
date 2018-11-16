@@ -1,6 +1,6 @@
 package modelo;
 
-public class Jinete {
+public class Jinete implements Comparable<Jinete>{
 	
 	private String nombre;
 	private int edad;
@@ -13,8 +13,14 @@ public class Jinete {
 	private Jinete siguiente;
 	private Caballo primerCaballo;
 	
-	public Jinete() {
-		
+	public Jinete(String nombre, int edad, double peso,int numero,int carrerasGanadas,int carrerasPerdidas,double altura) {
+		this.nombre=nombre;
+		this.edad=edad;
+		this.peso=peso;
+		this.altura=altura;
+		this.numero=numero;
+		this.cantidadCarrerasGanadas=carrerasGanadas;
+		this.cantidadCarrerasPerdidas=carrerasPerdidas;
 	}
 	
 	public int getNumero() {
@@ -138,6 +144,32 @@ public String getNombre() {
 			
 		}
 		
+	}
+	
+	
+	public void mostrarCaballo() {
+		if(primerCaballo==null) {
+			System.out.println("No hay caballos");
+		}else {
+			Caballo actual=primerCaballo;
+			while(actual!=null) {
+				System.out.println("Caballo " + actual.getNumero());
+				actual=actual.getSiguiente();
+			}
+			
+		}
+	}
+
+	@Override
+	public int compareTo(Jinete j1) {
+		if(this.nombre.compareTo(j1.getNombre())>0) {
+			return 1;
+		}else if(this.nombre.compareTo(j1.getNombre())<0) {
+			return -1;
+		}else {
+			return 0;
+		}
+
 	}
 	
 	

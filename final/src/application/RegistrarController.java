@@ -14,6 +14,8 @@ import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
+
+
 public class RegistrarController {
 	@FXML
 	private TextField texNombre;
@@ -46,6 +48,9 @@ public class RegistrarController {
 	public void initialize() {
 		
 	}
+	
+
+	
 	
 	public void openMenu(ActionEvent event) throws Exception {
 		try {

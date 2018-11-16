@@ -33,6 +33,9 @@ public class MenuController {
 		
 	}
 	
+	
+	
+	
 	public void openRegistrar(ActionEvent event) throws Exception {
 		try {
 			Parent showBegginer = FXMLLoader.load(getClass().getResource("CuponDeApuestas.fxml"));

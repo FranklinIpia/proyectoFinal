@@ -2,6 +2,8 @@ package modelo;
 
 import java.util.ArrayList;
 
+import javax.print.attribute.standard.PrinterMoreInfo;
+
 public class SimuladorApuesta {
 	
 	public static final int MAX_USUARIOS=100;
@@ -24,6 +26,56 @@ public class SimuladorApuesta {
 	//PARA CADA METODO DE ORNDENAMIENTO SE DEBE UTILIZAR UN CRITERIO
 	//DE COMPARACION DIFERENTE
 	
+	public Jinete getPrimerJinete() {
+		return primerJinete;
+	}
+
+
+	public void setPrimerJinete(Jinete primerJinete) {
+		this.primerJinete = primerJinete;
+	}
+
+
+	public Usuario[] getUsuarios() {
+		return usuarios;
+	}
+
+
+	public void setUsuarios(Usuario[] usuarios) {
+		this.usuarios = usuarios;
+	}
+
+
+	public UsuarioVip getRaiz() {
+		return raiz;
+	}
+
+
+	public void setRaiz(UsuarioVip raiz) {
+		this.raiz = raiz;
+	}
+
+
+	public int getCantidadUsuarios() {
+		return cantidadUsuarios;
+	}
+
+
+	public void setCantidadUsuarios(int cantidadUsuarios) {
+		this.cantidadUsuarios = cantidadUsuarios;
+	}
+
+
+	public int getCantidadUsuariosVip() {
+		return cantidadUsuariosVip;
+	}
+
+
+	public void setCantidadUsuariosVip(int cantidadUsuariosVip) {
+		this.cantidadUsuariosVip = cantidadUsuariosVip;
+	}
+
+
 	public void ordenarUsuariosSeleccion() {
 		
 	}
@@ -169,11 +221,173 @@ public class SimuladorApuesta {
 //		return usuarioEncontrado;
 //	} 
 //	
+	
+	
+	
 	//Este metod inserta un jinete de forma recursiva
 	
-	public void insertarJinete() {
+	
+	
+	public void insertarJinete(Jinete nuevoJinete) {
+		insertarJinete(nuevoJinete,this.primerJinete);
+	}
+	
+	
+	
+	public void insertarJinete(Jinete nuevoJinete,Jinete primerJinete) {
+		if(this.primerJinete==null) {
+			this.primerJinete=nuevoJinete;
+		}
+		
+		else {
+			Jinete actual=primerJinete;
+			if(nuevoJinete.getEdad()>actual.getEdad()) {
+				if(actual.getSiguiente()==null) {
+					actual.setSiguiente(nuevoJinete);
+					nuevoJinete.setAnterior(actual);
+				}else {
+					insertarJinete(nuevoJinete,actual.getSiguiente());
+				}
+				
+			}
+			
+			
+			else {
+				
+				if(actual.getAnterior()==null) {
+					actual.setAnterior(nuevoJinete);
+					nuevoJinete.setSiguiente(actual);
+					this.primerJinete=nuevoJinete;
+				}
+				
+				else if(actual.getAnterior()!=null && actual.getSiguiente()!=null) {
+					nuevoJinete.setSiguiente(actual);
+					nuevoJinete.setAnterior(actual.getAnterior());
+					actual.getAnterior().setSiguiente(nuevoJinete);
+					actual.setAnterior(nuevoJinete);
+				}
+				
+				else if(actual.getAnterior()!=null&&actual.getSiguiente()==null) {
+					nuevoJinete.setSiguiente(actual);
+					nuevoJinete.setAnterior(actual.getAnterior());
+					actual.getAnterior().setSiguiente(nuevoJinete);
+					actual.setAnterior(nuevoJinete);
+				}
+				
+			}
+			
+			
+		}
+	}
+	
+	
+	//Este metod inserta un  caballo a un jinete
+	public void insertarCaballoAJinete(Jinete jinete,Caballo caballo) {
+		jinete.insertarCaballo(caballo);
+	}
+	
+	
+	
+	
+	
+	//Este metodo busca jinete dado un numero el cual lo identifica en la carrera
+	//este metodo llama a un metodo recursivo y le pasa pro parametro el primero de la lista mas el numero
+	public Jinete buscarJinete(int numero) {
+		return buscarJinete(numero,this.primerJinete);
+	}
+	
+	
+	public Jinete buscarJinete(int numero, Jinete primerJinete) {
+		Jinete buscado=null;
+		if(primerJinete!=null) {
+			if(primerJinete.getNumero()==numero) {
+				buscado=primerJinete;
+			return buscado;
+			}else {
+				return buscarJinete(numero, primerJinete.getSiguiente());
+			}
+		}
+		
+		
+	return buscado;
+
 		
 	}
+
+	
+
+	
+//	public Caballo buscarCaballo(int numero) {
+//		
+//		
+//		
+//	}
+	
+	public void imprimirCaballos() {
+		
+		if(primerJinete==null) {
+			System.out.println("No hay jinetes");
+		}else {
+			
+			Jinete actual=primerJinete;
+			while(actual!=null) {
+				if(actual.getPrimerCaballo()==null) {
+					System.out.println("No tiene caballos");
+				}else {
+					
+					Caballo actualcaballo= actual.getPrimerCaballo();
+					while(actualcaballo!=null) {
+						System.out.println("Numero del caballo" + actualcaballo.getNumero());
+						actualcaballo=actualcaballo.getSiguiente();
+					}
+
+				}
+				
+				actual=actual.getSiguiente();
+				
+				
+			}
+			
+			
+		}
+		
+		
+	}
+	
+	
+	
+	
+	
+//	public void insertarJinete(Jinete nuevoJinete) {
+//		insertarJinete(nuevoJinete,primerJinete);
+//	}
+//	
+//	public void insertarJinete(Jinete nuevoJinete,Jinete primerJinete) {
+//		
+//		if(this.primerJinete==null) {
+//			this.primerJinete=nuevoJinete;
+//		}else if(this.primerJinete.compareTo(nuevoJinete)>0){
+//			nuevoJinete.setSiguiente(primerJinete);
+//			this.primerJinete=nuevoJinete;
+//		}else {
+//			
+//			Jinete actual=primerJinete;
+//			if(actual.compareTo(nuevoJinete)<0) {
+//				if(actual.getSiguiente()==null) {
+//					actual.setSiguiente(nuevoJinete);
+//				}
+//			}else if(actual.getSiguiente().compareTo(nuevoJinete)>0) {
+//				nuevoJinete.setSiguiente(actual.getSiguiente());
+//				actual.setSiguiente(nuevoJinete);
+//			}else {
+//				actual=actual.getSiguiente();
+//				insertarJinete(nuevoJinete,actual);
+//			}
+//			
+//		}
+//	}
+	
+	
 	
 	//Este metodo inserta un caballo a un jinete
 	public void insertarCaballo() {
@@ -206,6 +420,25 @@ public class SimuladorApuesta {
 //		return nombreJugador;
 //	}
 	
+	
+	
+	public void mostrarJinetes() {
+		if(this.primerJinete==null) {
+			System.out.println("No existe ningun jinete");
+		}else {
+			
+			Jinete actual=primerJinete;
+			
+			while(actual!=null) {
+				System.out.println(actual.getNombre() + " numero: " + actual.getNumero());
+				actual=actual.getSiguiente();
+			}
+			
+			
+		}
+		
+		
+	}
 
 
 }

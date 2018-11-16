@@ -11,8 +11,9 @@ public class Caballo {
 	private double peso;
 	
 	private int carrerasGanadas;
+	private int carrerasPerdidas;
 	
-	private String genero;
+	private int genero;
 	
 	private double altura;
 	
@@ -20,7 +21,7 @@ public class Caballo {
 	private Caballo siguiente;
 
 	
-	public Caballo(String nombre, int numero, int edad, double peso, int carrerasGanadas, String genero, double altura,
+	public Caballo(String nombre, int numero, int edad, double peso, int carrerasGanadas,int carrerasPerdidas, int genero, double altura,
 			double velocidadMaxima) {
 		
 		this.nombre = nombre;
@@ -28,6 +29,7 @@ public class Caballo {
 		this.edad = edad;
 		this.peso = peso;
 		this.carrerasGanadas = carrerasGanadas;
+		this.carrerasPerdidas=carrerasPerdidas;
 		this.genero = genero;
 		this.altura = altura;
 		this.velocidadMaxima = velocidadMaxima;
@@ -84,11 +86,11 @@ public class Caballo {
 		this.carrerasGanadas = carrerasGanadas;
 	}
 
-	public String getGenero() {
+	public int getGenero() {
 		return genero;
 	}
 
-	public void setGenero(String genero) {
+	public void setGenero(int genero) {
 		this.genero = genero;
 	}
 

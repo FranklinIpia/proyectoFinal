@@ -3,12 +3,17 @@ package application;
 	
 import javafx.application.Application;
 import javafx.stage.Stage;
+import modelo.SimuladorApuesta;
 import javafx.scene.Scene;
 import javafx.scene.layout.AnchorPane;
 import javafx.fxml.FXMLLoader;
 
 
 public class Main extends Application {
+	
+	private static SimuladorApuesta simulador= new SimuladorApuesta();
+	
+	
 	@Override
 	public void start(Stage primaryStage) {
 		try {
@@ -20,6 +25,10 @@ public class Main extends Application {
 		} catch(Exception e) {
 			e.printStackTrace();
 		}
+	}
+	
+	public SimuladorApuesta darSimulador() {
+		return simulador;
 	}
 	
 	public static void main(String[] args) {
