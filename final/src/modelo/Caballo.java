@@ -1,6 +1,9 @@
 package modelo;
 
 public class Caballo {
+	
+	public final static int HEMBRA=1;
+	public final static int MACHO=2;
 
 	private String nombre;
 	
@@ -108,6 +111,16 @@ public class Caballo {
 
 	public void setVelocidadMaxima(double velocidadMaxima) {
 		this.velocidadMaxima = velocidadMaxima;
+	}
+
+
+	public int getCarrerasPerdidas() {
+		return carrerasPerdidas;
+	}
+
+
+	public void setCarrerasPerdidas(int carrerasPerdidas) {
+		this.carrerasPerdidas = carrerasPerdidas;
 	}
 
 

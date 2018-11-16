@@ -125,34 +125,7 @@ public void cargarJinetes() {
 	}
 	
 	
-//	public void archivoPokemones() {
-//		
-//		File file= new File("archivos/pokemones.txt");
-//		try {
-//			FileReader fileReader= new FileReader(file);
-//			BufferedReader buffer= new BufferedReader(fileReader);
-//			String line="";
-//			
-//			while((line = buffer.readLine()) != null){ //Se leen las lineas hasta el final del documento
-//				System.out.println(line);
-//				String[] data= line.split(";");
-//				String nombrePokemon=data[0];
-//				double posicion=Double.parseDouble(data[1]);
-//				double radio=Double.parseDouble(data[2]);
-//				boolean esAtrapado=Boolean.parseBoolean(data[3]);
-//				
-//				String imagen=data[4];
-//				Pokemon poke= new Pokemon(nombrePokemon,posicion,radio,esAtrapado, imagen);
-//				main.darEntrenamiento().darPokemones().add(poke);
-////				main.darPokemones().add(poke);
-//			}
-//			buffer.close();
-//			
-//		} catch (Exception e) {
-//			System.out.println(e);
-//		}
-//		
-//	}
+
 	
 	
 	public void escribirJinetes() {
