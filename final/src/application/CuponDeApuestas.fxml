@@ -408,12 +408,25 @@
                               </Button>
                            </children>
                         </GridPane>
-                        <Button fx:id="btPerfil" mnemonicParsing="false" prefHeight="38.0" prefWidth="67.0" text="Perfil" />
-                        <Button fx:id="btCerrarSecion" mnemonicParsing="false" prefHeight="36.0" prefWidth="96.0" text="Cerrar sesion">
+                        <Button fx:id="btPerfil" mnemonicParsing="false" prefHeight="17.0" prefWidth="67.0" text="Perfil">
                            <GridPane.margin>
-                              <Insets left="80.0" />
+                              <Insets bottom="30.0" left="50.0" />
+                           </GridPane.margin></Button>
+                        <Button fx:id="btCerrarSecion" mnemonicParsing="false" prefHeight="21.0" prefWidth="96.0" text="Cerrar sesion">
+                           <GridPane.margin>
+                              <Insets bottom="30.0" left="120.0" />
                            </GridPane.margin>
                         </Button>
+                        <Label text="Usuario">
+                           <GridPane.margin>
+                              <Insets bottom="30.0" />
+                           </GridPane.margin>
+                        </Label>
+                        <TextField prefHeight="25.0" prefWidth="203.0" promptText="nombre">
+                           <GridPane.margin>
+                              <Insets left="5.0" right="5.0" top="20.0" />
+                           </GridPane.margin>
+                        </TextField>
                      </children>
                   </GridPane>
                   <GridPane prefHeight="232.0" prefWidth="220.0" style="-fx-background-color: #d8d8d8;">
