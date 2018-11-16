@@ -7,6 +7,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectOutput;
 import java.io.ObjectOutputStream;
+import java.util.ArrayList;
 
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -88,14 +89,14 @@ public class RegistrarController {
 						public void handle(ActionEvent arg0) {
 							// TODO Auto-generated method stub
 						
-					Usuario	 nuevoUsuario= new Usuario(nombre, apellido, cedula, contraseña, edad, Usuario.MASCULINO, 0.0, contraseña, email, 0, null);
+//					Usuario	 nuevoUsuario= new Usuario(nombre, apellido, cedula, contraseña, edad, Usuario.MASCULINO, 0.0, contraseña, email, 0, null);
 
 							
 							
 						}
 					});
 					
-					 nuevoUsuario= new Usuario(nombre, apellido, cedula, contraseña, edad, Usuario.FEMENINO, 0.0, contraseña, email, 0, null);
+//					 nuevoUsuario= new Usuario(nombre, apellido, cedula, contraseña, edad, Usuario.FEMENINO, 0.0, contraseña, email, 0, null);
 
 					 boolean agrego=false;
 					    for(int i=0;i<main.darSimulador().getUsuarios().length&&!agrego;i++) {
@@ -118,6 +119,7 @@ public class RegistrarController {
 	
 FileOutputStream fileOut = null;
 ObjectOutputStream salida = null;
+ArrayList<Usuario> usuarios=null;
 
 try {
 	
@@ -125,10 +127,11 @@ try {
 	salida= new ObjectOutputStream(fileOut);
 	for (int i = 0; i < main.darSimulador().getUsuarios().length; i++) {
 		if(main.darSimulador().getUsuarios()[i]!=null) {
-			salida.writeObject(main.darSimulador().getUsuarios()[i]);
+			usuarios.add(i, main.darSimulador().getUsuarios()[i]);
+//			salida.writeObject(main.darSimulador().getUsuarios()[i]);
 		}
 	}
-	
+	salida.writeObject(usuarios);
 	
 }catch (FileNotFoundException e) {
 	System.out.println(e.getMessage());
@@ -136,7 +139,7 @@ try {
 	System.out.println(e.getMessage());
 }finally{
 	try {
-		if(main.darSimulador().getUsuarios()!=null) {
+		if(usuarios!=null) {
 			fileOut.close();
 		}
 			

@@ -93,8 +93,17 @@ public class SimuladorApuesta {
 	
 //METODO PARA IMPLEMENTAR LA BUSQUEDA BINARIA
 
-	public Usuario buscarUsuarioId() {
-		return null;
+	public Usuario buscarUsuarioId(String cedula) {
+		boolean encontro=false;
+		Usuario usuarioEncontrado=null;
+		for(int i=0;i<usuarios.length&&!encontro;i++) {
+			if(usuarios[i].getCedula().compareTo(cedula)==0) {
+			usuarioEncontrado=usuarios[i];
+			encontro=true;
+			}
+		}
+		
+		return usuarioEncontrado;
 	}
 	
 	public Usuario buscarUsuarioNombre() {

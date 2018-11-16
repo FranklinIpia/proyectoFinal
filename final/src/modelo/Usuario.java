@@ -14,7 +14,7 @@ public class Usuario extends Administrador implements Comparable<Usuario>,Serial
     
     
     
-    public Usuario(String nombre, String apellido, String cedula,String contraseña, int edad, int genero, double dinero, String claveUsuario,
+    public Usuario(String nombre, String apellido, String cedula,String contraseña, int edad, int genero, double dinero,
 			String correoElectronico,int apuestasGanadas,Apuesta apuestaUsuario) {
 	
 	super(nombre,apellido,cedula,contraseña,edad,genero);

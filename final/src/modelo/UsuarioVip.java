@@ -8,7 +8,7 @@ public class UsuarioVip  extends Usuario{
 	
 public UsuarioVip(String nombre, String apellido, String cedula,String contraseña, int edad, int genero, double dinero, String claveUsuario,
 		String correoElectronico,int apuestasGanadas,Apuesta apuestaUsuario,int tarjetaVip) {
-	super(nombre,apellido,cedula,contraseña,edad,genero,dinero,claveUsuario,correoElectronico,apuestasGanadas,apuestaUsuario);
+	super(nombre,apellido,cedula,contraseña,edad,genero,dinero,correoElectronico,apuestasGanadas,apuestaUsuario);
 	this.tarjetaVip=tarjetaVip;
 }
 

@@ -13,6 +13,8 @@ import modelo.Jinete;
 public class CuponDeApuestasController {
 
 	private Main main;
+	@FXML
+	private TextField txtUsuario;
 	//Estos texfield hacen referencia a los numeros de los caballos 
 	@FXML
 	private TextField txtNumero1;
@@ -66,7 +68,123 @@ public class CuponDeApuestasController {
 	
 	
 	
-	///Este metodo carga los jinetes del archivo txt
+	public Main getMain() {
+		return main;
+	}
+
+	public void setMain(Main main) {
+		this.main = main;
+	}
+
+	public TextField getTxtNumero1() {
+		return txtNumero1;
+	}
+
+	public void setTxtNumero1(TextField txtNumero1) {
+		this.txtNumero1 = txtNumero1;
+	}
+
+	public TextField getTxtNumero2() {
+		return txtNumero2;
+	}
+
+	public void setTxtNumero2(TextField txtNumero2) {
+		this.txtNumero2 = txtNumero2;
+	}
+
+	public TextField getTxtNumero3() {
+		return txtNumero3;
+	}
+
+	public void setTxtNumero3(TextField txtNumero3) {
+		this.txtNumero3 = txtNumero3;
+	}
+
+	public TextField getTxtNumero4() {
+		return txtNumero4;
+	}
+
+	public void setTxtNumero4(TextField txtNumero4) {
+		this.txtNumero4 = txtNumero4;
+	}
+
+	public TextField getTxtNombreJineteCaballo1() {
+		return txtNombreJineteCaballo1;
+	}
+
+	public void setTxtNombreJineteCaballo1(TextField txtNombreJineteCaballo1) {
+		this.txtNombreJineteCaballo1 = txtNombreJineteCaballo1;
+	}
+
+	public TextField getTxtNombreJineteCaballo2() {
+		return txtNombreJineteCaballo2;
+	}
+
+	public void setTxtNombreJineteCaballo2(TextField txtNombreJineteCaballo2) {
+		this.txtNombreJineteCaballo2 = txtNombreJineteCaballo2;
+	}
+
+	public TextField getTxtNombreJineteCaballo3() {
+		return txtNombreJineteCaballo3;
+	}
+
+	public void setTxtNombreJineteCaballo3(TextField txtNombreJineteCaballo3) {
+		this.txtNombreJineteCaballo3 = txtNombreJineteCaballo3;
+	}
+
+	public TextField getTxtNombreJineteCaballo4() {
+		return txtNombreJineteCaballo4;
+	}
+
+	public void setTxtNombreJineteCaballo4(TextField txtNombreJineteCaballo4) {
+		this.txtNombreJineteCaballo4 = txtNombreJineteCaballo4;
+	}
+
+	public Button getBtnGanador1() {
+		return btnGanador1;
+	}
+
+	public void setBtnGanador1(Button btnGanador1) {
+		this.btnGanador1 = btnGanador1;
+	}
+
+	public Button getBtnGanador2() {
+		return btnGanador2;
+	}
+
+	public void setBtnGanador2(Button btnGanador2) {
+		this.btnGanador2 = btnGanador2;
+	}
+
+	public Button getBtnGanador3() {
+		return btnGanador3;
+	}
+
+	public void setBtnGanador3(Button btnGanador3) {
+		this.btnGanador3 = btnGanador3;
+	}
+
+	public Button getBtnGanador4() {
+		return btnGanador4;
+	}
+
+	public void setBtnGanador4(Button btnGanador4) {
+		this.btnGanador4 = btnGanador4;
+	}
+
+	
+	
+	
+	
+public TextField getTxtUsuario() {
+		return txtUsuario;
+	}
+
+	public void setTxtUsuario(TextField txtUsuario) {
+		this.txtUsuario = txtUsuario;
+	}
+
+///Este metodo carga los jinetes del archivo txt
 public void cargarJinetes() {
 	
 	File file= new File("archivos/jinetes.txt");
@@ -145,6 +263,12 @@ public void cargarJinetes() {
 			System.out.println(e.getMessage() );
 			e.printStackTrace();
 		}
+		
+	}
+	
+	
+	
+	public void cargarUsuariosSerializables() {
 		
 	}
 	
