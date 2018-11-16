@@ -175,7 +175,8 @@ try {
 				System.out.println("La contraseña es incorrecta");
 				}else {
 					System.out.println("Entro");
-					cupon.setTxtUsuario(texUsuario);
+//					cupon.initialize("hjaja");
+				cupon.getTxtUsuario().setText("lllllll");
 					
 				}
 		}else {
