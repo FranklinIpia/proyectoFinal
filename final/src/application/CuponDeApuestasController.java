@@ -4,12 +4,46 @@ import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
 
+import javafx.fxml.FXML;
+import javafx.scene.control.Button;
+import javafx.scene.control.TextField;
 import modelo.Caballo;
 import modelo.Jinete;
 
 public class CuponDeApuestasController {
 
 	private Main main;
+	//Estos texfield hacen referencia a los numeros de los caballos 
+	@FXML
+	private TextField txtNumero1;
+	@FXML
+	private TextField txtNumero2;
+	@FXML
+	private TextField txtNumero3;
+	@FXML
+	private TextField txtNumero4;
+//Estos texfield hacen referenica al nombre del jinete junto con el caballo
+	@FXML
+	private TextField txtNombreJineteCaballo1;
+	@FXML
+	private TextField txtNombreJineteCaballo2;
+	@FXML
+	private TextField txtNombreJineteCaballo3;
+	@FXML
+	private TextField txtNombreJineteCaballo4;
+	
+	//Botones que hacen referencia a los botones organizados en forma como se ve en la interfaz
+	@FXML
+	private Button btnGanador1;
+	@FXML
+	private Button btnGanador2;
+	@FXML
+	private Button btnGanador3;
+	@FXML
+	private Button btnGanador4;
+
+	
+	
 	
 	
 	public CuponDeApuestasController() {

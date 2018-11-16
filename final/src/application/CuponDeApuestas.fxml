@@ -77,7 +77,7 @@
                         <Font name="Arial Black" size="12.0" />
                      </font>
                   </Label>
-                  <Button mnemonicParsing="false" prefHeight="54.0" prefWidth="110.0" style="-fx-background-color: #6E6E6E;" text="0.0" textFill="#fff000" GridPane.columnIndex="2" GridPane.rowIndex="1">
+                  <Button fx:id="btnGanador1" mnemonicParsing="false" prefHeight="54.0" prefWidth="110.0" style="-fx-background-color: #6E6E6E;" text="0.0" textFill="#fff000" GridPane.columnIndex="2" GridPane.rowIndex="1">
                      <effect>
                         <Blend />
                      </effect>
@@ -85,17 +85,17 @@
                         <Cursor fx:constant="HAND" />
                      </cursor>
                   </Button>
-                  <Button mnemonicParsing="false" prefHeight="60.0" prefWidth="116.0" style="-fx-background-color: #6E6E6E;" text="0.0" textFill="#fff000" GridPane.columnIndex="2" GridPane.rowIndex="2">
+                  <Button fx:id="btnGanador2" mnemonicParsing="false" prefHeight="60.0" prefWidth="116.0" style="-fx-background-color: #6E6E6E;" text="0.0" textFill="#fff000" GridPane.columnIndex="2" GridPane.rowIndex="2">
                      <cursor>
                         <Cursor fx:constant="HAND" />
                      </cursor>
                   </Button>
-                  <Button mnemonicParsing="false" prefHeight="53.0" prefWidth="108.0" style="-fx-background-color: #6E6E6E;" text="0.0" textFill="#fff000" GridPane.columnIndex="2" GridPane.rowIndex="3">
+                  <Button fx:id="btnGanador3" mnemonicParsing="false" prefHeight="53.0" prefWidth="108.0" style="-fx-background-color: #6E6E6E;" text="0.0" textFill="#fff000" GridPane.columnIndex="2" GridPane.rowIndex="3">
                      <cursor>
                         <Cursor fx:constant="HAND" />
                      </cursor>
                   </Button>
-                  <Button mnemonicParsing="false" prefHeight="53.0" prefWidth="104.0" style="-fx-background-color: #6E6E6E;" text="0.0" textFill="#fff000" GridPane.columnIndex="2" GridPane.rowIndex="4">
+                  <Button fx:id="btnGanador4" mnemonicParsing="false" prefHeight="53.0" prefWidth="104.0" style="-fx-background-color: #6E6E6E;" text="0.0" textFill="#fff000" GridPane.columnIndex="2" GridPane.rowIndex="4">
                      <cursor>
                         <Cursor fx:constant="HAND" />
                      </cursor>
@@ -230,22 +230,22 @@
                         <Cursor fx:constant="HAND" />
                      </cursor>
                   </Button>
-                  <TextField mouseTransparent="true" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                  <TextField fx:id="txtNombreJineteCaballo1" mouseTransparent="true" GridPane.columnIndex="1" GridPane.rowIndex="1">
                      <GridPane.margin>
                         <Insets left="5.0" right="5.0" />
                      </GridPane.margin>
                   </TextField>
-                  <TextField mouseTransparent="true" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                  <TextField fx:id="txtNombreJineteCaballo2" mouseTransparent="true" GridPane.columnIndex="1" GridPane.rowIndex="2">
                      <GridPane.margin>
                         <Insets left="5.0" right="5.0" />
                      </GridPane.margin>
                   </TextField>
-                  <TextField mouseTransparent="true" GridPane.columnIndex="1" GridPane.rowIndex="3">
+                  <TextField fx:id="txtNombreJineteCaballo3" mouseTransparent="true" GridPane.columnIndex="1" GridPane.rowIndex="3">
                      <GridPane.margin>
                         <Insets left="5.0" right="5.0" />
                      </GridPane.margin>
                   </TextField>
-                  <TextField mouseTransparent="true" GridPane.columnIndex="1" GridPane.rowIndex="4">
+                  <TextField fx:id="txtNombreJineteCaballo4" mouseTransparent="true" GridPane.columnIndex="1" GridPane.rowIndex="4">
                      <GridPane.margin>
                         <Insets left="5.0" right="5.0" />
                      </GridPane.margin>
@@ -270,22 +270,22 @@
                         <Insets left="5.0" right="5.0" />
                      </GridPane.margin>
                   </TextField>
-                  <TextField mouseTransparent="true" GridPane.rowIndex="1">
+                  <TextField fx:id="txtNumero1" mouseTransparent="true" GridPane.rowIndex="1">
                      <GridPane.margin>
                         <Insets left="5.0" />
                      </GridPane.margin>
                   </TextField>
-                  <TextField mouseTransparent="true" GridPane.rowIndex="2">
+                  <TextField fx:id="txtNumero2" mouseTransparent="true" GridPane.rowIndex="2">
                      <GridPane.margin>
                         <Insets left="5.0" />
                      </GridPane.margin>
                   </TextField>
-                  <TextField mouseTransparent="true" GridPane.rowIndex="3">
+                  <TextField fx:id="txtNumero3" mouseTransparent="true" GridPane.rowIndex="3">
                      <GridPane.margin>
                         <Insets left="5.0" />
                      </GridPane.margin>
                   </TextField>
-                  <TextField mouseTransparent="true" GridPane.rowIndex="4">
+                  <TextField fx:id="txtNumero4" mouseTransparent="true" GridPane.rowIndex="4">
                      <GridPane.margin>
                         <Insets left="5.0" />
                      </GridPane.margin>
