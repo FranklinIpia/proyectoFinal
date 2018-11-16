@@ -17,6 +17,7 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.Menu;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import modelo.Usuario;
@@ -51,9 +52,12 @@ public class RegistrarController {
 	@FXML
 	private Button btRegistrarse;
 	
+	private MenuController menu;
+	
 	public RegistrarController() {
 		main=new Main();
-		
+		menu= new MenuController();
+		menu.cargarJugadoresSerializables();
 	}
 	public void initialize() {
 		

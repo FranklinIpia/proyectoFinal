@@ -15,7 +15,7 @@
             <Image url="@../imagenes/imagenMenu.jpg" />
          </image>
       </ImageView>
-      <Button fx:id="btEntrar" layoutX="6.0" layoutY="208.0" mnemonicParsing="false" prefHeight="44.0" prefWidth="299.0" text="Entrar">
+      <Button fx:id="btEntrar" layoutX="6.0" layoutY="208.0" mnemonicParsing="false" onAction="#openEntrar" prefHeight="44.0" prefWidth="299.0" text="Entrar">
          <font>
             <Font name="Arial Bold" size="18.0" />
          </font>

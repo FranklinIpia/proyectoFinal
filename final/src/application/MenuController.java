@@ -40,6 +40,7 @@ public class MenuController {
 	public MenuController() {
 		main=new Main();
 		cupon= new CuponDeApuestasController();
+		guardarUsuariosSerializable();
 		cargarJugadoresSerializables();
 	}
 	public void initialize() {
@@ -57,6 +58,17 @@ FileOutputStream fileOut = null;
 ObjectOutputStream salida = null;
 ArrayList<Usuario> usuarios=null;
 Usuario uno= new Usuario("Sebastian", "Rebolledo", "1062332841","0000", 20,Usuario.MASCULINO, 20.000,"issareme@hotmail.com", 2,null);
+boolean entro=false;
+for(int i=0;i<main.darSimulador().getUsuarios().length&&!entro;i++) {
+	if(main.darSimulador().getUsuarios()[i]==null) {
+		main.darSimulador().getUsuarios()[i]=uno;
+		usuarios= new ArrayList<Usuario>();
+		usuarios.add(uno);
+		entro=true;
+	}
+}
+
+
 try {
 	
 	fileOut= new FileOutputStream("archivos/usuarios.dat");
@@ -70,9 +82,9 @@ try {
 	salida.writeObject(usuarios);
 	
 }catch (FileNotFoundException e) {
-	System.out.println(e.getMessage());
+	System.out.println(e.getMessage() +"1Excepcion metodo guardarJugadores de menucontroller");
 }catch(IOException e) {
-	System.out.println(e.getMessage());
+	System.out.println(e.getMessage()+"2Excepcion metodo guardarJugadores de menucontroller");
 }finally{
 	try {
 		if(usuarios!=null) {
@@ -83,7 +95,7 @@ try {
 			salida.close();
 		}
 	} catch (IOException e) {
-		System.out.println(e.getMessage());
+		System.out.println(e.getMessage()+ "3Excepcion metodo guardarJugadores de menucontroller");
 	}
 }
 				
@@ -122,11 +134,11 @@ try {
 			
 		} catch (FileNotFoundException e) {
 			// TODO: handle exception
-			System.out.println(e.getMessage());
+			System.out.println(e.getMessage()+"1Excepcion metodo cargarJugadores menu");
 		}catch(ClassNotFoundException e) {
-			System.out.println(e.getMessage());
+			System.out.println(e.getMessage() +"2Excepcion metodo cargarJugadores menu");
 		}catch(IOException e) {
-			System.out.println(e.getMessage());
+			System.out.println(e.getMessage()+ "3Excepcion metodo cargarJugadores menu");
 		}finally {
 			
 			 try {
@@ -162,7 +174,9 @@ try {
 			if(!usuarioEncontrado.getContraseña().equals(contraseña)) {
 				System.out.println("La contraseña es incorrecta");
 				}else {
+					System.out.println("Entro");
 					cupon.setTxtUsuario(texUsuario);
+					
 				}
 		}else {
 			System.out.println("No existe el usuario");
@@ -183,6 +197,7 @@ try {
 	
 	
 	public void openRegistrar(ActionEvent event) throws Exception {
+		
 		try {
 			Parent showBegginer = FXMLLoader.load(getClass().getResource("Registrar.fxml"));
 			Scene sceneBegginer = new Scene(showBegginer);
@@ -196,6 +211,8 @@ try {
 	
 	
 	public void openEntrar(ActionEvent event) throws Exception {
+		verificarUsuario() ;
+
 		try {
 			Parent showBegginer = FXMLLoader.load(getClass().getResource("CuponDeApuestas.fxml"));
 			Scene sceneBegginer = new Scene(showBegginer);
