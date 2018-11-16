@@ -1,6 +1,8 @@
 package modelo;
 
-public class Apuesta {
+import java.io.Serializable;
+
+public class Apuesta implements Serializable{
 
 	
 	private int tipoApuesta;
@@ -62,10 +64,6 @@ public class Apuesta {
 	public void setNumeroApuestasPerdidas(int numeroApuestasPerdidas) {
 		this.numeroApuestasPerdidas = numeroApuestasPerdidas;
 	}
-	
-	
-	
-	
 	
 	
 	
