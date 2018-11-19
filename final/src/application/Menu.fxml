@@ -20,7 +20,7 @@
             <Font name="Arial Bold" size="18.0" />
          </font>
       </Button>
-      <Button fx:id="btRegistrar" layoutX="38.0" layoutY="301.0" mnemonicParsing="false" onAction="#openRegistrar" prefHeight="44.0" prefWidth="234.0" text="Regístrate" textFill="#302e2e">
+      <Button fx:id="btRegistrar" layoutX="156.0" layoutY="280.0" mnemonicParsing="false" onAction="#openRegistrar" prefHeight="44.0" prefWidth="299.0" text="Regístrate" textFill="#302e2e">
          <font>
             <Font name="System Bold" size="18.0" />
          </font>
@@ -39,10 +39,5 @@
       </Button>
       <TextField fx:id="texUsuario1" layoutX="172.0" layoutY="19.0" prefHeight="33.0" prefWidth="160.0" promptText="Admin" style="-fx-background-color: #BD6333;" />
       <TextField fx:id="texContrasena1" cache="true" layoutX="342.0" layoutY="19.0" prefHeight="33.0" prefWidth="173.0" promptText="Contraseña admin" style="-fx-background-color: #B25C2E;" />
-      <Button fx:id="btRegistrar1" layoutX="342.0" layoutY="301.0" mnemonicParsing="false" onAction="#openRegistrar" prefHeight="44.0" prefWidth="234.0" text="Regístrate VIP" textFill="#302e2e">
-         <font>
-            <Font name="System Bold" size="18.0" />
-         </font>
-      </Button>
    </children>
 </AnchorPane>

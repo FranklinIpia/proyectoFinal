@@ -3,10 +3,17 @@ package application;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
+import java.io.IOException;
 
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
+import javafx.stage.Stage;
 import modelo.Caballo;
 import modelo.Jinete;
 
@@ -362,6 +369,37 @@ while(actual!=null) {
 	public void imprimirCaballos() {
 		main.darSimulador().imprimirCaballos();
 	}
+	
+	
+	//abre la ventana que da la informacion del caballo ( el cual se busca por el nombre)
+	   public void openBuscarCaballo(ActionEvent event) throws Exception {
+			
+
+			try {
+				Parent showBegginer = FXMLLoader.load(getClass().getResource("InfoCaballo.fxml"));
+				Scene sceneBegginer = new Scene(showBegginer);
+				Stage windowBegginer = (Stage)((Node) event.getSource()).getScene().getWindow();
+				windowBegginer.setScene(sceneBegginer);
+				windowBegginer.show();
+			}catch(IOException e) {
+				e.printStackTrace();
+			}
+		}
+	   
+	   // abre la venta que da la informacion del jinete.
+	   public void openBuscarJinete(ActionEvent event) throws Exception {
+			
+
+			try {
+				Parent showBegginer = FXMLLoader.load(getClass().getResource("InfoCaballo.fxml"));
+				Scene sceneBegginer = new Scene(showBegginer);
+				Stage windowBegginer = (Stage)((Node) event.getSource()).getScene().getWindow();
+				windowBegginer.setScene(sceneBegginer);
+				windowBegginer.show();
+			}catch(IOException e) {
+				e.printStackTrace();
+			}
+		}
 	
 	
 	
