@@ -6,6 +6,9 @@ import javax.print.attribute.standard.PrinterMoreInfo;
 
 import com.sun.javafx.scene.traversal.TopMostTraversalEngine;
 
+import Comparador.ComparadorEdad;
+import Comparador.ComparadorNombre;
+
 public class SimuladorApuesta {
 	
 	public static final int MAX_USUARIOS=100;
@@ -92,25 +95,40 @@ public class SimuladorApuesta {
 		int pos=i;
 		
 		for (int j = i+1; j < usuariosSeleccion.length; j++) {
-			
-//			if(usuariosSeleccion[j]<menor) {
-//				
-//			}
+			ComparadorNombre conM=new ComparadorNombre();
+
+			if(conM.compare(usuariosSeleccion[j],menor)<0) {
+				menor=usuariosSeleccion[j];
+				pos=j;
+			}
+		}
+		
+		Usuario temp= usuariosSeleccion[i];
+		usuariosSeleccion[i]=menor;
+		usuariosSeleccion[pos]=temp;
 			
 		}
-			
-		}
-		
-		
-		
-		
-		
-		
-		
 		return usuariosSeleccion;
 	}
 	
+	
+	
+	//Este metodo ordena los usarios en base a un orden parcial el cual 
+	// es la edad
 	public void ordenarUsuariosInserccion() {
+		Usuario[] usaruisInserccion=usuarios.clone();
+		for (int i = 1; i < usaruisInserccion.length; i++) {
+			ComparadorEdad comEdad= new ComparadorEdad();
+			for (int j = i; j >0&&  comEdad.compare(usaruisInserccion[j-1],usaruisInserccion[j])>0; j--) {
+				
+				Usuario temp= usaruisInserccion[j];
+				usaruisInserccion[j]=usaruisInserccion[j-1];
+				usaruisInserccion[j-1]=temp;
+			}
+			
+		}
+		
+		
 		
 	}
 	
