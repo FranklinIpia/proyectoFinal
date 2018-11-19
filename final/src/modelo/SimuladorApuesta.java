@@ -87,9 +87,17 @@ public class SimuladorApuesta {
 	public Usuario[] ordenarUsuariosSeleccion() {
 		Usuario[] usuariosSeleccion=usuarios.clone();
 		
-		for (int i = 0; i < usuariosSeleccion.length; i++) {
-//		Usuario menor=usuariosSeleccion[]
+		for (int i = 0; i < usuariosSeleccion.length-1; i++) {
+		Usuario menor=usuariosSeleccion[i];
+		int pos=i;
+		
+		for (int j = i+1; j < usuariosSeleccion.length; j++) {
 			
+//			if(usuariosSeleccion[j]<menor) {
+//				
+//			}
+			
+		}
 			
 		}
 		
