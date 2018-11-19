@@ -57,30 +57,15 @@ public class MenuController {
 FileOutputStream fileOut = null;
 ObjectOutputStream salida = null;
 ArrayList<Usuario> usuarios=null;
-Usuario uno1= new Usuario("Franklin", "Ipia", "1062326522","310659", 20,Usuario.MASCULINO, 20.000,"issareme@hotmail.com", 2,null);
-
-Usuario uno= new Usuario("Sebastian", "Rebolledo", "1062332841","0000", 20,Usuario.MASCULINO, 20.000,"issareme@hotmail.com", 2,null);
-boolean entro=false;
-for(int i=0;i<main.darSimulador().getUsuarios().length&&!entro;i++) {
-	if(main.darSimulador().getUsuarios()[i]==null) {
-		main.darSimulador().getUsuarios()[i]=uno;
-		main.darSimulador().getUsuarios()[i+1]=uno1;
-		usuarios= new ArrayList<Usuario>();
-		usuarios.add(uno);
-		usuarios.add(uno1);
-		entro=true;
-	}
-}
 
 
 try {
-	
+usuarios=new ArrayList<Usuario>();
 	fileOut= new FileOutputStream("archivos/usuarios.dat");
 	salida= new ObjectOutputStream(fileOut);
 	for (int i = 0; i < main.darSimulador().getUsuarios().length; i++) {
 		if(main.darSimulador().getUsuarios()[i]!=null) {
 			usuarios.add(i, main.darSimulador().getUsuarios()[i]);
-//			salida.writeObject(main.darSimulador().getUsuarios()[i]);
 		}
 	}
 	salida.writeObject(usuarios);
@@ -128,9 +113,10 @@ try {
 			entrada= new ObjectInputStream(fileInput);
 			usuariosArray=(ArrayList<Usuario>) entrada.readObject();
 			nuevosUsuarios= new Usuario[SimuladorApuesta.MAX_USUARIOS];
-			
+			System.out.println("No entro");
 			for(int i=0;i<usuariosArray.size();i++) {
 				nuevosUsuarios[i]=usuariosArray.get(i);
+				System.out.println(usuariosArray.get(i).getNombre()+"Nombre");
 			}
 			
 			main.darSimulador().setUsuarios(nuevosUsuarios);

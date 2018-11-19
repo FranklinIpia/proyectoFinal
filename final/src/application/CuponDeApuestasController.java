@@ -7,6 +7,7 @@ import java.io.FileReader;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
+import javafx.scene.image.ImageView;
 import modelo.Caballo;
 import modelo.Jinete;
 
@@ -44,7 +45,8 @@ public class CuponDeApuestasController {
 	@FXML
 	private Button btnGanador4;
 
-	
+	@FXML
+	private ImageView img1;
 	
 	
 	
@@ -62,8 +64,8 @@ public class CuponDeApuestasController {
 		cargarJinetes();
 	cargarCaballos() ;
 //	main.darSimulador().imprimirCaballos();
-	System.out.println("Jinetes");
-	main.darSimulador().mostrarJinetes();
+//	System.out.println("Jinetes");
+//	main.darSimulador().mostrarJinetes();
 	System.out.println(main.darSimulador().getCantidadUsuarios() +"Cantidad usuarios");
 //		mostrar();
 //		buscarJinete(318);
@@ -261,7 +263,7 @@ public void cargarJinetes() {
 				double altura=Double.parseDouble(data[7]);
 				int factorVeocilidad=Integer.parseInt(data[8]);
 				
-				Caballo caballo= new Caballo(nombre, numero,edad, peso, carrerasGanadas, carrerasPerdidas, genero, altura, factorVeocilidad);
+				Caballo caballo= new Caballo(img1,nombre, numero,edad, peso, carrerasGanadas, carrerasPerdidas, genero, altura, factorVeocilidad);
 				System.out.println(caballo.getNumero());
 				Jinete jineteEncontrado=main.darSimulador().buscarJinete(numero);
 				
@@ -286,47 +288,36 @@ public void cargarJinetes() {
 	
 	public void mostrarEnInterfaz() {
 		
-	int contador=0;
-	Jinete actual=main.darSimulador().getPrimerJinete();
-while(actual!=null) {
-	Caballo caballo= actual.getPrimerCaballo();
-	while(caballo!=null) {
-		if(contador==0) {
-			txtNumero1.setText(caballo.getNumero()+"");
-			System.out.println("Num cab"+caballo.getNumero() +"Num jine"+ actual.getNumero() + " 0");
-			System.out.println("Lista:" );
-			actual.mostrarCaballo();
-			txtNombreJineteCaballo1.setText(caballo.getNombre() + "/" + actual.getNombre());
-		}else if(contador==1) {
-			txtNumero2.setText(caballo.getNumero()+"");
-			System.out.println("Num cab"+caballo.getNumero() +"Num jine"+ actual.getNumero() + " 1");
+	Jinete actual1= main.darSimulador().buscarJinete(468);
+	Jinete actual2= main.darSimulador().buscarJinete(475);
+	Jinete actual3= main.darSimulador().buscarJinete(318);
+	Jinete actual4=main.darSimulador().buscarJinete(295);
 
-			System.out.println("Lista:" );
-			actual.mostrarCaballo();
-			txtNombreJineteCaballo2.setText(caballo.getNombre() + "/" + actual.getNombre());
-		}else if(contador==2) {
-			txtNumero3.setText(caballo.getNumero()+"");
-			System.out.println("Num cab"+caballo.getNumero() +"Num jine"+ actual.getNumero() + " 2");
-			actual.mostrarCaballo();
-			txtNombreJineteCaballo3.setText(caballo.getNombre() + "/" + actual.getNombre());
-		}else if(contador==3){
-			txtNumero4.setText(caballo.getNumero()+"");
-			System.out.println("Num cab"+caballo.getNumero() +"Num jine"+ actual.getNumero() + " 3");
-			actual.mostrarCaballo();
-			txtNombreJineteCaballo4.setText(caballo.getNombre() + "/" + actual.getNombre());
-		}
+
+			txtNumero1.setText(actual1.getPrimerCaballo().getNumero()+"");
+			
+			txtNombreJineteCaballo1.setText(actual1.getPrimerCaballo().getNombre() + "/" + actual1.getNombre());
 	
-		caballo=caballo.getSiguiente();
-	}
-	actual=actual.getSiguiente();
-	contador++;
+			txtNumero2.setText(actual2.getPrimerCaballo().getNumero()+"");
+		
+			txtNombreJineteCaballo2.setText(actual2.getNombre() + "/" + actual2.getNombre());
+
+			txtNumero3.setText(actual3.getPrimerCaballo().getNumero()+"");
+			
+			txtNombreJineteCaballo3.setText(actual3.getPrimerCaballo().getNombre() + "/" + actual3.getNombre());
+	
+			txtNumero4.setText(actual4.getPrimerCaballo().getNumero()+"");
+		
+			txtNombreJineteCaballo4.setText(actual4.getPrimerCaballo().getNombre() + "/" + actual4.getNombre());
+	
+	
 
 	
 	
 	
 }
 		
-	}
+	
 	
 	public void cargarUsuariosSerializables() {
 		
@@ -346,16 +337,6 @@ while(actual!=null) {
 	
 	
 
-	
-	
-	public void escribirJinetes() {
-		
-	}
-	
-	public void escribirCaballos() {
-		
-	}
-	
 	
 	
 	

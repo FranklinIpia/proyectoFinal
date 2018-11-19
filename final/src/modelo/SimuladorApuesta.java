@@ -9,7 +9,7 @@ import Excepciones.ExcepcionElUsuarioYaEstaRegistrado;
 
 public class SimuladorApuesta {
 	
-	public static final int MAX_USUARIOS=100;
+	public static final int MAX_USUARIOS=4;
 	
 	
 	private Jinete primerJinete;
@@ -25,6 +25,7 @@ public class SimuladorApuesta {
 	public SimuladorApuesta() {
 	this.usuarios= new Usuario[MAX_USUARIOS];
 	cantidadUsuarios=0;
+	
 
 	}
 	
@@ -115,7 +116,14 @@ public class SimuladorApuesta {
 	
 	
 	
-	
+	public void imprimirUsuarios() {
+		System.out.println("Entro aca pero no");
+		for (int i = 0; i < usuarios.length; i++) {
+			if(usuarios[i]!=null) {
+				System.out.println("Nombre usuariios" +usuarios[i].getNombre() +"\n");
+			}
+		}
+	}
 
 
 
@@ -221,9 +229,13 @@ public class SimuladorApuesta {
 		while(inicio<=fin&&!encontro) {
 			int medio=(inicio+fin)/2;
 			
-			if(usuarios[medio].getCedula().compareTo(cedula)==0) {
-			usuarioEncontrado=usuarios[medio];
-			encontro=true;
+			
+			if(usuarios[medio]!=null) {
+				if(usuarios[medio].getCedula().compareTo(cedula)==0) {
+					usuarioEncontrado=usuarios[medio];
+					encontro=true;
+			}
+			
 			}else if(usuarios[medio].getCedula().compareTo(cedula)>0) {
 				fin=medio+-1;
 			}else{
@@ -400,6 +412,7 @@ public class SimuladorApuesta {
 
 		
 	}
+
 
 	
 

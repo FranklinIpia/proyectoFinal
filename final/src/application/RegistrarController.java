@@ -58,6 +58,7 @@ public class RegistrarController {
 		main=new Main();
 		menu= new MenuController();
 		menu.cargarJugadoresSerializables();
+		main.darSimulador().imprimirUsuarios();
 	}
 	public void initialize() {
 		
