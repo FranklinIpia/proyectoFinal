@@ -80,8 +80,17 @@ public class SimuladorApuesta {
 	}
 
 
-	public void ordenarUsuariosSeleccion() {
+	
+	
+	///Este metodo ordena los usuario en base al orden parcial que
+	//hace referncia al nombre
+	public Usuario[] ordenarUsuariosSeleccion() {
+		Usuario[] usuariosSeleccion=usuarios.clone();
 		
+		
+		
+		
+		return null;
 	}
 	
 	public void ordenarUsuariosInserccion() {
