@@ -4,6 +4,8 @@ import java.util.ArrayList;
 
 import javax.print.attribute.standard.PrinterMoreInfo;
 
+import com.sun.javafx.scene.traversal.TopMostTraversalEngine;
+
 public class SimuladorApuesta {
 	
 	public static final int MAX_USUARIOS=100;
@@ -19,6 +21,8 @@ public class SimuladorApuesta {
 	
 	public SimuladorApuesta() {
 	this.usuarios= new Usuario[MAX_USUARIOS];
+	cantidadUsuarios=0;
+
 	}
 	
 	
@@ -249,6 +253,7 @@ public class SimuladorApuesta {
 	public void insertarJinete(Jinete nuevoJinete,Jinete primerJinete) {
 		if(this.primerJinete==null) {
 			this.primerJinete=nuevoJinete;
+			cantidadUsuarios++;
 		}
 		
 		else {
@@ -257,6 +262,7 @@ public class SimuladorApuesta {
 				if(actual.getSiguiente()==null) {
 					actual.setSiguiente(nuevoJinete);
 					nuevoJinete.setAnterior(actual);
+					cantidadUsuarios++;
 				}else {
 					insertarJinete(nuevoJinete,actual.getSiguiente());
 				}
@@ -270,6 +276,7 @@ public class SimuladorApuesta {
 					actual.setAnterior(nuevoJinete);
 					nuevoJinete.setSiguiente(actual);
 					this.primerJinete=nuevoJinete;
+					cantidadUsuarios++;
 				}
 				
 				else if(actual.getAnterior()!=null && actual.getSiguiente()!=null) {
@@ -277,6 +284,7 @@ public class SimuladorApuesta {
 					nuevoJinete.setAnterior(actual.getAnterior());
 					actual.getAnterior().setSiguiente(nuevoJinete);
 					actual.setAnterior(nuevoJinete);
+					cantidadUsuarios++;
 				}
 				
 				else if(actual.getAnterior()!=null&&actual.getSiguiente()==null) {
@@ -284,6 +292,7 @@ public class SimuladorApuesta {
 					nuevoJinete.setAnterior(actual.getAnterior());
 					actual.getAnterior().setSiguiente(nuevoJinete);
 					actual.setAnterior(nuevoJinete);
+					cantidadUsuarios++;
 				}
 				
 			}

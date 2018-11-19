@@ -57,13 +57,17 @@ public class MenuController {
 FileOutputStream fileOut = null;
 ObjectOutputStream salida = null;
 ArrayList<Usuario> usuarios=null;
+Usuario uno1= new Usuario("Franklin", "Ipia", "1062326522","310659", 20,Usuario.MASCULINO, 20.000,"issareme@hotmail.com", 2,null);
+
 Usuario uno= new Usuario("Sebastian", "Rebolledo", "1062332841","0000", 20,Usuario.MASCULINO, 20.000,"issareme@hotmail.com", 2,null);
 boolean entro=false;
 for(int i=0;i<main.darSimulador().getUsuarios().length&&!entro;i++) {
 	if(main.darSimulador().getUsuarios()[i]==null) {
 		main.darSimulador().getUsuarios()[i]=uno;
+		main.darSimulador().getUsuarios()[i+1]=uno1;
 		usuarios= new ArrayList<Usuario>();
 		usuarios.add(uno);
+		usuarios.add(uno1);
 		entro=true;
 	}
 }
