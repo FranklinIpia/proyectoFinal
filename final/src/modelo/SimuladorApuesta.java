@@ -4,6 +4,11 @@ import java.util.ArrayList;
 
 import javax.print.attribute.standard.PrinterMoreInfo;
 
+import com.sun.javafx.scene.traversal.TopMostTraversalEngine;
+
+import Comparador.ComparadorEdad;
+import Comparador.ComparadorNombre;
+
 public class SimuladorApuesta {
 	
 	public static final int MAX_USUARIOS=100;
@@ -19,6 +24,8 @@ public class SimuladorApuesta {
 	
 	public SimuladorApuesta() {
 	this.usuarios= new Usuario[MAX_USUARIOS];
+	cantidadUsuarios=0;
+
 	}
 	
 	
@@ -76,11 +83,52 @@ public class SimuladorApuesta {
 	}
 
 
-	public void ordenarUsuariosSeleccion() {
+	
+	
+	///Este metodo ordena los usuario en base al orden parcial que
+	//hace referncia al nombre
+	public Usuario[] ordenarUsuariosSeleccion() {
+		Usuario[] usuariosSeleccion=usuarios.clone();
 		
+		for (int i = 0; i < usuariosSeleccion.length-1; i++) {
+		Usuario menor=usuariosSeleccion[i];
+		int pos=i;
+		
+		for (int j = i+1; j < usuariosSeleccion.length; j++) {
+			ComparadorNombre conM=new ComparadorNombre();
+
+			if(conM.compare(usuariosSeleccion[j],menor)<0) {
+				menor=usuariosSeleccion[j];
+				pos=j;
+			}
+		}
+		
+		Usuario temp= usuariosSeleccion[i];
+		usuariosSeleccion[i]=menor;
+		usuariosSeleccion[pos]=temp;
+			
+		}
+		return usuariosSeleccion;
 	}
 	
+	
+	
+	//Este metodo ordena los usarios en base a un orden parcial el cual 
+	// es la edad
 	public void ordenarUsuariosInserccion() {
+		Usuario[] usaruisInserccion=usuarios.clone();
+		for (int i = 1; i < usaruisInserccion.length; i++) {
+			ComparadorEdad comEdad= new ComparadorEdad();
+			for (int j = i; j >0&&  comEdad.compare(usaruisInserccion[j-1],usaruisInserccion[j])>0; j--) {
+				
+				Usuario temp= usaruisInserccion[j];
+				usaruisInserccion[j]=usaruisInserccion[j-1];
+				usaruisInserccion[j-1]=temp;
+			}
+			
+		}
+		
+		
 		
 	}
 	
@@ -97,10 +145,13 @@ public class SimuladorApuesta {
 		boolean encontro=false;
 		Usuario usuarioEncontrado=null;
 		for(int i=0;i<usuarios.length&&!encontro;i++) {
-			if(usuarios[i].getCedula().compareTo(cedula)==0) {
-			usuarioEncontrado=usuarios[i];
-			encontro=true;
+			if(usuarios[i]!=null) {
+				if(usuarios[i].getCedula().compareTo(cedula)==0) {
+					usuarioEncontrado=usuarios[i];
+					encontro=true;
+					}
 			}
+			
 		}
 		
 		return usuarioEncontrado;
@@ -246,6 +297,7 @@ public class SimuladorApuesta {
 	public void insertarJinete(Jinete nuevoJinete,Jinete primerJinete) {
 		if(this.primerJinete==null) {
 			this.primerJinete=nuevoJinete;
+			cantidadUsuarios++;
 		}
 		
 		else {
@@ -254,6 +306,7 @@ public class SimuladorApuesta {
 				if(actual.getSiguiente()==null) {
 					actual.setSiguiente(nuevoJinete);
 					nuevoJinete.setAnterior(actual);
+					cantidadUsuarios++;
 				}else {
 					insertarJinete(nuevoJinete,actual.getSiguiente());
 				}
@@ -267,6 +320,7 @@ public class SimuladorApuesta {
 					actual.setAnterior(nuevoJinete);
 					nuevoJinete.setSiguiente(actual);
 					this.primerJinete=nuevoJinete;
+					cantidadUsuarios++;
 				}
 				
 				else if(actual.getAnterior()!=null && actual.getSiguiente()!=null) {
@@ -274,6 +328,7 @@ public class SimuladorApuesta {
 					nuevoJinete.setAnterior(actual.getAnterior());
 					actual.getAnterior().setSiguiente(nuevoJinete);
 					actual.setAnterior(nuevoJinete);
+					cantidadUsuarios++;
 				}
 				
 				else if(actual.getAnterior()!=null&&actual.getSiguiente()==null) {
@@ -281,6 +336,7 @@ public class SimuladorApuesta {
 					nuevoJinete.setAnterior(actual.getAnterior());
 					actual.getAnterior().setSiguiente(nuevoJinete);
 					actual.setAnterior(nuevoJinete);
+					cantidadUsuarios++;
 				}
 				
 			}

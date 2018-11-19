@@ -117,7 +117,7 @@ public String getNombre() {
 	public void insertarCaballo(Caballo nuevoCaballo) {
 		
 		if(primerCaballo==null) {
-			primerCaballo=nuevoCaballo;
+			this.primerCaballo=nuevoCaballo;
 		}else {
 			
 			Caballo actual= primerCaballo;

@@ -50,15 +50,30 @@ public class CuponDeApuestasController {
 	
 	public CuponDeApuestasController() {
 		main= new Main();
+		txtUsuario= new TextField();
+		txtNombreJineteCaballo1= new TextField();
+		txtNombreJineteCaballo2=new TextField();
+		txtNombreJineteCaballo3= new TextField();
+		txtNombreJineteCaballo4=new TextField();
+		txtNumero1= new TextField();
+		txtNumero2=new TextField();
+		txtNumero3=new TextField();
+		txtNumero4=new TextField();
 		cargarJinetes();
 	cargarCaballos() ;
-		mostrar();
-		buscarJinete(318);
-		imprimirCaballos();
+//	main.darSimulador().imprimirCaballos();
+	System.out.println("Jinetes");
+	main.darSimulador().mostrarJinetes();
+	System.out.println(main.darSimulador().getCantidadUsuarios() +"Cantidad usuarios");
+//		mostrar();
+//		buscarJinete(318);
+//		imprimirCaballos();
+	
 	}
 	
 	public void initialize() {
-		
+//		txtUsuario.setText(cedula);
+		 mostrarEnInterfaz();
 	}
 	
 	
@@ -249,11 +264,13 @@ public void cargarJinetes() {
 				Caballo caballo= new Caballo(nombre, numero,edad, peso, carrerasGanadas, carrerasPerdidas, genero, altura, factorVeocilidad);
 				System.out.println(caballo.getNumero());
 				Jinete jineteEncontrado=main.darSimulador().buscarJinete(numero);
+				
 				if(jineteEncontrado==null) {
 					System.out.println("No se enontro el jinete");
 				}else {
 					System.out.println("Numero del jinete encontraod" + jineteEncontrado.getNumero());
 					jineteEncontrado.insertarCaballo(caballo);
+				
 				}
 				contador++;
 				System.out.println("Contador " +contador);
@@ -267,6 +284,49 @@ public void cargarJinetes() {
 	}
 	
 	
+	public void mostrarEnInterfaz() {
+		
+	int contador=0;
+	Jinete actual=main.darSimulador().getPrimerJinete();
+while(actual!=null) {
+	Caballo caballo= actual.getPrimerCaballo();
+	while(caballo!=null) {
+		if(contador==0) {
+			txtNumero1.setText(caballo.getNumero()+"");
+			System.out.println("Num cab"+caballo.getNumero() +"Num jine"+ actual.getNumero() + " 0");
+			System.out.println("Lista:" );
+			actual.mostrarCaballo();
+			txtNombreJineteCaballo1.setText(caballo.getNombre() + "/" + actual.getNombre());
+		}else if(contador==1) {
+			txtNumero2.setText(caballo.getNumero()+"");
+			System.out.println("Num cab"+caballo.getNumero() +"Num jine"+ actual.getNumero() + " 1");
+
+			System.out.println("Lista:" );
+			actual.mostrarCaballo();
+			txtNombreJineteCaballo2.setText(caballo.getNombre() + "/" + actual.getNombre());
+		}else if(contador==2) {
+			txtNumero3.setText(caballo.getNumero()+"");
+			System.out.println("Num cab"+caballo.getNumero() +"Num jine"+ actual.getNumero() + " 2");
+			actual.mostrarCaballo();
+			txtNombreJineteCaballo3.setText(caballo.getNombre() + "/" + actual.getNombre());
+		}else if(contador==3){
+			txtNumero4.setText(caballo.getNumero()+"");
+			System.out.println("Num cab"+caballo.getNumero() +"Num jine"+ actual.getNumero() + " 3");
+			actual.mostrarCaballo();
+			txtNombreJineteCaballo4.setText(caballo.getNombre() + "/" + actual.getNombre());
+		}
+	
+		caballo=caballo.getSiguiente();
+	}
+	actual=actual.getSiguiente();
+	contador++;
+
+	
+	
+	
+}
+		
+	}
 	
 	public void cargarUsuariosSerializables() {
 		

@@ -422,7 +422,7 @@
                               <Insets bottom="30.0" />
                            </GridPane.margin>
                         </Label>
-                        <TextField prefHeight="25.0" prefWidth="203.0" promptText="nombre">
+                        <TextField fx:id="txtUsuario" onAction="#initialize" prefHeight="25.0" prefWidth="203.0" promptText="nombre">
                            <GridPane.margin>
                               <Insets left="5.0" right="5.0" top="20.0" />
                            </GridPane.margin>
