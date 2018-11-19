@@ -42,6 +42,8 @@ public class Caballo {
 		this.altura = altura;
 		this.velocidadMaxima = velocidadMaxima;
 		this.imagen=imagen;
+		this.posX=0;
+		this.posY=0;
 	}
 	
 	
