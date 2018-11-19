@@ -1,21 +1,92 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.text.Font?>
 
-
-<AnchorPane prefHeight="561.0" prefWidth="1197.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/10.0.1">
+<AnchorPane prefHeight="560.0" prefWidth="1197.0" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <ImageView fitHeight="561.0" fitWidth="1197.0" layoutX="179.0" layoutY="131.0" pickOnBounds="true" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <image>
             <Image url="@../imagenes/carrera.jpg" />
          </image>
       </ImageView>
-      <ImageView fitHeight="561.0" fitWidth="69.0" layoutX="1072.0" pickOnBounds="true" smooth="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="1072.0" AnchorPane.rightAnchor="56.0" AnchorPane.topAnchor="0.0">
+      <ImageView fitHeight="561.0" fitWidth="69.0" layoutX="940.0" pickOnBounds="true" smooth="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="940.0" AnchorPane.rightAnchor="188.0" AnchorPane.topAnchor="0.0">
          <image>
             <Image url="@../imagenes/meta.jpg" />
          </image>
       </ImageView>
+      <ImageView fitHeight="93.0" fitWidth="166.0" layoutY="27.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../imagenes/caballo1.gif" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="93.0" fitWidth="166.0" layoutX="-12.0" layoutY="74.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../imagenes/caballo2.gif" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="93.0" fitWidth="166.0" layoutY="131.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../imagenes/caballo3.gif" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="93.0" fitWidth="166.0" layoutX="-38.0" layoutY="204.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../imagenes/caballo6.gif" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="93.0" fitWidth="166.0" layoutX="24.0" layoutY="245.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../imagenes/caballo7.gif" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="93.0" fitWidth="166.0" layoutY="305.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../imagenes/caballo8.gif" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="93.0" fitWidth="166.0" layoutX="-25.0" layoutY="367.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../imagenes/caballo10.gif" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="93.0" fitWidth="166.0" layoutX="9.0" layoutY="449.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../imagenes/caballo9.gif" />
+         </image>
+      </ImageView>
+      <Pane layoutX="997.0" prefHeight="561.0" prefWidth="200.0" style="-fx-background-color: #8E776C;">
+         <children>
+            <GridPane layoutX="5.0" layoutY="-1.0" prefHeight="561.0" prefWidth="193.0">
+              <columnConstraints>
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+              </columnConstraints>
+              <rowConstraints>
+                <RowConstraints maxHeight="275.0" minHeight="4.0" prefHeight="40.0" vgrow="SOMETIMES" />
+                <RowConstraints maxHeight="557.0" minHeight="10.0" prefHeight="521.0" vgrow="SOMETIMES" />
+              </rowConstraints>
+               <children>
+                  <Label alignment="CENTER" prefHeight="41.0" prefWidth="205.0" style="-fx-background-color: #11B6AA;" text="posición de llegada">
+                     <font>
+                        <Font name="System Bold" size="15.0" />
+                     </font>
+                     <GridPane.margin>
+                        <Insets right="1.0" top="5.0" />
+                     </GridPane.margin>
+                  </Label>
+                  <ListView prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #848A8A;" GridPane.rowIndex="1" />
+               </children>
+            </GridPane>
+         </children>
+      </Pane>
    </children>
 </AnchorPane>

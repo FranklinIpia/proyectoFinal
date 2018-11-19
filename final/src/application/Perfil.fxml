@@ -44,11 +44,12 @@
                         <Insets left="50.0" right="5.0" />
                      </GridPane.margin>
                   </TextField>
-                  <Button mnemonicParsing="false" prefHeight="25.0" prefWidth="99.0" text="Volver" GridPane.columnIndex="1">
+                  <Button mnemonicParsing="false" prefHeight="41.0" prefWidth="83.0" text="Volver" GridPane.columnIndex="1">
                      <GridPane.margin>
-                        <Insets left="50.0" />
+                        <Insets left="130.0" />
                      </GridPane.margin>
                   </Button>
+                  <Button mnemonicParsing="false" prefHeight="40.0" prefWidth="93.0" text="Asociarse vip" GridPane.columnIndex="1" />
                </children>
             </GridPane>
             <Label alignment="CENTER" prefHeight="62.0" prefWidth="526.0" style="-fx-background-color: #808B96;" text="Perfil">
@@ -163,6 +164,11 @@
                   </TextField>
                </children>
             </GridPane>
+            <TextField promptText="usuario normal">
+               <GridPane.margin>
+                  <Insets left="300.0" right="5.0" />
+               </GridPane.margin>
+            </TextField>
          </children>
       </GridPane>
    </children>
