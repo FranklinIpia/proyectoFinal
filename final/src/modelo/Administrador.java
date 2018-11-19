@@ -4,12 +4,12 @@ public class Administrador {
 	
 	public final static int MASCULINO=1;
 	public final static int FEMENINO=2;
-	private String nombre;
-	private String apellido;
-	private String cedula;
-	private String contraseña;
-	private int edad;
-	private int genero;
+	protected String nombre;
+	protected String apellido;
+	protected String cedula;
+	protected String contraseña;
+	protected int edad;
+	protected int genero;
 
 	
 	public Administrador(String nombre,String apellido,String cedula,String contraseña,int edad,int genero) {
