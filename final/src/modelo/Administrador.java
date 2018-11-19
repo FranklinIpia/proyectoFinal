@@ -1,6 +1,8 @@
 package modelo;
 
-public class Administrador {
+import java.io.Serializable;
+
+public class Administrador implements Serializable{
 	
 	public final static int MASCULINO=1;
 	public final static int FEMENINO=2;
