@@ -9,6 +9,9 @@ import java.io.ObjectOutput;
 import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 
+import javax.swing.JOptionPane;
+
+import Excepciones.ExcepcionElUsuarioYaEstaRegistrado;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
@@ -57,8 +60,8 @@ public class RegistrarController {
 	public RegistrarController() {
 		main=new Main();
 		menu= new MenuController();
-		menu.cargarJugadoresSerializables();
-		main.darSimulador().imprimirUsuarios();
+//		menu.cargarJugadoresSerializables();
+
 	}
 	public void initialize() {
 		
@@ -66,106 +69,149 @@ public class RegistrarController {
 	
 
 	
-	////El usuario se registra con los atributos basicos con un  dinero de 0.0
-	//y la pauesta en null, ya que apenas se registro.
-	public void registrarUsuario() {
+	public void registrarUsuario2(ActionEvent e) {
 		
 		
-		btRegistrarse.setOnAction(new EventHandler<ActionEvent>() {
+		String nombre=texNombre.getText();
+		String apellido=texApellido.getText();
+		String cedula=texCedula.getText();
+		String contraseña=texContrasena.getText();
+		String email=texConfirmarEmail.getText();
+		int edad= Integer.parseInt(texEdad.getText());
+		Usuario usuarioEn=main.darSimulador().buscarUsuariofor(cedula);
+		try {
 			
-			@Override
-			public void handle(ActionEvent arg0) {
-				// TODO Auto-generated method stub
+			
+			if(usuarioEn!=null) {
+				throw new ExcepcionElUsuarioYaEstaRegistrado("ya existe un usuarios con le id:" + usuarioEn.getCedula());
+			}else {
 				
-				if(texNombre.getText()==null ||texNombre.getText()=="" ) {
-					System.out.println("Debes llenar todos los campos");
-				}else {
+				Usuario nuevo= new Usuario(nombre, apellido, cedula, contraseña, edad, 1, 0.0, email, 0, null);
+				boolean ensarto=false;
+				for(int i=0;i<main.darSimulador().getUsuarios().length&&!ensarto;i++) {
 					
-					String nombre=texNombre.getText();
-					String apellido=texApellido.getText();
-					String cedula=texCedula.getText();
-					String contraseña=texContrasena.getText();
-					String email=texConfirmarEmail.getText();
-					int edad= Integer.parseInt(texEdad.getText());
-					Usuario nuevoUsuario=null;
-					btHombre.setOnAction(new EventHandler<ActionEvent>() {
-						
-						@Override
-						public void handle(ActionEvent arg0) {
-							// TODO Auto-generated method stub
-						
-//					Usuario	 nuevoUsuario= new Usuario(nombre, apellido, cedula, contraseña, edad, Usuario.MASCULINO, 0.0, contraseña, email, 0, null);
-
-							
-							
-						}
-					});
-					
-//					 nuevoUsuario= new Usuario(nombre, apellido, cedula, contraseña, edad, Usuario.FEMENINO, 0.0, contraseña, email, 0, null);
-
-					 boolean agrego=false;
-					    for(int i=0;i<main.darSimulador().getUsuarios().length&&!agrego;i++) {
-					        	if(main.darSimulador().getUsuarios()[i]==null) {
-						            main.darSimulador().getUsuarios()[i]=nuevoUsuario;
-						             agrego=true;
-						             guardarUsuariosSerializable() ;
-											
-							}
-						}
+					if(main.darSimulador().getUsuarios()[i]==null) {
+						main.darSimulador().getUsuarios()[i]=nuevo;
+						ensarto=true;
+					}
 				}
 				
 			}
-		});
-	}
-	
-	
-	///Este metodo guarda el nuevo usuario serializable que se ha registrado
-	public void guardarUsuariosSerializable() {
-	
-FileOutputStream fileOut = null;
-ObjectOutputStream salida = null;
-ArrayList<Usuario> usuarios=null;
-
-try {
-	
-	fileOut= new FileOutputStream("archivos/usuarios.dat");
-	salida= new ObjectOutputStream(fileOut);
-	for (int i = 0; i < main.darSimulador().getUsuarios().length; i++) {
-		if(main.darSimulador().getUsuarios()[i]!=null) {
-			usuarios.add(i, main.darSimulador().getUsuarios()[i]);
-//			salida.writeObject(main.darSimulador().getUsuarios()[i]);
+			menu.guardarUsuariosSerializable();
+			main.darSimulador().imprimirUsuarios();
+		} catch (Exception e2) {
+			// TODO: handle exception
+			JOptionPane.showMessageDialog(null,e2.getMessage());
 		}
+		
+		
+		
+		
 	}
-	salida.writeObject(usuarios);
 	
-}catch (FileNotFoundException e) {
-	System.out.println(e.getMessage());
-}catch(IOException e) {
-	System.out.println(e.getMessage());
-}finally{
-	try {
-		if(usuarios!=null) {
-			fileOut.close();
-		}
-			
-		if (salida != null) {
-			salida.close();
-		}
-	} catch (IOException e) {
-		System.out.println(e.getMessage());
-	}
-}
-				
 	
-		
-
-		
-		
-		
-		
-		
-		
-	}
+	
+	
+	////El usuario se registra con los atributos basicos con un  dinero de 0.0
+	//y la pauesta en null, ya que apenas se registro.
+//	public void registrarUsuario() {
+//		
+//		
+//		btRegistrarse.setOnAction(new EventHandler<ActionEvent>() {
+//			
+//			@Override
+//			public void handle(ActionEvent arg0) {
+//				// TODO Auto-generated method stub
+//				
+//				if(texNombre.getText()==null ||texNombre.getText()=="" ) {
+//					System.out.println("Debes llenar todos los campos");
+//				}else {
+//					
+//					String nombre=texNombre.getText();
+//					String apellido=texApellido.getText();
+//					String cedula=texCedula.getText();
+//					String contraseña=texContrasena.getText();
+//					String email=texConfirmarEmail.getText();
+//					int edad= Integer.parseInt(texEdad.getText());
+//					Usuario nuevoUsuario=null;
+//					btHombre.setOnAction(new EventHandler<ActionEvent>() {
+//						
+//						@Override
+//						public void handle(ActionEvent arg0) {
+//							// TODO Auto-generated method stub
+//						
+////					Usuario	 nuevoUsuario= new Usuario(nombre, apellido, cedula, contraseña, edad, Usuario.MASCULINO, 0.0, contraseña, email, 0, null);
+//
+//							
+//							
+//						}
+//					});
+//					
+////					 nuevoUsuario= new Usuario(nombre, apellido, cedula, contraseña, edad, Usuario.FEMENINO, 0.0, contraseña, email, 0, null);
+//
+//					 boolean agrego=false;
+//					    for(int i=0;i<main.darSimulador().getUsuarios().length&&!agrego;i++) {
+//					        	if(main.darSimulador().getUsuarios()[i]==null) {
+//						            main.darSimulador().getUsuarios()[i]=nuevoUsuario;
+//						             agrego=true;
+//						             guardarUsuariosSerializable() ;
+//											
+//							}
+//						}
+//				}
+//				
+//			}
+//		});
+//	}
+	
+	
+//	///Este metodo guarda el nuevo usuario serializable que se ha registrado
+//	public void guardarUsuariosSerializable() {
+//	
+//FileOutputStream fileOut = null;
+//ObjectOutputStream salida = null;
+//ArrayList<Usuario> usuarios=null;
+//
+//try {
+//	
+//	fileOut= new FileOutputStream("archivos/usuarios.dat");
+//	salida= new ObjectOutputStream(fileOut);
+//	for (int i = 0; i < main.darSimulador().getUsuarios().length; i++) {
+//		if(main.darSimulador().getUsuarios()[i]!=null) {
+//			usuarios.add(i, main.darSimulador().getUsuarios()[i]);
+////			salida.writeObject(main.darSimulador().getUsuarios()[i]);
+//		}
+//	}
+//	salida.writeObject(usuarios);
+//	
+//}catch (FileNotFoundException e) {
+//	System.out.println(e.getMessage());
+//}catch(IOException e) {
+//	System.out.println(e.getMessage());
+//}finally{
+//	try {
+//		if(usuarios!=null) {
+//			fileOut.close();
+//		}
+//			
+//		if (salida != null) {
+//			salida.close();
+//		}
+//	} catch (IOException e) {
+//		System.out.println(e.getMessage());
+//	}
+//}
+//				
+//	
+//		
+//
+//		
+//		
+//		
+//		
+//		
+//		
+//	}
 	
 	
 	

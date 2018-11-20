@@ -10,6 +10,12 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 
+import javax.swing.JOptionPane;
+
+import org.omg.PortableServer.ThreadPolicyOperations;
+
+import Excepciones.ExcepcionLaContraseñaEsInavalida;
+import Excepciones.ExcepcionNoExisteElUsuarioConId;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -39,9 +45,9 @@ public class MenuController {
 	
 	public MenuController() {
 		main=new Main();
-		cupon= new CuponDeApuestasController();
-		guardarUsuariosSerializable();
-		cargarJugadoresSerializables();
+//	cupon= new CuponDeApuestasController();
+//		guardarUsuariosSerializable();
+	cargarJugadoresSerializables();
 	}
 	public void initialize() {
 	
@@ -51,21 +57,46 @@ public class MenuController {
 	
 	
 	
+	public TextField getTexUsuario() {
+		return texUsuario;
+	}
+	public void setTexUsuario(TextField texUsuario) {
+		this.texUsuario = texUsuario;
+	}
+	public TextField getTexContrasena() {
+		return texContrasena;
+	}
+	public void setTexContrasena(TextField texContrasena) {
+		this.texContrasena = texContrasena;
+	}
 	///Este metodo guarda el nuevo usuario serializable que se ha registrado
 	public void guardarUsuariosSerializable() {
 	
 FileOutputStream fileOut = null;
 ObjectOutputStream salida = null;
 ArrayList<Usuario> usuarios=null;
+Usuario u1= new Usuario("Sebastian", "Rebolledo", "1062332841", "12345", 20, 1, 20.000, "issareme@hotmail.com",0, null);
+Usuario u2= new Usuario("Sebastian", "Rebolledo", "1111", "12345", 20, 1, 20.000, "issareme@hotmail.com",0, null);
+Usuario u3= new Usuario("Sebastian", "Rebolledo", "2222", "12345", 20, 1, 20.000, "issareme@hotmail.com",0, null);
+Usuario u4= new Usuario("Sebastian", "Rebolledo", "0000", "12345", 20, 1, 20.000, "issareme@hotmail.com",0, null);
+Usuario u5= new Usuario("Sebastian", "Rebolledo", "4444", "12345", 20, 1, 20.000, "issareme@hotmail.com",0, null);
+Usuario u6= new Usuario("Sebastian", "Rebolledo", "6666", "12345", 20, 1, 20.000, "issareme@hotmail.com",0, null);
 
 
-try {
-usuarios=new ArrayList<Usuario>();
+    try {
+    	
+    usuarios=new ArrayList<Usuario>();
+    usuarios.add(u1);
+    usuarios.add(u2);
+    usuarios.add(u3);
+    usuarios.add(u4);
+    usuarios.add(u5);
+    usuarios.add(u6);
 	fileOut= new FileOutputStream("archivos/usuarios.dat");
 	salida= new ObjectOutputStream(fileOut);
 	for (int i = 0; i < main.darSimulador().getUsuarios().length; i++) {
 		if(main.darSimulador().getUsuarios()[i]!=null) {
-			usuarios.add(i, main.darSimulador().getUsuarios()[i]);
+			usuarios.add(main.darSimulador().getUsuarios()[i]);
 		}
 	}
 	salida.writeObject(usuarios);
@@ -114,11 +145,17 @@ usuarios=new ArrayList<Usuario>();
 			usuariosArray=(ArrayList<Usuario>) entrada.readObject();
 			nuevosUsuarios= new Usuario[SimuladorApuesta.MAX_USUARIOS];
 			System.out.println("No entro");
+			System.out.println(usuariosArray.size());
 			for(int i=0;i<usuariosArray.size();i++) {
-				nuevosUsuarios[i]=usuariosArray.get(i);
-				System.out.println(usuariosArray.get(i).getNombre()+"Nombre");
+				System.out.println(usuariosArray.get(i).getCedula());
 			}
 			
+			for(int i=0;i<usuariosArray.size();i++) {
+				nuevosUsuarios[i]=usuariosArray.get(i);
+				System.out.println(":D" +nuevosUsuarios[i].getCedula());
+			}
+
+			System.out.println(usuariosArray.size());
 			main.darSimulador().setUsuarios(nuevosUsuarios);
 			
 			
@@ -151,39 +188,74 @@ usuarios=new ArrayList<Usuario>();
 	}
 	
 	
-	
-	public void verificarUsuario() {
-		
-		String cedula=texUsuario.getText();
-		String contraseña= texContrasena.getText();
-		
-		Usuario usuarioEncontrado=main.darSimulador().buscarUsuarioId(cedula);
-		
-		
-		if(usuarioEncontrado!=null) {
-			if(!usuarioEncontrado.getContraseña().equals(contraseña)) {
-				System.out.println("La contraseña es incorrecta");
-				}else {
-					System.out.println("Entro");
-//					cupon.initialize("hjaja");
-				cupon.getTxtUsuario().setText("lllllll");
-					
-				}
-		}else {
-			System.out.println("No existe el usuario");
-		}
 
+	public void verificarUsuario(ActionEvent e) {
 		
+		String contraseña=texContrasena.getText();
+		String cedula=texUsuario.getText();
+		Usuario usuarioEncontrado=main.darSimulador().buscarUsuariofor(cedula);
+	try {
+		
+		if(usuarioEncontrado==null) {
+			
+			throw new ExcepcionNoExisteElUsuarioConId("No existe el usuarios con ede id:" + cedula);
+		}
+		
+		
+		else {
+			System.out.println(" no es nulo");
+			if(usuarioEncontrado.getContraseña().compareTo(contraseña)!=0) {
+				throw new ExcepcionLaContraseñaEsInavalida("La contraseña es invalida");
+			}else {
+				try {
+					this.texUsuario= new TextField(cedula);
+//					this.texUsuario.setText(cedula);
+					handleButtonAction(e);
+				} catch (IOException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+			}
+			
+		}
+		
+		
+	} catch (ExcepcionLaContraseñaEsInavalida e2) {
+		JOptionPane.showMessageDialog(null,e2.getMessage());
+		System.out.println(e2.getMessage());
+		// TODO: handle exception
+	}catch (ExcepcionNoExisteElUsuarioConId e2) {
+		// TODO: handle exception
+		JOptionPane.showMessageDialog(null,e2.getMessage());
+		System.out.println(e2.getMessage());
+	}
 		
 		
 		
 	}
-	
 
 
 
 
 	
+	
+	@FXML
+	public void handleButtonAction(ActionEvent event) throws IOException{
+	    Stage stage ; 
+	    Parent root ;
+	    
+	          
+	     stage=(Stage) btEntrar.getScene().getWindow();
+	    root = FXMLLoader.load(getClass().getResource("CuponDeApuestas.fxml"));
+
+	    
+	    Scene scene = new Scene(root);
+	     stage.setScene(scene);
+	     stage.show();
+	     
+	   }
+
+
 	
 	
 	
@@ -202,7 +274,7 @@ usuarios=new ArrayList<Usuario>();
 	
 	
 	public void openEntrar(ActionEvent event) throws Exception {
-		verificarUsuario() ;
+//		verificarUsuario() ;
 
 		try {
 			Parent showBegginer = FXMLLoader.load(getClass().getResource("CuponDeApuestas.fxml"));

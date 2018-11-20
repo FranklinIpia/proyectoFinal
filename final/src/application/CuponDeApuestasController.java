@@ -56,11 +56,12 @@ public class CuponDeApuestasController {
 	@FXML
 	private ImageView img1;
 	
-	
+	MenuController menu;
 	
 	public CuponDeApuestasController() {
 		main= new Main();
-		txtUsuario= new TextField();
+//		menu=new MenuController();
+	txtUsuario= new TextField();
 		txtNombreJineteCaballo1= new TextField();
 		txtNombreJineteCaballo2=new TextField();
 		txtNombreJineteCaballo3= new TextField();
@@ -69,21 +70,22 @@ public class CuponDeApuestasController {
 		txtNumero2=new TextField();
 		txtNumero3=new TextField();
 		txtNumero4=new TextField();
+		btnGanador1=new Button("1.5");
+		btnGanador2=new Button();
+		btnGanador3= new Button();
+		btnGanador4= new Button();
 		cargarJinetes();
 	cargarCaballos() ;
-//	main.darSimulador().imprimirCaballos();
-//	System.out.println("Jinetes");
-//	main.darSimulador().mostrarJinetes();
-	System.out.println(main.darSimulador().getCantidadUsuarios() +"Cantidad usuarios");
-//		mostrar();
-//		buscarJinete(318);
-//		imprimirCaballos();
 	
 	}
 	
 	public void initialize() {
 //		txtUsuario.setText(cedula);
 		 mostrarEnInterfaz();
+		 btnGanador1.setText("1.5");
+		 btnGanador2.setText("1.6");
+		 btnGanador3.setText("2.1");
+		 btnGanador4.setText("1.0");
 	}
 	
 	
@@ -387,7 +389,17 @@ public void cargarJinetes() {
 	
 	
 	
-	
+	public void eligioBoton(ActionEvent e) {
+		
+		if(btnGanador1==e.getSource()) {
+			btnGanador2.setDisable(true);
+			btnGanador3.setDisable(true);
+			btnGanador4.setDisable(true);
+			
+			
+		}
+		
+	}
 	
 
 }

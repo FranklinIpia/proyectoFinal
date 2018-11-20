@@ -2,6 +2,8 @@ package modelo;
 
 
 
+import java.util.ArrayList;
+
 import Comparador.ComparadorApuesta;
 import Comparador.ComparadorEdad;
 import Comparador.ComparadorNombre;
@@ -9,7 +11,7 @@ import Excepciones.ExcepcionElUsuarioYaEstaRegistrado;
 
 public class SimuladorApuesta {
 	
-	public static final int MAX_USUARIOS=4;
+	public static final int MAX_USUARIOS=20;
 	
 	
 	private Jinete primerJinete;
@@ -230,14 +232,14 @@ public class SimuladorApuesta {
 			int medio=(inicio+fin)/2;
 			
 			
-			if(usuarios[medio]!=null) {
+			
 				if(usuarios[medio].getCedula().compareTo(cedula)==0) {
 					usuarioEncontrado=usuarios[medio];
 					encontro=true;
-			}
+			
 			
 			}else if(usuarios[medio].getCedula().compareTo(cedula)>0) {
-				fin=medio+-1;
+				fin=medio-1;
 			}else{
 				inicio=medio+1;
 			}
@@ -247,6 +249,8 @@ public class SimuladorApuesta {
 	}
 	
 	public Usuario buscarUsuarioNombre(String nombre) {
+	
+		
 		boolean encontro=false;
 		int inicio=0;
 		int fin=usuarios.length-1;
@@ -270,6 +274,21 @@ public class SimuladorApuesta {
 		return usuarioEncontrado;
 	}
 	
+	
+	public Usuario buscarUsuariofor(String cedula) {
+		
+		Usuario usuarioEn=null;
+		boolean encontro=false;
+		for(int i=0;i<usuarios.length&&!encontro;i++) {
+			if(usuarios[i]!=null) {
+				if(usuarios[i].getCedula().compareTo(cedula)==0) {
+					encontro=true;
+					usuarioEn=usuarios[i];
+				}
+			}
+		}
+		return usuarioEn;
+	}
 	
 	
 	

@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ListView?>
 <?import javafx.scene.image.Image?>
@@ -12,7 +13,7 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="560.0" prefWidth="1197.0" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane prefHeight="560.0" prefWidth="1197.0" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.CarreraController">
    <children>
       <ImageView fitHeight="561.0" fitWidth="1197.0" layoutX="179.0" layoutY="131.0" pickOnBounds="true" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <image>
@@ -24,22 +25,22 @@
             <Image url="@../imagenes/meta.jpg" />
          </image>
       </ImageView>
-      <ImageView fitHeight="93.0" fitWidth="166.0" layoutY="27.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="img1" fitHeight="93.0" fitWidth="166.0" layoutY="27.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../imagenes/caballo1.gif" />
          </image>
       </ImageView>
-      <ImageView fitHeight="93.0" fitWidth="166.0" layoutX="-12.0" layoutY="74.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="img2" fitHeight="93.0" fitWidth="166.0" layoutX="-12.0" layoutY="74.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../imagenes/caballo2.gif" />
          </image>
       </ImageView>
-      <ImageView fitHeight="93.0" fitWidth="166.0" layoutY="131.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="img3" fitHeight="93.0" fitWidth="166.0" layoutY="131.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../imagenes/caballo3.gif" />
          </image>
       </ImageView>
-      <ImageView fitHeight="93.0" fitWidth="166.0" layoutX="-38.0" layoutY="204.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="img4" fitHeight="93.0" fitWidth="166.0" layoutX="-38.0" layoutY="204.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../imagenes/caballo6.gif" />
          </image>
@@ -88,5 +89,6 @@
             </GridPane>
          </children>
       </Pane>
+      <Button layoutX="420.0" layoutY="517.0" mnemonicParsing="false" onAction="#moverCaballo" text="Button" />
    </children>
 </AnchorPane>

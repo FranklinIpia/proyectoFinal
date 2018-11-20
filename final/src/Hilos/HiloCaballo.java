@@ -15,6 +15,8 @@ public class HiloCaballo implements Runnable {
 	@Override
 	public void run() {
 		// TODO Auto-generated method stub
+		caballo.moverCaballo();
+		
 		
 	}
 

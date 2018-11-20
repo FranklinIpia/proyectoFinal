@@ -47,6 +47,16 @@ public class Caballo {
 	}
 	
 	
+	public ImageView getImagen() {
+		return imagen;
+	}
+
+
+	public void setImagen(ImageView imagen) {
+		this.imagen = imagen;
+	}
+
+
 	public Caballo getSiguiente() {
 		return siguiente;
 	}
