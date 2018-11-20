@@ -390,7 +390,7 @@ public void cargarJinetes() {
 	
 	
 	public void eligioBoton(ActionEvent e) {
-		
+		////SSs
 		if(btnGanador1==e.getSource()) {
 			btnGanador2.setDisable(true);
 			btnGanador3.setDisable(true);
