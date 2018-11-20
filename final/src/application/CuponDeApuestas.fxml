@@ -333,7 +333,7 @@
                       <RowConstraints maxHeight="74.0" minHeight="10.0" prefHeight="10.0" vgrow="SOMETIMES" />
                     </rowConstraints>
                      <children>
-                        <Button fx:id="btEmpezarCarrera" mnemonicParsing="false" prefHeight="21.0" prefWidth="210.0" style="-fx-background-color: #FF0000;" text="Empezar carrera" textFill="#042c40" GridPane.rowIndex="2">
+                        <Button fx:id="btEmpezarCarrera" mnemonicParsing="false" onAction="#openCarrera" prefHeight="21.0" prefWidth="210.0" style="-fx-background-color: #FF0000;" text="Empezar carrera" textFill="#042c40" GridPane.rowIndex="2">
                            <GridPane.margin>
                               <Insets bottom="9.0" left="5.0" right="5.0" top="5.0" />
                            </GridPane.margin>

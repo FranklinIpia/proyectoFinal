@@ -172,10 +172,11 @@ public class Caballo {
 //		int nuevaPosX=27;
 	do {
 		
-		int valorEntero1 = (int) Math.floor(Math.random()*(1-30+1)+30);
+	int valorEntero1 = (int) Math.floor(Math.random()*(1-30+1)+30);
+
 //		comienzo=comienzo+ random.nextInt(this.velocidad);
 		
-	comienzo=comienzo+valorEntero1;
+	comienzo=valorEntero1;
 		this.posX=comienzo;
 		this.imagen.setX(posX);
 		try {

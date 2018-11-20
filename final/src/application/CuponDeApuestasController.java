@@ -387,7 +387,19 @@ public void cargarJinetes() {
 	
 	
 	
-	
+	   public void openCarrera(ActionEvent event) throws Exception {
+			
+
+				try {
+					Parent showBegginer = FXMLLoader.load(getClass().getResource("Carrera.fxml"));
+					Scene sceneBegginer = new Scene(showBegginer);
+					Stage windowBegginer = (Stage)((Node) event.getSource()).getScene().getWindow();
+					windowBegginer.setScene(sceneBegginer);
+					windowBegginer.show();
+				}catch(IOException e) {
+					e.printStackTrace();
+				}
+			}
 	
 	public void eligioBoton(ActionEvent e) {
 		////SSs

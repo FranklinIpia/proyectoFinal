@@ -89,6 +89,6 @@
             </GridPane>
          </children>
       </Pane>
-      <Button layoutX="420.0" layoutY="517.0" mnemonicParsing="false" onAction="#moverCaballo" text="Button" />
+      <Button layoutX="420.0" layoutY="517.0" mnemonicParsing="false" text="Button" />
    </children>
 </AnchorPane>
