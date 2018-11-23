@@ -11,7 +11,7 @@ public class UsuarioVip   extends Usuario  implements Serializable{
 	private int tarjetaVip;
 	private UsuarioVip derecho;
 	private UsuarioVip izquierdo;
-	private Apuesta primerApuesta;
+	private Apuesta raizApuestaVip;
 public UsuarioVip(String nombre, String apellido, String cedula,String contraseña, int edad, int genero, double dinero, String claveUsuario,
 		String correoElectronico,int apuestasGanadas,Apuesta apuestaUsuario,int tarjetaVip) {
 	super(nombre,apellido,cedula,contraseña,edad,genero,dinero,correoElectronico,apuestasGanadas,apuestaUsuario);
@@ -96,14 +96,28 @@ public void insertar( UsuarioVip nuevo ) throws ExcepcionElUsuarioYaEstaRegistra
 
 
 
+public void agregarApuesta1(Apuesta a1) {
+	
+	if(this.raizApuestaVip==null) {
+		this.raizApuestaVip=a1;
+	}else {
+		try {
+			this.raizApuestaVip.insertar(a1);
+		} catch (ExcepcionElUsuarioYaEstaRegistrado e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+}
 
 
-public UsuarioVip eliminar( String unNombre )
+
+public UsuarioVip eliminar( String cedula )
 {
     if( esHoja( ) )
         // Tiene que ser el elemento que estamos buscando
         return null;
-    if( nombre.compareToIgnoreCase( unNombre ) == 0 )
+    if( this.cedula.compareToIgnoreCase( cedula) == 0 )
     {
         if( izquierdo == null ) {
             return derecho;
@@ -121,36 +135,36 @@ public UsuarioVip eliminar( String unNombre )
         sucesor.derecho = derecho;
         return sucesor;
     }
-    else if( nombre.compareToIgnoreCase( unNombre ) > 0 ) {
-        izquierdo = izquierdo.eliminar( unNombre );
+    else if( this.cedula.compareToIgnoreCase( cedula ) > 0 ) {
+        izquierdo = izquierdo.eliminar( cedula);
     }
     else {
-        derecho = derecho.eliminar( unNombre );
+        derecho = derecho.eliminar( cedula);
     }
     return this;
 }
 
 
 
-public UsuarioVip buscarUsuarioVip(String nombre) {
+public UsuarioVip buscarUsuarioVip(int tarjetaVip) {
 	
-	if(this.nombre.compareToIgnoreCase(nombre)==0) {
+	if(this.tarjetaVip==tarjetaVip) {
 		return this;
-	}else if(this.nombre.compareToIgnoreCase(nombre)>0) {
+	}else if(this.tarjetaVip>tarjetaVip) {
 		if(izquierdo!=null) {
-			izquierdo.buscarUsuarioVip(nombre);
+			return izquierdo.buscarUsuarioVip(tarjetaVip);
 		}else {
 			return null;
 		}
 		
 	}else {
 		if(derecho!=null) {
-			derecho.buscarUsuarioVip(nombre);
+			return derecho.buscarUsuarioVip(tarjetaVip);
 		}else {
 			return null;
 		}
 	}
-	return null;
+//	return null;
 }
 
 

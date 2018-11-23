@@ -2,6 +2,8 @@ package modelo;
 
 import java.io.Serializable;
 
+import Excepciones.ExcepcionElUsuarioYaEstaRegistrado;
+
 public class Usuario extends Administrador implements Comparable<Usuario>,Serializable{
 	
 
@@ -9,7 +11,7 @@ public class Usuario extends Administrador implements Comparable<Usuario>,Serial
 	private double dinero;
     private String correoElectronico;
     private int apuestasGanadas;
-  
+  private Apuesta raizApuesta;
     private Apuesta apuestaUsuario;
     
     
@@ -101,13 +103,35 @@ public class Usuario extends Administrador implements Comparable<Usuario>,Serial
 
 	@Override
 	public int compareTo(Usuario u1) {
-		// TODO Auto-generated method stub
-		return 0;
+		if(this.cedula.compareTo(u1.getCedula())==0) {
+			return 0;
+		}else if(this.cedula.compareTo(u1.getCedula())>0) {
+			return 1;
+		}else {
+			return 0;
+		}
+	
 	}
 
 
 
 
+	public void agregarApuesta(Apuesta ap1) {
+		if(raizApuesta==null) {
+			raizApuesta=ap1;
+		}else {
+			try {
+				raizApuesta.insertar(ap1);
+			} catch (ExcepcionElUsuarioYaEstaRegistrado e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			
+		}
+		
+		
+	}
+	
 	
 	
 

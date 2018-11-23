@@ -1,13 +1,16 @@
 package application;
 
 import java.io.BufferedReader;
+import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.security.SecureRandom;
 
 import javax.swing.JOptionPane;
 
+import Excepciones.ExcepcionNoExisteElUsuarioConId;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -15,93 +18,72 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 
 import javafx.scene.image.ImageView;
+import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import modelo.Apuesta;
 import modelo.Caballo;
 import modelo.Jinete;
+import modelo.Usuario;
+import modelo.UsuarioVip;
 
 public class CuponDeApuestasController {
 
 	private Main main;
-	@FXML
-	private TextField txtUsuario;
-	//Estos texfield hacen referencia a los numeros de los caballos 
-	@FXML
-	private TextField txtNumero1;
-	@FXML
-	private TextField txtNumero2;
-	@FXML
-	private TextField txtNumero3;
-	@FXML
-	private TextField txtNumero4;
-//Estos texfield hacen referenica al nombre del jinete junto con el caballo
-	@FXML
-	private TextField txtNombreJineteCaballo1;
-	@FXML
-	private TextField txtNombreJineteCaballo2;
-	@FXML
-	private TextField txtNombreJineteCaballo3;
-	@FXML
-	private TextField txtNombreJineteCaballo4;
-	
-	//Botones que hacen referencia a los botones organizados en forma como se ve en la interfaz
-	@FXML
-	private Button btnGanador1;
-	@FXML
-	private Button btnGanador2;
-	@FXML
-	private Button btnGanador3;
-	@FXML
-	private Button btnGanador4;
-	@FXML
-	private Button btnGenerarApuesta;
-	
-	@FXML
-	private Button btnEmpezarCarrera;
+
 
 	@FXML
 	private ImageView img1;
 	
+	@FXML
+	private Label lblCuotaApuesta;
+	
+	@FXML
+	private Label lblPagoPotencial;
+	
+	@FXML
+	private Label lblImporteApostado;
 	
 	@FXML
 	private TextField txtCantidadApuesta;
 	
+	@FXML
+	private TextField txtCedulaUsuario;
+	@FXML
+	private Button btnGenerarApuesta;
 	
-	MenuController menu;
+	@FXML
+	private TextField txtNumeroCaballo;
+	
+	@FXML
+	private TextField txtID;
+	
+	
+	@FXML
+	private Button btnEmpezarCarrera;
+
 	
 	public CuponDeApuestasController() {
-		main= new Main();
 //		menu=new MenuController();
-	txtUsuario= new TextField();
+		main=new Main();
 	btnEmpezarCarrera= new Button();
 	btnEmpezarCarrera.setDisable(true);
-		txtNombreJineteCaballo1= new TextField();
-		txtNombreJineteCaballo2=new TextField();
-		txtNombreJineteCaballo3= new TextField();
-		txtNombreJineteCaballo4=new TextField();
-		txtNumero1= new TextField();
-		txtNumero2=new TextField();
-		txtNumero3=new TextField();
-		txtNumero4=new TextField();
-		btnGanador1=new Button("1.5");
-		btnGanador2=new Button();
-		btnGanador3= new Button();
-		btnGanador4= new Button();
-		cargarJinetes();
-	cargarCaballos() ;
+	lblCuotaApuesta=new Label();
+	lblImporteApostado=new Label();
+	lblPagoPotencial=new Label();
 	
+//		cargarJinetes();
+//	cargarCaballos() ;
+//	
 	}
 	
 	public void initialize() {
 //		txtUsuario.setText(cedula);
-		 mostrarEnInterfaz();
-		 btnGanador1.setText("1.5");
-		 btnGanador2.setText("1.6");
-		 btnGanador3.setText("2.1");
-		 btnGanador4.setText("1.0");
+//		 mostrarEnInterfaz();
+	
 	}
 	
 	
@@ -119,113 +101,7 @@ public class CuponDeApuestasController {
 		this.main = main;
 	}
 
-	public TextField getTxtNumero1() {
-		return txtNumero1;
-	}
 
-	public void setTxtNumero1(TextField txtNumero1) {
-		this.txtNumero1 = txtNumero1;
-	}
-
-	public TextField getTxtNumero2() {
-		return txtNumero2;
-	}
-
-	public void setTxtNumero2(TextField txtNumero2) {
-		this.txtNumero2 = txtNumero2;
-	}
-
-	public TextField getTxtNumero3() {
-		return txtNumero3;
-	}
-
-	public void setTxtNumero3(TextField txtNumero3) {
-		this.txtNumero3 = txtNumero3;
-	}
-
-	public TextField getTxtNumero4() {
-		return txtNumero4;
-	}
-
-	public void setTxtNumero4(TextField txtNumero4) {
-		this.txtNumero4 = txtNumero4;
-	}
-
-	public TextField getTxtNombreJineteCaballo1() {
-		return txtNombreJineteCaballo1;
-	}
-
-	public void setTxtNombreJineteCaballo1(TextField txtNombreJineteCaballo1) {
-		this.txtNombreJineteCaballo1 = txtNombreJineteCaballo1;
-	}
-
-	public TextField getTxtNombreJineteCaballo2() {
-		return txtNombreJineteCaballo2;
-	}
-
-	public void setTxtNombreJineteCaballo2(TextField txtNombreJineteCaballo2) {
-		this.txtNombreJineteCaballo2 = txtNombreJineteCaballo2;
-	}
-
-	public TextField getTxtNombreJineteCaballo3() {
-		return txtNombreJineteCaballo3;
-	}
-
-	public void setTxtNombreJineteCaballo3(TextField txtNombreJineteCaballo3) {
-		this.txtNombreJineteCaballo3 = txtNombreJineteCaballo3;
-	}
-
-	public TextField getTxtNombreJineteCaballo4() {
-		return txtNombreJineteCaballo4;
-	}
-
-	public void setTxtNombreJineteCaballo4(TextField txtNombreJineteCaballo4) {
-		this.txtNombreJineteCaballo4 = txtNombreJineteCaballo4;
-	}
-
-	public Button getBtnGanador1() {
-		return btnGanador1;
-	}
-
-	public void setBtnGanador1(Button btnGanador1) {
-		this.btnGanador1 = btnGanador1;
-	}
-
-	public Button getBtnGanador2() {
-		return btnGanador2;
-	}
-
-	public void setBtnGanador2(Button btnGanador2) {
-		this.btnGanador2 = btnGanador2;
-	}
-
-	public Button getBtnGanador3() {
-		return btnGanador3;
-	}
-
-	public void setBtnGanador3(Button btnGanador3) {
-		this.btnGanador3 = btnGanador3;
-	}
-
-	public Button getBtnGanador4() {
-		return btnGanador4;
-	}
-
-	public void setBtnGanador4(Button btnGanador4) {
-		this.btnGanador4 = btnGanador4;
-	}
-
-	
-	
-	
-	
-public TextField getTxtUsuario() {
-		return txtUsuario;
-	}
-
-	public void setTxtUsuario(TextField txtUsuario) {
-		this.txtUsuario = txtUsuario;
-	}
 
 ///Este metodo carga los jinetes del archivo txt
 public void cargarJinetes() {
@@ -311,37 +187,7 @@ public void cargarJinetes() {
 		
 	}
 	
-	
-	public void mostrarEnInterfaz() {
-		
-	Jinete actual1= main.darSimulador().buscarJinete(468);
-	Jinete actual2= main.darSimulador().buscarJinete(475);
-	Jinete actual3= main.darSimulador().buscarJinete(318);
-	Jinete actual4=main.darSimulador().buscarJinete(295);
 
-
-			txtNumero1.setText(actual1.getPrimerCaballo().getNumero()+"");
-			
-			txtNombreJineteCaballo1.setText(actual1.getPrimerCaballo().getNombre() + "/" + actual1.getNombre());
-	
-			txtNumero2.setText(actual2.getPrimerCaballo().getNumero()+"");
-		
-			txtNombreJineteCaballo2.setText(actual2.getNombre() + "/" + actual2.getNombre());
-
-			txtNumero3.setText(actual3.getPrimerCaballo().getNumero()+"");
-			
-			txtNombreJineteCaballo3.setText(actual3.getPrimerCaballo().getNombre() + "/" + actual3.getNombre());
-	
-			txtNumero4.setText(actual4.getPrimerCaballo().getNumero()+"");
-		
-			txtNombreJineteCaballo4.setText(actual4.getPrimerCaballo().getNombre() + "/" + actual4.getNombre());
-	
-	
-
-	
-	
-	
-}
 		
 	
 	
@@ -376,24 +222,62 @@ public void cargarJinetes() {
 	public void gernerarApuesta(ActionEvent e) {
 		 
 		String cedula=JOptionPane.showInputDialog(null,"Confirmar Id");
-		int cantidadApuesta= Integer.parseInt(txtCantidadApuesta.getText());
-		txtUsuario.setText(cedula+"");
+		double cantidadApuesta= Double.parseDouble(txtCantidadApuesta.getText());
+		
 		
 		if(cantidadApuesta<=1000000) {
-			
+	
+					
+	try {
+		Usuario usuarioEncontrado=main.darSimulador().buscarUsuariofor(cedula);
+		
+      if(usuarioEncontrado==null) {
+	     throw new ExcepcionNoExisteElUsuarioConId("No existe el Usuario con el id" + cedula);
+       }else {
+    	   System.out.println("Encontro el usuario");
+    	   
+    	   txtCedulaUsuario.setText(cedula+"");
+   		int numeroCaballo=468;
+   		double cuotaCaballo=Double.parseDouble(lblCuotaApuesta.getText());
+   		double importe= cantidadApuesta;
+   		double pagoPotencial=cantidadApuesta*cuotaCaballo;
 		SecureRandom ran= new SecureRandom();
 		double numeroApuesta=(double) 1+ ran.nextInt(9);
-			
-//		Apuesta apuestaNueva= new Apuesta(Apuesta.APUESTA_GANADOR, cantidadApuesta, numeroApuesta+"");
-		
+   		Apuesta apuestaNueva= new Apuesta(Apuesta.APUESTA_GANADOR,pagoPotencial,numeroApuesta+"",numeroCaballo);
+
+   		usuarioEncontrado.agregarApuesta(apuestaNueva);
+   	
+   		lblImporteApostado.setText(importe+"");
+   		lblPagoPotencial.setText(pagoPotencial+"");
+   		txtNumeroCaballo.setText(numeroCaballo+"");
+   		txtID.setText(numeroApuesta+"");
+   		guardarArchivoEnComputadora( e);
+       }
+	} catch (ExcepcionNoExisteElUsuarioConId e2) {
+	JOptionPane.showMessageDialog(null,e2.getMessage());
+	} catch (IOException e1) {
+		// TODO Auto-generated catch block
+		e1.printStackTrace();
+	}
 		
 		
 		}else {
 			
 			int num=Integer.parseInt(JOptionPane.showInputDialog(null,"Digite el numero del cupon"));
+			UsuarioVip usuarioVip= main.darSimulador().buscarUsarioVip(num);
+			try {
 			
-//					JOptionPane.showInputDialog(null,"Digite la el numero del cupon");
+				if(usuarioVip==null) {
+					throw new ExcepcionNoExisteElUsuarioConId("No existe el cupon" + num);
+				}else {
+					
 			
+				}
+			}catch(ExcepcionNoExisteElUsuarioConId e1) {
+				JOptionPane.showMessageDialog(null,e1.getMessage());
+			}
+			
+						
 			
 			
 			
@@ -403,6 +287,76 @@ public void cargarJinetes() {
 		
 		
 	}
+	
+	
+
+	
+	
+	
+	public void guardarArchivoEnComputadora(ActionEvent e) throws IOException {
+	
+		
+		if (e.getSource()==btnGenerarApuesta) {
+			FileChooser fileChooser = new FileChooser();
+			fileChooser.setInitialFileName("Apuesta");
+			FileChooser.ExtensionFilter extFilter = new FileChooser.ExtensionFilter("TXT files (*.txt)", "*.txt");
+			fileChooser.getExtensionFilters().add(extFilter);
+			fileChooser.setSelectedExtensionFilter(extFilter);
+			File file = fileChooser.showSaveDialog(main.darEstage());
+			
+			
+			
+//			BufferedReader buffer= new BufferedReader(fileReader);
+			
+
+			
+			if(file!=null){
+				
+				FileWriter fw = null;
+				BufferedWriter bw = null;
+				try {
+					// EL segundo parametro es un boolean
+					// En true escribe al final
+					// En false escribe al inicio
+					fw = new FileWriter(file, false);
+					bw = new BufferedWriter(fw);
+					String importe=lblImporteApostado.getText();
+					String cedula=txtCedulaUsuario.getText();
+					String idApuesta1=txtID.getText();
+					String numeroCaballo1=txtNumeroCaballo.getText();
+					bw.write(importe+";"+cedula+";"+numeroCaballo1+";"+";"+idApuesta1);
+					
+//					String texto = textArea.getText();
+//					bw.write(texto, 0, texto.length());
+				} catch (Exception e1) {
+//					textArea.appendText(e1.toString());
+				} finally {
+					try {
+						bw.close();
+					} catch (Exception e2) {
+//						textArea.appendText(e2.toString());
+					}
+				}
+			}
+		}
+		
+		
+		
+	}
+
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	
 	
 	
@@ -463,17 +417,7 @@ public void cargarJinetes() {
 				}
 			}
 	
-	public void eligioBoton(ActionEvent e) {
-		////SSs
-		if(btnGanador1==e.getSource()) {
-			btnGanador2.setDisable(true);
-			btnGanador3.setDisable(true);
-			btnGanador4.setDisable(true);
-			
-			
-		}
-		
-	}
+
 	
 
 }

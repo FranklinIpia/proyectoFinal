@@ -340,11 +340,11 @@ public class SimuladorApuesta {
 		
 	}
 	
-	public UsuarioVip buscarUsarioVip(String nombre) {
+	public UsuarioVip buscarUsarioVip(int tarjetaApuesta) {
 		if(usuarioVipRaiz==null) {
 			return null;
 		}else {
-			return usuarioVipRaiz.buscarUsuarioVip(nombre);
+			return usuarioVipRaiz.buscarUsuarioVip(tarjetaApuesta);
 		}
 		
 	}

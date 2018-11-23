@@ -2,7 +2,6 @@ package application;
 
 
 
-import java.beans.PersistenceDelegate;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -13,8 +12,6 @@ import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 
 import javax.swing.JOptionPane;
-
-import org.omg.PortableServer.ThreadPolicyOperations;
 
 import Excepciones.ExcepcionElUsuarioYaEstaRegistrado;
 import Excepciones.ExcepcionLaContraseñaEsInavalida;
@@ -49,8 +46,8 @@ public class MenuController {
 	
 	public MenuController() {
 		main=new Main();
-
-	cargarJugadoresSerializables();
+		guardarUsuariosSerializable();
+cargarJugadoresSerializables();
 	try {
 		guardarUsuariosVip( );
 	} catch (IOException e) {
@@ -89,6 +86,8 @@ public class MenuController {
 FileOutputStream fileOut = null;
 ObjectOutputStream salida = null;
 ArrayList<Usuario> usuarios=null;
+Usuario u2= new Usuario("Sebastian", "Rebolledo", "00000", "00000", 20, 1, 20.000, "issareme@hotmail.com",0, null);
+
 Usuario u1= new Usuario("Sebastian", "Rebolledo", "1062332841", "12345", 20, 1, 20.000, "issareme@hotmail.com",0, null);
 //Usuario u2= new Usuario("Sebastian", "Rebolledo", "1111", "12345", 20, 1, 20.000, "issareme@hotmail.com",0, null);
 //Usuario u3= new Usuario("Sebastian", "Rebolledo", "2222", "12345", 20, 1, 20.000, "issareme@hotmail.com",0, null);
@@ -101,6 +100,7 @@ Usuario u1= new Usuario("Sebastian", "Rebolledo", "1062332841", "12345", 20, 1, 
     	
     usuarios=new ArrayList<Usuario>();
     usuarios.add(u1);
+    usuarios.add(u2);
 //    usuarios.add(u2);
 //    usuarios.add(u3);
 //    usuarios.add(u4);
@@ -157,7 +157,6 @@ Usuario u1= new Usuario("Sebastian", "Rebolledo", "1062332841", "12345", 20, 1, 
     	
     	
         try{
-//        	UsuarioVip nuevoU= new UsuarioVip("Sebastian", "Rebolledo", "1062332841", "12345", 20, 1, 0.0, "12345","issareme@hotmail.com", 10, null, 0101);
         	main.darSimulador().insertarUsuarioVip("Sebastian", "Rebolledo", "1062332841", "12345", 20, 1, 0.0, "12345", "issareme@hotmail.com",10 ,null, 1);
         	main.darSimulador().insertarUsuarioVip("Franklin", "ipia", "123456", "12345", 21, 2, 0.0, "12345", "franklin@gmail.com", 11, null, 2);
         	main.darSimulador().insertarUsuarioVip("Alejandra", "Cardona", "1234567", "1234567", 20, 2, 0.0, "1234567", "alejita@gmail.com", 7, null, 3);
@@ -171,8 +170,10 @@ Usuario u1= new Usuario("Sebastian", "Rebolledo", "1062332841", "12345", 20, 1, 
         }
         catch( IOException e ){
         	System.out.println(e.getMessage());
+        	JOptionPane.showMessageDialog(null,e.getMessage() + ":D");
 //            throw new PersistenciaException( "Error al salvar: " + e.getMessage( ) );
-        } catch (ExcepcionElUsuarioYaEstaRegistrado e) {
+        } 
+        catch (ExcepcionElUsuarioYaEstaRegistrado e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
