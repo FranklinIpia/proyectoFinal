@@ -406,6 +406,7 @@
                                     <Insets right="20.0" top="23.0" />
                                  </GridPane.margin>
                               </Button>
+                              <Button mnemonicParsing="false" prefHeight="31.0" prefWidth="219.0" text="Generer Apuesta" GridPane.rowIndex="2" />
                            </children>
                         </GridPane>
                         <Button fx:id="btPerfil" mnemonicParsing="false" prefHeight="17.0" prefWidth="67.0" text="Perfil">

@@ -9,6 +9,7 @@ import Comparador.ComparadorEdad;
 import Comparador.ComparadorNombre;
 import Excepciones.ExcepcionElUsuarioYaEstaRegistrado;
 
+
 public class SimuladorApuesta {
 	
 	public static final int MAX_USUARIOS=20;
@@ -17,7 +18,7 @@ public class SimuladorApuesta {
 	private Jinete primerJinete;
 	private UsuarioVip usuarioVipRaiz;
 	private Usuario[] usuarios;
-	private UsuarioVip raiz;
+
 	private int cantidadUsuarios;
 	private int cantidadUsuariosVip;
 	private int totalUsuariosVip;
@@ -52,14 +53,10 @@ public class SimuladorApuesta {
 	}
 
 
-	public UsuarioVip getRaiz() {
-		return raiz;
-	}
 
 
-	public void setRaiz(UsuarioVip raiz) {
-		this.raiz = raiz;
-	}
+
+
 
 
 	public int getCantidadUsuarios() {
@@ -304,8 +301,8 @@ public class SimuladorApuesta {
 			String correoElectronico,int apuestasGanadas,Apuesta apuestaUsuario,int tarjetaVip) throws ExcepcionElUsuarioYaEstaRegistrado {
 			
 		UsuarioVip nuevoVip= new UsuarioVip(nombre, apellido, cedula, contraseña, edad, genero, dinero, claveUsuario, correoElectronico, apuestasGanadas, apuestaUsuario, tarjetaVip);
-		if(usuarioVipRaiz==null) {
-			usuarioVipRaiz=nuevoVip;
+		if(this.usuarioVipRaiz==null) {
+			this.usuarioVipRaiz=nuevoVip;
 			this.cantidadUsuariosVip+=1;
 		}else {
 			usuarioVipRaiz.insertar(nuevoVip);
@@ -313,6 +310,26 @@ public class SimuladorApuesta {
 		}
 		
 	}
+	
+	
+	
+	 private void imprimirEntre (UsuarioVip reco)
+	    {
+	        if (reco != null)
+	        {    
+	            imprimirEntre (reco.getIzquierdo());
+	            System.out.print(reco.getNombre()+ " ");
+	            imprimirEntre (reco.getDerecho());
+	        }else {
+	        	System.out.println("No hay usuarios VIP");
+	        }
+	    }
+
+	    public void imprimirEntre ()
+	    {
+	        imprimirEntre (this.usuarioVipRaiz);
+	        System.out.println();
+	    }
 	
 	
 	

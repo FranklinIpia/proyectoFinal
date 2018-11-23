@@ -176,7 +176,7 @@ public class Caballo {
 
 //		comienzo=comienzo+ random.nextInt(this.velocidad);
 		
-	comienzo=valorEntero1;
+	comienzo=comienzo+valorEntero1;
 		this.posX=comienzo;
 		this.imagen.setX(posX);
 		try {

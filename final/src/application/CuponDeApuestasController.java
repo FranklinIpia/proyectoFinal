@@ -4,6 +4,9 @@ import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
+import java.security.SecureRandom;
+
+import javax.swing.JOptionPane;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -16,6 +19,7 @@ import javafx.scene.control.TextField;
 
 import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
+import modelo.Apuesta;
 import modelo.Caballo;
 import modelo.Jinete;
 
@@ -52,9 +56,19 @@ public class CuponDeApuestasController {
 	private Button btnGanador3;
 	@FXML
 	private Button btnGanador4;
+	@FXML
+	private Button btnGenerarApuesta;
+	
+	@FXML
+	private Button btnEmpezarCarrera;
 
 	@FXML
 	private ImageView img1;
+	
+	
+	@FXML
+	private TextField txtCantidadApuesta;
+	
 	
 	MenuController menu;
 	
@@ -62,6 +76,8 @@ public class CuponDeApuestasController {
 		main= new Main();
 //		menu=new MenuController();
 	txtUsuario= new TextField();
+	btnEmpezarCarrera= new Button();
+	btnEmpezarCarrera.setDisable(true);
 		txtNombreJineteCaballo1= new TextField();
 		txtNombreJineteCaballo2=new TextField();
 		txtNombreJineteCaballo3= new TextField();
@@ -353,6 +369,52 @@ public void cargarJinetes() {
 	public void imprimirCaballos() {
 		main.darSimulador().imprimirCaballos();
 	}
+	
+	
+	
+	
+	public void gernerarApuesta(ActionEvent e) {
+		 
+		String cedula=JOptionPane.showInputDialog(null,"Confirmar Id");
+		int cantidadApuesta= Integer.parseInt(txtCantidadApuesta.getText());
+		txtUsuario.setText(cedula+"");
+		
+		if(cantidadApuesta<=1000000) {
+			
+		SecureRandom ran= new SecureRandom();
+		double numeroApuesta=(double) 1+ ran.nextInt(9);
+			
+		Apuesta apuestaNueva= new Apuesta(Apuesta.APUESTA_GANADOR, cantidadApuesta, numeroApuesta+"");
+		
+		
+		
+		}else {
+			
+			int num=Integer.parseInt(JOptionPane.showInputDialog(null,"Digite el numero del cupon"));
+			
+//					JOptionPane.showInputDialog(null,"Digite la el numero del cupon");
+			
+			
+			
+			
+		}
+		
+		
+		
+		
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	
 	
 	//abre la ventana que da la informacion del caballo ( el cual se busca por el nombre)

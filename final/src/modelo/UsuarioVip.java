@@ -1,15 +1,17 @@
 package modelo;
 
+import java.io.Serializable;
+
 import Excepciones.ExcepcionElUsuarioYaEstaRegistrado;
 
 
 
-public class UsuarioVip  extends Usuario {
+public class UsuarioVip   extends Usuario  implements Serializable{
 
 	private int tarjetaVip;
 	private UsuarioVip derecho;
 	private UsuarioVip izquierdo;
-	
+	private Apuesta primerApuesta;
 public UsuarioVip(String nombre, String apellido, String cedula,String contraseña, int edad, int genero, double dinero, String claveUsuario,
 		String correoElectronico,int apuestasGanadas,Apuesta apuestaUsuario,int tarjetaVip) {
 	super(nombre,apellido,cedula,contraseña,edad,genero,dinero,correoElectronico,apuestasGanadas,apuestaUsuario);

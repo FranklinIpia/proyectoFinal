@@ -2,6 +2,8 @@ package application;
 
 
 
+import java.beans.PersistenceDelegate;
+import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
@@ -14,6 +16,7 @@ import javax.swing.JOptionPane;
 
 import org.omg.PortableServer.ThreadPolicyOperations;
 
+import Excepciones.ExcepcionElUsuarioYaEstaRegistrado;
 import Excepciones.ExcepcionLaContraseñaEsInavalida;
 import Excepciones.ExcepcionNoExisteElUsuarioConId;
 import javafx.event.ActionEvent;
@@ -27,6 +30,7 @@ import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import modelo.SimuladorApuesta;
 import modelo.Usuario;
+import modelo.UsuarioVip;
 
 public class MenuController {
 	
@@ -45,9 +49,19 @@ public class MenuController {
 	
 	public MenuController() {
 		main=new Main();
-//	cupon= new CuponDeApuestasController();
-//		guardarUsuariosSerializable();
+
 	cargarJugadoresSerializables();
+	try {
+		guardarUsuariosVip( );
+	} catch (IOException e) {
+		// TODO Auto-generated catch block
+		e.printStackTrace();
+	}
+	
+	cargarUsuariosVip( );
+	impirmirIn();
+	darTotales();
+	
 	}
 	public void initialize() {
 	
@@ -76,22 +90,22 @@ FileOutputStream fileOut = null;
 ObjectOutputStream salida = null;
 ArrayList<Usuario> usuarios=null;
 Usuario u1= new Usuario("Sebastian", "Rebolledo", "1062332841", "12345", 20, 1, 20.000, "issareme@hotmail.com",0, null);
-Usuario u2= new Usuario("Sebastian", "Rebolledo", "1111", "12345", 20, 1, 20.000, "issareme@hotmail.com",0, null);
-Usuario u3= new Usuario("Sebastian", "Rebolledo", "2222", "12345", 20, 1, 20.000, "issareme@hotmail.com",0, null);
-Usuario u4= new Usuario("Sebastian", "Rebolledo", "0000", "12345", 20, 1, 20.000, "issareme@hotmail.com",0, null);
-Usuario u5= new Usuario("Sebastian", "Rebolledo", "4444", "12345", 20, 1, 20.000, "issareme@hotmail.com",0, null);
-Usuario u6= new Usuario("Sebastian", "Rebolledo", "6666", "12345", 20, 1, 20.000, "issareme@hotmail.com",0, null);
+//Usuario u2= new Usuario("Sebastian", "Rebolledo", "1111", "12345", 20, 1, 20.000, "issareme@hotmail.com",0, null);
+//Usuario u3= new Usuario("Sebastian", "Rebolledo", "2222", "12345", 20, 1, 20.000, "issareme@hotmail.com",0, null);
+//Usuario u4= new Usuario("Sebastian", "Rebolledo", "0000", "12345", 20, 1, 20.000, "issareme@hotmail.com",0, null);
+//Usuario u5= new Usuario("Sebastian", "Rebolledo", "4444", "12345", 20, 1, 20.000, "issareme@hotmail.com",0, null);
+//Usuario u6= new Usuario("Sebastian", "Rebolledo", "6666", "12345", 20, 1, 20.000, "issareme@hotmail.com",0, null);
 
 
     try {
     	
     usuarios=new ArrayList<Usuario>();
     usuarios.add(u1);
-    usuarios.add(u2);
-    usuarios.add(u3);
-    usuarios.add(u4);
-    usuarios.add(u5);
-    usuarios.add(u6);
+//    usuarios.add(u2);
+//    usuarios.add(u3);
+//    usuarios.add(u4);
+//    usuarios.add(u5);
+//    usuarios.add(u6);
 	fileOut= new FileOutputStream("archivos/usuarios.dat");
 	salida= new ObjectOutputStream(fileOut);
 	for (int i = 0; i < main.darSimulador().getUsuarios().length; i++) {
@@ -129,6 +143,88 @@ Usuario u6= new Usuario("Sebastian", "Rebolledo", "6666", "12345", 20, 1, 20.000
 		
 		
 	}
+	
+	
+	
+	
+    /**
+     * Guarda en un archivo identificado con el nombre, el estado del mundo. <br>
+     * <b>post:</b> El estado del mundo quedará guardado en un archivo que estará identificado con rutaNombre<br>
+     * @param rutaNombre ruta y nombre del archivo - rutNombre != null
+     * @throws PersistenciaException Lanzada cuando no se encuentra el archivo o no se puede guardar en él.
+     */
+    public void guardarUsuariosVip( ) throws IOException{
+    	
+    	
+        try{
+//        	UsuarioVip nuevoU= new UsuarioVip("Sebastian", "Rebolledo", "1062332841", "12345", 20, 1, 0.0, "12345","issareme@hotmail.com", 10, null, 0101);
+        	main.darSimulador().insertarUsuarioVip("Sebastian", "Rebolledo", "1062332841", "12345", 20, 1, 0.0, "12345", "issareme@hotmail.com",10 ,null, 1);
+        	main.darSimulador().insertarUsuarioVip("Franklin", "ipia", "123456", "12345", 21, 2, 0.0, "12345", "franklin@gmail.com", 11, null, 2);
+        	main.darSimulador().insertarUsuarioVip("Alejandra", "Cardona", "1234567", "1234567", 20, 2, 0.0, "1234567", "alejita@gmail.com", 7, null, 3);
+        	main.darSimulador().insertarUsuarioVip("Julian", "Alvarez", "12345678", "12345678", 20, 2, 0.0, "12345678", "alejita@gmail.com", 7, null, 7);
+
+            FileOutputStream archivo = new FileOutputStream( "archivos/usuariosVip3.dat");
+            ObjectOutputStream objetoSaliente = new ObjectOutputStream( archivo );
+            objetoSaliente.writeObject( main.darSimulador().getUsuarioVipRaiz() );
+            objetoSaliente.close( );
+            archivo.close( );
+        }
+        catch( IOException e ){
+        	System.out.println(e.getMessage());
+//            throw new PersistenciaException( "Error al salvar: " + e.getMessage( ) );
+        } catch (ExcepcionElUsuarioYaEstaRegistrado e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+    }
+	
+    
+    /**
+     * Cargar de un archivo identificado con el nombre el estado del mundo que se encuentra guardado.<br>
+     * <b>post:</b> El archivo que está identificado con rutaNombre queda cargado en el sistema.<br>
+     * @param rutaNombre ruta y nombre del archivo - rutaNombre != null
+     * @throws PersistenciaException Lanzada cuando ocurre algún problema con el archivo o con su formato
+     * 
+     */
+    public void cargarUsuariosVip( )  {
+        ObjectInputStream ois = null;
+        try
+        {
+            File archivo = new File( "archivos/usuariosVip3.dat" );
+            if( archivo.exists( ) )
+            {
+                ois = new ObjectInputStream( new FileInputStream( archivo ) );
+                UsuarioVip usuariosVip= ( UsuarioVip )ois.readObject( );
+                main.darSimulador().setUsuarioVipRaiz(usuariosVip);
+                 System.out.println("Entro a usuarios vip");
+                
+                ois.close( );
+            }
+            else
+            {
+                main.darSimulador().setUsuarioVipRaiz(null);
+            }
+            
+           
+        }
+        catch( FileNotFoundException e ){
+        	System.out.println(e.getMessage() +"1--");
+//            throw new PersistenciaException( "No se encontró el archivo de persistencia. \nAl cerrar la aplicación se generará por primera vez el archivo de persistencia " );
+        }
+        catch( IOException e ){
+        	System.out.println(e.getMessage()+"2--");
+//            throw new PersistenciaException( "No fue posible leer el archivo de persistencia. \n " + e.getMessage( ) );
+        }
+        catch( ClassNotFoundException e )
+        {
+        	System.out.println(e.getMessage()+"3--");
+//            throw new PersistenciaException( "Problemas al cargar el archivo de persistencia. \n " + e.getMessage( ) );
+        }
+    }
+    
+    
+	
 	
 	
 	
@@ -234,8 +330,18 @@ Usuario u6= new Usuario("Sebastian", "Rebolledo", "6666", "12345", 20, 1, 20.000
 		
 	}
 
+	
+	public void impirmirIn() {
+		main.darSimulador().imprimirEntre();
+	}
+	
+	
+	public void darTotales() {
+		System.out.println(main.darSimulador().getCantidadUsuariosVip());
+		System.out.println(main.darSimulador().getUsuarioVipRaiz());
+	}
 
-
+	
 
 	
 	

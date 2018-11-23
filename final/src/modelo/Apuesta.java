@@ -11,22 +11,17 @@ public class Apuesta implements Serializable{
 	
 	private int tipoApuesta;
 	
-	private double cantidadApostar;
-	
-	private double potencialGanancia;
-	
-	private int numeroApuestasGanadas;
-	
-	private int numeroApuestasPerdidas;
 
-	public Apuesta(int tipoApuesta, double cantidadApostar, double potencialGanancia, int numeroApuestasGanadas,
-			int numeroApuestasPerdidas) {
+
+	private String numeroApuesta;
+	
+	private Apuesta iz;
+	private Apuesta der;
+
+	public Apuesta(int tipoApuesta, double cantidadApostar,String numeroApuesta) {
 
 		this.tipoApuesta = tipoApuesta;
-		this.cantidadApostar = cantidadApostar;
-		this.potencialGanancia = potencialGanancia;
-		this.numeroApuestasGanadas = numeroApuestasGanadas;
-		this.numeroApuestasPerdidas = numeroApuestasPerdidas;
+		this.numeroApuesta=numeroApuesta;
 	}
 
 	public int getTipoApuesta() {
@@ -37,36 +32,32 @@ public class Apuesta implements Serializable{
 		this.tipoApuesta = tipoApuesta;
 	}
 
-	public double getCantidadApostar() {
-		return cantidadApostar;
+
+
+
+
+	public String getNumeroApuesta() {
+		return numeroApuesta;
 	}
 
-	public void setCantidadApostar(double cantidadApostar) {
-		this.cantidadApostar = cantidadApostar;
+	public void setNumeroApuesta(String numeroApuesta) {
+		this.numeroApuesta = numeroApuesta;
 	}
 
-	public double getPotencialGanancia() {
-		return potencialGanancia;
+	public Apuesta getIz() {
+		return iz;
 	}
 
-	public void setPotencialGanancia(double potencialGanancia) {
-		this.potencialGanancia = potencialGanancia;
+	public void setIz(Apuesta iz) {
+		this.iz = iz;
 	}
 
-	public int getNumeroApuestasGanadas() {
-		return numeroApuestasGanadas;
+	public Apuesta getDer() {
+		return der;
 	}
 
-	public void setNumeroApuestasGanadas(int numeroApuestasGanadas) {
-		this.numeroApuestasGanadas = numeroApuestasGanadas;
-	}
-
-	public int getNumeroApuestasPerdidas() {
-		return numeroApuestasPerdidas;
-	}
-
-	public void setNumeroApuestasPerdidas(int numeroApuestasPerdidas) {
-		this.numeroApuestasPerdidas = numeroApuestasPerdidas;
+	public void setDer(Apuesta der) {
+		this.der = der;
 	}
 	
 	
