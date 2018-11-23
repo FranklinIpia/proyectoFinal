@@ -8,4 +8,6 @@ public double fixedSegundo();
 
 public double fixedColocado();
 
+public double prueba(int caballo);
+
 }

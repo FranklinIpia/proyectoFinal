@@ -11,7 +11,7 @@ import Excepciones.ExcepcionElUsuarioYaEstaRegistrado;
 import interfazes2.FixedCaballo;
 
 
-public class SimuladorApuesta implements FixedCaballo  {
+public  class SimuladorApuesta implements FixedCaballo  {
 	
 	public static final int MAX_USUARIOS=20;
 	
@@ -605,6 +605,7 @@ public class SimuladorApuesta implements FixedCaballo  {
 
 	@Override
 	public double fixedColocado() {
+		
 		double colocado=0;
 		if(primerJinete==null) {
 			System.out.println("No hay jinetes");
@@ -634,6 +635,22 @@ public class SimuladorApuesta implements FixedCaballo  {
 		}
 		
 		return colocado;
+	}
+
+
+	@Override
+	public double prueba(int pCaba) {
+		Caballo bo = buscarCaballo(pCaba);
+		double ganador=0;
+		
+		double velocidad=bo.getVelocidadMaxima();
+		double carreras=bo.getCarrerasGanadas();
+		
+		ganador= velocidad/carreras;
+		return ganador;
+		
+	
+		
 	}
 
 
