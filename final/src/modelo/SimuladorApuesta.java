@@ -8,9 +8,10 @@ import Comparador.ComparadorApuesta;
 import Comparador.ComparadorEdad;
 import Comparador.ComparadorNombre;
 import Excepciones.ExcepcionElUsuarioYaEstaRegistrado;
+import interfazes2.FixedCaballo;
 
 
-public class SimuladorApuesta {
+public class SimuladorApuesta implements FixedCaballo  {
 	
 	public static final int MAX_USUARIOS=20;
 	
@@ -511,6 +512,113 @@ public class SimuladorApuesta {
 		
 		
 	}
+
+
+	@Override
+	public double fixedGanador() {
+		double ganador=0;
+		if(primerJinete==null) {
+			System.out.println("No hay jinetes");
+		}else {
+			
+			Jinete actual=primerJinete;
+			while(actual!=null) {
+				if(actual.getPrimerCaballo()==null) {
+					System.out.println("No tiene caballos");
+				}else {
+					
+					Caballo actualcaballo= actual.getPrimerCaballo();
+					while(actualcaballo!=null) {
+						double velocidad = actualcaballo.getVelocidadMaxima();
+						int carrerasGanadas=actual.getCantidadCarrerasGanadas();
+						ganador = velocidad/carrerasGanadas;
+					}
+
+				}
+				
+				actual=actual.getSiguiente();
+				
+				
+			}
+			
+			
+		}
+		
+		return ganador;
+		
+		
+	}
+
+
+	@Override
+	public double fixedSegundo() {
+		double segundo=0;
+		if(primerJinete==null) {
+			System.out.println("No hay jinetes");
+		}else {
+			
+			Jinete actual=primerJinete;
+			while(actual!=null) {
+				if(actual.getPrimerCaballo()==null) {
+					System.out.println("No tiene caballos");
+				}else {
+					
+					Caballo actualcaballo= actual.getPrimerCaballo();
+					while(actualcaballo!=null) {
+						double velocidad = actualcaballo.getVelocidadMaxima();
+						int carrerasPerdidas=actual.getCantidadCarrerasPerdidas();
+						segundo = velocidad/carrerasPerdidas;
+					}
+
+				}
+				
+				actual=actual.getSiguiente();
+				
+				
+			}
+			
+			
+		}
+		
+		return segundo;
+	}
+
+
+	@Override
+	public double fixedColocado() {
+		double colocado=0;
+		if(primerJinete==null) {
+			System.out.println("No hay jinetes");
+		}else {
+			
+			Jinete actual=primerJinete;
+			while(actual!=null) {
+				if(actual.getPrimerCaballo()==null) {
+					System.out.println("No tiene caballos");
+				}else {
+					
+					Caballo actualcaballo= actual.getPrimerCaballo();
+					while(actualcaballo!=null) {
+						double totalA = fixedGanador()+fixedSegundo();
+						double carrerastotales=actual.getCantidadCarrerasPerdidas()+actual.getCantidadCarrerasGanadas();
+						colocado = totalA/carrerastotales;
+					}
+
+				}
+				
+				actual=actual.getSiguiente();
+				
+				
+			}
+			
+			
+		}
+		
+		return colocado;
+	}
+
+
+	
 
 
 }
