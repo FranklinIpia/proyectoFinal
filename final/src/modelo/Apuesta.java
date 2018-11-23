@@ -10,18 +10,17 @@ public class Apuesta implements Serializable{
 	public final static int APUESTA_COLOCADO=3;
 	
 	private int tipoApuesta;
-	
+	private String IdApuesta;
 
-
-	private String numeroApuesta;
 	
 	private Apuesta iz;
 	private Apuesta der;
 
-	public Apuesta(int tipoApuesta, double cantidadApostar,String numeroApuesta) {
+	public Apuesta(int tipoApuesta, double cantidadApostar,String IdApuesta,int numeroCaballo,int cuatoCaballo) {
 
 		this.tipoApuesta = tipoApuesta;
-		this.numeroApuesta=numeroApuesta;
+		this.IdApuesta=IdApuesta;
+		
 	}
 
 	public int getTipoApuesta() {
@@ -36,12 +35,12 @@ public class Apuesta implements Serializable{
 
 
 
-	public String getNumeroApuesta() {
-		return numeroApuesta;
+	public String getIdApuesta() {
+		return IdApuesta;
 	}
 
-	public void setNumeroApuesta(String numeroApuesta) {
-		this.numeroApuesta = numeroApuesta;
+	public void setIdApuesta(String IdApuesta) {
+		this.IdApuesta = IdApuesta;
 	}
 
 	public Apuesta getIz() {

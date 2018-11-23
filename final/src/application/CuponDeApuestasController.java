@@ -384,7 +384,7 @@ public void cargarJinetes() {
 		SecureRandom ran= new SecureRandom();
 		double numeroApuesta=(double) 1+ ran.nextInt(9);
 			
-		Apuesta apuestaNueva= new Apuesta(Apuesta.APUESTA_GANADOR, cantidadApuesta, numeroApuesta+"");
+//		Apuesta apuestaNueva= new Apuesta(Apuesta.APUESTA_GANADOR, cantidadApuesta, numeroApuesta+"");
 		
 		
 		
