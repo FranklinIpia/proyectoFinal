@@ -153,7 +153,7 @@
                   <Insets left="20.0" />
                </GridPane.margin>
             </Button>
-            <Button fx:id="btRegistrarse" mnemonicParsing="false" onAction="#registrarUsuario2" prefHeight="45.0" prefWidth="118.0" text="REGISTRARSE" textFill="#2210f2" GridPane.columnIndex="1" GridPane.rowIndex="4">
+            <Button mnemonicParsing="false" onAction="#registrarUsuario2" prefHeight="45.0" prefWidth="118.0" text="REGISTRARSE" textFill="#2210f2" GridPane.columnIndex="1" GridPane.rowIndex="4">
                <GridPane.margin>
                   <Insets left="200.0" right="20.0" />
                </GridPane.margin>

@@ -2,7 +2,7 @@ package modelo;
 
 import javafx.scene.image.ImageView;
 
-public class Caballo {
+public class Caballo implements Comparable{
 	
 	public final static int HEMBRA=1;
 	public final static int MACHO=2;
@@ -193,6 +193,13 @@ public class Caballo {
 		
 		
 		
+	}
+
+
+	@Override
+	public int compareTo(Object arg0) {
+		// TODO Auto-generated method stub
+		return 0;
 	}
 
 	

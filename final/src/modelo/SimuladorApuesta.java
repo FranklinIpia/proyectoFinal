@@ -460,6 +460,25 @@ public class SimuladorApuesta implements FixedCaballo  {
 //		
 //	}
 	
+	public Caballo buscarCaballo(int numero) {
+		Jinete actual=primerJinete;
+		
+		while(actual!=null) {
+			Caballo actualCab= actual.getPrimerCaballo();
+			
+			while(actualCab!=null) {
+				if(numero==actualCab.getNumero()) {
+					return actualCab;
+				}else {
+					actualCab=actualCab.getSiguiente();
+				}
+			}
+			actual=actual.getSiguiente();
+			
+		}
+		return null;
+	}
+	
 	public void imprimirCaballos() {
 		
 		if(primerJinete==null) {

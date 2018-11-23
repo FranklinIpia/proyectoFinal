@@ -86,14 +86,14 @@ cargarJugadoresSerializables();
 FileOutputStream fileOut = null;
 ObjectOutputStream salida = null;
 ArrayList<Usuario> usuarios=null;
-Usuario u2= new Usuario("Sebastian", "Rebolledo", "00000", "00000", 20, 1, 20.000, "issareme@hotmail.com",0, null);
+//Usuario u2= new Usuario("Sebastian", "Rebolledo", "00000", "00000", 20, 1, 20.000, "issareme@hotmail.com",0, null);
 
 Usuario u1= new Usuario("Sebastian", "Rebolledo", "1062332841", "12345", 20, 1, 20.000, "issareme@hotmail.com",0, null);
-//Usuario u2= new Usuario("Sebastian", "Rebolledo", "1111", "12345", 20, 1, 20.000, "issareme@hotmail.com",0, null);
-//Usuario u3= new Usuario("Sebastian", "Rebolledo", "2222", "12345", 20, 1, 20.000, "issareme@hotmail.com",0, null);
-//Usuario u4= new Usuario("Sebastian", "Rebolledo", "0000", "12345", 20, 1, 20.000, "issareme@hotmail.com",0, null);
-//Usuario u5= new Usuario("Sebastian", "Rebolledo", "4444", "12345", 20, 1, 20.000, "issareme@hotmail.com",0, null);
-//Usuario u6= new Usuario("Sebastian", "Rebolledo", "6666", "12345", 20, 1, 20.000, "issareme@hotmail.com",0, null);
+Usuario u2= new Usuario("Sebastian", "Rebolledo", "1111", "12345", 20, 1, 20.000, "issareme@hotmail.com",0, null);
+Usuario u3= new Usuario("Sebastian", "Rebolledo", "2222", "12345", 20, 1, 20.000, "issareme@hotmail.com",0, null);
+Usuario u4= new Usuario("Sebastian", "Rebolledo", "0000", "12345", 20, 1, 20.000, "issareme@hotmail.com",0, null);
+Usuario u5= new Usuario("Sebastian", "Rebolledo", "4444", "12345", 20, 1, 20.000, "issareme@hotmail.com",0, null);
+Usuario u6= new Usuario("Sebastian", "Rebolledo", "6666", "12345", 20, 1, 20.000, "issareme@hotmail.com",0, null);
 
 
     try {
@@ -101,11 +101,11 @@ Usuario u1= new Usuario("Sebastian", "Rebolledo", "1062332841", "12345", 20, 1, 
     usuarios=new ArrayList<Usuario>();
     usuarios.add(u1);
     usuarios.add(u2);
-//    usuarios.add(u2);
-//    usuarios.add(u3);
-//    usuarios.add(u4);
-//    usuarios.add(u5);
-//    usuarios.add(u6);
+    usuarios.add(u2);
+    usuarios.add(u3);
+    usuarios.add(u4);
+    usuarios.add(u5);
+    usuarios.add(u6);
 	fileOut= new FileOutputStream("archivos/usuarios.dat");
 	salida= new ObjectOutputStream(fileOut);
 	for (int i = 0; i < main.darSimulador().getUsuarios().length; i++) {
