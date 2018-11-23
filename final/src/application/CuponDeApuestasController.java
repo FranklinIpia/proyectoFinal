@@ -11,7 +11,12 @@ import java.security.SecureRandom;
 import javax.swing.JOptionPane;
 
 import Excepciones.ExcepcionNoExisteElUsuarioConId;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
@@ -19,6 +24,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
 
 import javafx.scene.image.ImageView;
@@ -34,6 +40,11 @@ public class CuponDeApuestasController {
 
 	private Main main;
 
+	@FXML
+	private ListView lista;
+	
+	@FXML
+	private Label lblNumeroCaballo;
 
 	@FXML
 	private ImageView img1;
@@ -64,26 +75,40 @@ public class CuponDeApuestasController {
 	
 	@FXML
 	private Button btnEmpezarCarrera;
+	
+	
+	@FXML
+	private Button btnGanador;
+	
+	@FXML 
+	private Button btnSegundo;
+	
+	@FXML
+	private Button btnColocado;
+	
+	@FXML
+	private ObservableList<String> dataLista = FXCollections.observableArrayList();
 
 	
 	public CuponDeApuestasController() {
 //		menu=new MenuController();
 		main=new Main();
+		lista= new ListView();
 	btnEmpezarCarrera= new Button();
 	btnEmpezarCarrera.setDisable(true);
 	lblCuotaApuesta=new Label();
 	lblImporteApostado=new Label();
 	lblPagoPotencial=new Label();
 	
-//		cargarJinetes();
-//	cargarCaballos() ;
+		cargarJinetes();
+	cargarCaballos() ;
 //	
 	}
 	
 	public void initialize() {
 //		txtUsuario.setText(cedula);
 //		 mostrarEnInterfaz();
-	
+		mostrarCaballos() ;
 	}
 	
 	
@@ -349,6 +374,51 @@ public void cargarJinetes() {
 	
 	
 	
+	public void mostrarCaballos() {
+		
+		
+	Jinete actual= main.darSimulador().getPrimerJinete();
+	
+	while(actual!=null) {
+		Caballo actualcab= actual.getPrimerCaballo();
+		
+		while(actualcab!=null) {
+			
+			dataLista.add(actualcab.getNumero()+"");
+			actualcab=actualcab.getSiguiente();
+		}
+		actual=actual.getSiguiente();
+	}
+		
+	
+	
+	
+	lista.setItems(dataLista);
+	
+
+
+	
+
+	
+	
+	lista.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<String>() {
+
+		@Override
+		public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
+			// TODO Auto-generated method stub
+			lblNumeroCaballo.setText(newValue);
+			
+		
+			
+		}
+	
+	});
+	
+	
+	
+	
+		
+	}
 	
 	
 	
@@ -357,8 +427,28 @@ public void cargarJinetes() {
 	
 	
 	
-	
-	
+	public void generarCuota() {
+		
+		
+		btnGanador.setOnAction(new EventHandler<ActionEvent>() {
+			
+			@Override
+			public void handle(ActionEvent arg0) {
+				// TODO Auto-generated method stub
+				int numeroCaballo=Integer.parseInt(txtNumeroCaballo.getText());
+				Caballo cabEncontrado= main.darSimulador().buscarCaballo(numeroCaballo);
+				
+				if(cabEncontrado==null) {
+					System.out.println("No se encontro el caballo");
+				}else {
+					
+					System.out.println("Entro");
+				}
+				
+			}
+		});
+		
+	}
 	
 	
 	

@@ -2,9 +2,11 @@ package application;
 
 
 
+import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.ObjectInputStream;
 import java.io.ObjectOutput;
 import java.io.ObjectOutputStream;
 import java.util.ArrayList;
@@ -23,6 +25,8 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Menu;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
+import modelo.Apuesta;
+import modelo.SimuladorApuesta;
 import modelo.Usuario;
 
 
@@ -60,7 +64,10 @@ public class RegistrarController {
 	public RegistrarController() {
 		main=new Main();
 		menu= new MenuController();
-//		menu.cargarJugadoresSerializables();
+//		registrarUsuario2();
+		
+//		cargarJugadoresSerializables();
+		guardarUsuariosSerializable();
 
 	}
 	public void initialize() {
@@ -69,7 +76,7 @@ public class RegistrarController {
 	
 
 	
-	public void registrarUsuario2(ActionEvent e) {
+	public void registrarUsuario2() {
 		
 		
 		String nombre=texNombre.getText();
@@ -81,6 +88,7 @@ public class RegistrarController {
 		Usuario usuarioEn=main.darSimulador().buscarUsuariofor(cedula);
 		try {
 			
+	
 			
 			if(usuarioEn!=null) {
 				throw new ExcepcionElUsuarioYaEstaRegistrado("ya existe un usuarios con le id:" + usuarioEn.getCedula());
@@ -93,11 +101,14 @@ public class RegistrarController {
 					if(main.darSimulador().getUsuarios()[i]==null) {
 						main.darSimulador().getUsuarios()[i]=nuevo;
 						ensarto=true;
+						guardarUsuariosSerializable();
 					}
 				}
 				
 			}
-			menu.guardarUsuariosSerializable();
+			
+			
+//			menu.guardarUsuariosSerializable();
 			main.darSimulador().imprimirUsuarios();
 		} catch (Exception e2) {
 			// TODO: handle exception
@@ -213,6 +224,118 @@ public class RegistrarController {
 //		
 //	}
 	
+	
+	
+	public void cargarJugadoresSerializables() {
+		
+		FileInputStream fileInput=null;
+		ObjectInputStream entrada=null;
+		Usuario[] nuevosUsuarios=null;
+		ArrayList<Usuario> usuariosArray=null;
+		
+		try {
+			fileInput= new FileInputStream("archivos/usuarios2.dat");
+			entrada= new ObjectInputStream(fileInput);
+			usuariosArray=(ArrayList<Usuario>) entrada.readObject();
+			nuevosUsuarios= new Usuario[SimuladorApuesta.MAX_USUARIOS];
+			System.out.println("No entro");
+			System.out.println(usuariosArray.size());
+			for(int i=0;i<usuariosArray.size();i++) {
+				System.out.println(usuariosArray.get(i).getCedula());
+			}
+			
+			for(int i=0;i<usuariosArray.size();i++) {
+				nuevosUsuarios[i]=usuariosArray.get(i);
+				System.out.println(":D" +nuevosUsuarios[i].getCedula());
+			}
+
+			System.out.println(usuariosArray.size());
+			main.darSimulador().setUsuarios(nuevosUsuarios);
+			
+			
+		} catch (FileNotFoundException e) {
+			// TODO: handle exception
+			System.out.println(e.getMessage()+"1Excepcion metodo cargarJugadores menu");
+		}catch(ClassNotFoundException e) {
+			System.out.println(e.getMessage() +"2Excepcion metodo cargarJugadores menu");
+		}catch(IOException e) {
+			System.out.println(e.getMessage()+ "3Excepcion metodo cargarJugadores menu");
+		}finally {
+			
+			 try {
+		            if (fileInput != null) {
+		            	fileInput.close();
+		            }
+		            if (entrada != null) {
+		                entrada.close();
+		            }
+		        } catch (IOException e) {
+		            System.out.println(e.getMessage()+"excep4");
+		        }
+			
+			
+			
+		}
+		
+		
+		
+	}
+	
+	
+	public void guardarUsuariosSerializable() {
+		
+FileOutputStream fileOut = null;
+ObjectOutputStream salida = null;
+ArrayList<Usuario> usuarios=null;
+//Usuario u2= new Usuario("Sebastian", "Rebolledo", "00000", "00000", 20, 1, 20.000, "issareme@hotmail.com",0, null);
+
+//Usuario u1= new Usuario("Sebastian", "Rebolledo", "1062332841", "12345", 20, 1, 20.000, "issareme@hotmail.com",0, null);
+//Usuario u2= new Usuario("Sebastian", "Rebolledo", "1111", "12345", 20, 1, 20.000, "issareme@hotmail.com",0, null);
+//Usuario u3= new Usuario("Sebastian", "Rebolledo", "2222", "12345", 20, 1, 20.000, "issareme@hotmail.com",0, null);
+//Usuario u4= new Usuario("Sebastian", "Rebolledo", "0000", "12345", 20, 1, 20.000, "issareme@hotmail.com",0, null);
+//Usuario u5= new Usuario("Sebastian", "Rebolledo", "4444", "12345", 20, 1, 20.000, "issareme@hotmail.com",0, null);
+//Usuario u6= new Usuario("Sebastian", "Rebolledo", "6666", "12345", 20, 1, 20.000, "issareme@hotmail.com",0, null);
+
+
+    try {
+    	
+    usuarios=new ArrayList<Usuario>();
+//    usuarios.add(u1);
+//    usuarios.add(u2);
+//    usuarios.add(u2);
+//    usuarios.add(u3);
+//    usuarios.add(u4);
+//    usuarios.add(u5);
+//    usuarios.add(u6);
+	fileOut= new FileOutputStream("archivos/usuarios.dat");
+	salida= new ObjectOutputStream(fileOut);
+	for (int i = 0; i < main.darSimulador().getUsuarios().length; i++) {
+		if(main.darSimulador().getUsuarios()[i]!=null) {
+			usuarios.add(main.darSimulador().getUsuarios()[i]);
+		}
+	}
+	salida.writeObject(usuarios);
+	
+}catch (FileNotFoundException e) {
+	System.out.println(e.getMessage() +"1Excepcion metodo guardarJugadores de menucontroller");
+}catch(IOException e) {
+	System.out.println(e.getMessage()+"2Excepcion metodo guardarJugadores de menucontroller");
+}finally{
+	try {
+		if(usuarios!=null) {
+			fileOut.close();
+		}
+			
+		if (salida != null) {
+			salida.close();
+		}
+	} catch (IOException e) {
+		System.out.println(e.getMessage()+ "3Excepcion metodo guardarJugadores de menucontroller");
+	}
+}
+    
+	}
+				
 	
 	
 	
