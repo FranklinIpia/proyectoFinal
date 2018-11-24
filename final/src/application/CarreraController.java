@@ -265,7 +265,7 @@ public class CarreraController {
 						String[] data= texto.split(";");
 						double cantidadApostada= Double.parseDouble(data[0]);
 						String cedula=data[1];
-						int numerpCaballo=data[2];
+//						int numerpCaballo=data[2];
 						
 						String nombreJugador=data[0];
 						int puntaje=Integer.parseInt(data[1]);
