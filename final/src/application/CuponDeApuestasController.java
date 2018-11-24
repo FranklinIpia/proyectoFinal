@@ -11,6 +11,7 @@ import java.security.SecureRandom;
 import javax.swing.JOptionPane;
 
 import Excepciones.ExcepcionElCaballoNoExiste;
+import Excepciones.ExcepcionElJineteNoExiste;
 import Excepciones.ExcepcionNoExisteElUsuarioConId;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
@@ -120,6 +121,27 @@ public class CuponDeApuestasController {
 	@FXML
 	private TextField  txtAltura;
 	
+	
+	/////////////////////////////////////////////
+    @FXML
+    private TextField txtNombreJinete;
+
+    @FXML
+    private TextField txtEdadJinete;
+
+    @FXML
+    private TextField txtPesoJinete;
+
+    @FXML
+    private TextField txtNumeroJinete;
+
+    @FXML
+    private TextField txtCarrerasGandasJinetes;
+
+    @FXML
+    private TextField txtAlturaJinetes;
+
+	
 	public CuponDeApuestasController() {
 //		menu=new MenuController();
 		main=new Main();
@@ -137,6 +159,14 @@ public class CuponDeApuestasController {
 	txtCabNombre=new TextField();
 	txtCarrerasPerdidas=new TextField();	
 	txtVelocidadMaxima=new TextField();
+	txtAlturaJinetes=new TextField();
+	txtCarrerasGandasJinetes=new TextField();
+	txtEdadJinete=new TextField();
+	txtNombreJinete=new TextField();
+	txtNumeroJinete=new TextField();
+	txtVelocidadMaxima=new TextField();
+	txtPesoJinete=new TextField();
+	
 		cargarJinetes();
 	cargarCaballos() ;
 //	
@@ -386,14 +416,32 @@ public void cargarJinetes() {
 
 	
 	
-	public void buscarJinete() {
+	public void buscarJinete(ActionEvent e1) {
 		
 		try {
 			
+			int numero=Integer.parseInt(txtID.getText());
+			Jinete buscado=main.darSimulador().buscarJinete(numero);
+			if(buscado==null) {
+				throw new ExcepcionElJineteNoExiste("No existe el Jinete");
+			}else {
+				
+				txtPesoJinete.setText(buscado.getPeso()+"");
+				txtAlturaJinetes.setText(buscado.getAltura()+"");
+				txtCarrerasGandasJinetes.setText(buscado.getCantidadCarrerasGanadas()+"");
+				txtNumeroJinete.setText(buscado.getNumero()+"");
+				txtEdadJinete.setText(buscado.getEdad()+"");
+				txtNombreJinete.setText(buscado.getNombre());
+				
+				openBuscarJinete(e1);
+				
+			}
 			
-			
+		} catch (ExcepcionElJineteNoExiste e) {
+			JOptionPane.showMessageDialog(null,e.getMessage());
 		} catch (Exception e) {
-			// TODO: handle exception
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
 		
 		
@@ -525,6 +573,27 @@ public void cargarJinetes() {
 			}
 		});
 		
+		
+		btnGenerarApuesta.setOnAction(new EventHandler<ActionEvent>() {
+
+			@Override
+			public void handle(ActionEvent event) {
+				// TODO Auto-generated method stub
+				
+			}
+			
+		});
+		
+		
+		btnColocado.setOnAction(new EventHandler<ActionEvent>() {
+			
+			@Override
+			public void handle(ActionEvent event) {
+				// TODO Auto-generated method stub
+				
+			}
+		});
+		
 	}
 	
 	
@@ -558,7 +627,7 @@ public void cargarJinetes() {
 			
 
 			try {
-				Parent showBegginer = FXMLLoader.load(getClass().getResource("InfoCaballo.fxml"));
+				Parent showBegginer = FXMLLoader.load(getClass().getResource("InfoJinete.fxml"));
 				Scene sceneBegginer = new Scene(showBegginer);
 				Stage windowBegginer = (Stage)((Node) event.getSource()).getScene().getWindow();
 				windowBegginer.setScene(sceneBegginer);

@@ -3,6 +3,7 @@ package application;
 	
 import javafx.application.Application;
 import javafx.stage.Stage;
+import modelo.Administrador;
 import modelo.SimuladorApuesta;
 import javafx.scene.Scene;
 import javafx.scene.layout.AnchorPane;
@@ -40,6 +41,11 @@ private Stage stage;
 	}
 	
 	public static void main(String[] args) {
+		
 		launch(args);
+		Administrador admin= new Administrador("final", "final", "final", "final", 20, 1);
+
+//		Administrador admin= new Administrador("proyecto", "final", "final", "12345", 21, Administrador.MASCULINO);
+		simulador.setAdmin(admin);
 	}
 }

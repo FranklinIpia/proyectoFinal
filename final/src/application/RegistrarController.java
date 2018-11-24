@@ -25,6 +25,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Menu;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
+import modelo.Administrador;
 import modelo.Apuesta;
 import modelo.SimuladorApuesta;
 import modelo.Usuario;
@@ -118,6 +119,59 @@ public class RegistrarController {
 		
 		
 		
+		
+	}
+	
+	public void registrarAdmin() {
+		String nombre=texNombre.getText();
+		String apellido=texApellido.getText();
+		String cedula=texCedula.getText();
+		String contraseña=texContrasena.getText();
+		String email=texConfirmarEmail.getText();
+		int edad= Integer.parseInt(texEdad.getText());
+		
+		Administrador admin= new Administrador(nombre, apellido, cedula, contraseña, edad, 1);
+		guardarUsuariosSerializable();
+			
+		
+						
+						
+	 FileOutputStream fileOut = null;
+	ObjectOutputStream salida = null;
+	ArrayList<Usuario> usuarios=null;
+
+
+		 try {
+						    	
+						
+			fileOut= new FileOutputStream("archivos/admin.dat");
+		     salida= new ObjectOutputStream(fileOut);
+							
+			salida.writeObject(admin);
+							
+						}catch (FileNotFoundException e) {
+							System.out.println(e.getMessage() +"1Excepcion metodo guardarJugadores de menucontroller");
+						}catch(IOException e) {
+							System.out.println(e.getMessage()+"2Excepcion metodo guardarJugadores de menucontroller");
+						}finally{
+							try {
+								if(admin!=null) {
+									fileOut.close();
+								}
+									
+								if (salida != null) {
+									salida.close();
+								}
+							} catch (IOException e) {
+								System.out.println(e.getMessage()+ "3Excepcion metodo guardarJugadores de menucontroller");
+							}
+						}				
+						
+						
+						
+						
+						
+
 		
 	}
 	

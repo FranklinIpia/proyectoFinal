@@ -13,7 +13,7 @@ import interfazes2.FixedCaballo;
 
 public  class SimuladorApuesta implements FixedCaballo  {
 	
-	public static final int MAX_USUARIOS=20;
+	public static final int MAX_USUARIOS=15;
 	
 	
 	private Jinete primerJinete;
@@ -23,17 +23,49 @@ public  class SimuladorApuesta implements FixedCaballo  {
 	private int cantidadUsuarios;
 	private int cantidadUsuariosVip;
 	private int totalUsuariosVip;
+	private Administrador admin;
 	
 	
 	
 	public SimuladorApuesta() {
 	this.usuarios= new Usuario[MAX_USUARIOS];
 	cantidadUsuarios=0;
-	
+//	admin= new Administrador("proyecto", "final", "final", "12345", 21, Administrador.MASCULINO);
 
 	}
 	
 	
+	
+	
+	
+	
+	
+	
+	
+	public Administrador getAdmin() {
+		return admin;
+	}
+
+
+
+
+
+
+
+
+
+	public void setAdmin(Administrador admin) {
+		this.admin = admin;
+	}
+
+
+
+
+
+
+
+
+
 	public Jinete getPrimerJinete() {
 		return primerJinete;
 	}

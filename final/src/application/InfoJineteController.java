@@ -15,24 +15,7 @@ import javafx.scene.control.TextField;
 public class InfoJineteController {
 	
 
-	    @FXML
-	    private TextField txtNombre;
-
-	    @FXML
-	    private TextField txtEdad;
-
-	    @FXML
-	    private TextField txtPeso;
-
-	    @FXML
-	    private TextField txtNumero;
-
-	    @FXML
-	    private TextField txtCarrerasGandas;
-
-	    @FXML
-	    private TextField txtAltura;
-
+	
 	    
 
 	   

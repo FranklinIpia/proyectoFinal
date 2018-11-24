@@ -32,12 +32,12 @@
             <Font name="Arial" size="24.0" />
          </font>
       </Label>
-      <Button fx:id="btEntrar1" layoutX="538.0" layoutY="17.0" mnemonicParsing="false" onAction="#openEntrar" prefHeight="27.0" prefWidth="101.0" text="Entrar">
+      <Button fx:id="btEntrar1" layoutX="538.0" layoutY="17.0" mnemonicParsing="false" onAction="#verificarAdmin" prefHeight="27.0" prefWidth="101.0" text="Entrar">
          <font>
             <Font name="Arial Bold" size="18.0" />
          </font>
       </Button>
-      <TextField fx:id="texUsuario1" layoutX="172.0" layoutY="19.0" prefHeight="33.0" prefWidth="160.0" promptText="Admin" style="-fx-background-color: #BD6333;" />
-      <TextField fx:id="texContrasena1" cache="true" layoutX="342.0" layoutY="19.0" prefHeight="33.0" prefWidth="173.0" promptText="Contraseña admin" style="-fx-background-color: #B25C2E;" />
+      <TextField fx:id="txtAdmin" layoutX="172.0" layoutY="19.0" prefHeight="33.0" prefWidth="160.0" promptText="Admin" style="-fx-background-color: #BD6333;" />
+      <TextField fx:id="txtContraAdd" cache="true" layoutX="342.0" layoutY="19.0" prefHeight="33.0" prefWidth="173.0" promptText="Contraseña admin" style="-fx-background-color: #B25C2E;" />
    </children>
 </AnchorPane>

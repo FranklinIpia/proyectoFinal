@@ -15,6 +15,7 @@ import javax.swing.JOptionPane;
 
 import Excepciones.ExcepcionElUsuarioYaEstaRegistrado;
 import Excepciones.ExcepcionLaContraseñaEsInavalida;
+import Excepciones.ExcepcionNoEresElAdministrador;
 import Excepciones.ExcepcionNoExisteElUsuarioConId;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -25,6 +26,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
+import modelo.Administrador;
 import modelo.SimuladorApuesta;
 import modelo.Usuario;
 import modelo.UsuarioVip;
@@ -40,12 +42,23 @@ public class MenuController {
 	@FXML
 	private Button btRegistrar;
 	
+	@FXML
+	private TextField txtAdmin;
+	
+	@FXML
+	private TextField txtContraAdd;
+	
+	
 	private Main main;
 	
 	private CuponDeApuestasController cupon;
 	
 	public MenuController() {
 		main=new Main();
+		txtAdmin= new TextField();
+		txtContraAdd= new TextField();
+		Administrador admin= new Administrador("final", "final", "final", "final", 20, 1);
+		main.darSimulador().setAdmin(admin);
 //		guardarUsuariosSerializable();
 cargarJugadoresSerializables();
 	try {
@@ -389,8 +402,59 @@ Usuario u1= new Usuario("Sebastian", "Rebolledo", "1062332841", "12345", 20, 1, 
 	   }
 
 
+public void verificarAdmin(ActionEvent e) {
+	
+	String nombre= txtAdmin.getText();
+	String contra= txtContraAdd.getText();
+	
+	try {
+		String nombreAdmin= main.darSimulador().getAdmin().getNombre();
+		String contraseñaAdmin=main.darSimulador().getAdmin().getContraseña();
+		if(nombreAdmin.compareToIgnoreCase(nombre)==0&&contraseñaAdmin.compareToIgnoreCase(contra)==0) {
+			
+			openAdministrador(e);
+			
+		}
+		else {
+			throw new ExcepcionNoEresElAdministrador("No eres el adminsitrador");
+		}
+		
+		
+		
+	} catch (ExcepcionNoEresElAdministrador e1) {
+		JOptionPane.showMessageDialog(null,e1.getMessage());
+	} catch (Exception e1) {
+		// TODO Auto-generated catch block
+		e1.printStackTrace();
+	}
 	
 	
+}
+
+
+
+
+public void openAdministrador(ActionEvent event) throws Exception {
+	
+	try {
+		Parent showBegginer = FXMLLoader.load(getClass().getResource("Admin.fxml"));
+		Scene sceneBegginer = new Scene(showBegginer);
+		Stage windowBegginer = (Stage)((Node) event.getSource()).getScene().getWindow();
+		windowBegginer.setScene(sceneBegginer);
+		windowBegginer.show();
+	}catch(IOException e) {
+		e.printStackTrace();
+	}
+}
+
+
+
+
+
+
+
+
+
 	
 	public void openRegistrar(ActionEvent event) throws Exception {
 		
