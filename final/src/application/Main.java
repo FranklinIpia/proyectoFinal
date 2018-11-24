@@ -22,7 +22,7 @@ private Stage stage;
 		try {
 			stage=primaryStage;
 			AnchorPane root = (AnchorPane)FXMLLoader.load(getClass().getResource("Menu.fxml"));
-			Scene scene = new Scene(root,653,496);
+			Scene scene = new Scene(root);
 			//scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
 			stage.setScene(scene);
 			stage.show();

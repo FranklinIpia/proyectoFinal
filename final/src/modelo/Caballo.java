@@ -1,5 +1,7 @@
 package modelo;
 
+import java.security.SecureRandom;
+
 import javafx.scene.image.ImageView;
 
 public class Caballo implements Comparable{
@@ -168,13 +170,16 @@ public class Caballo implements Comparable{
 
 	public void moverCaballo() {
 		int comienzo=27;
-//		SecureRandom random = new SecureRandom();
+		SecureRandom random = new SecureRandom();
+		int velocidadMaxima= (int)this.velocidadMaxima;
 //		int nuevaPosX=27;
 	do {
-		
-	int valorEntero1 = (int) Math.floor(Math.random()*(1-30+1)+30);
+//		int valorEntero1=1+ random.nextInt(velocidadMaxima);
+	int valorEntero1 = (int) Math.floor(Math.random()*(1-30+1)+30) + velocidadMaxima;
 
-//		comienzo=comienzo+ random.nextInt(this.velocidad);
+//		comienzo=comienzo+ random.nextInt(this.velocidadMaxima);
+		
+		
 		
 	comienzo=comienzo+valorEntero1;
 		this.posX=comienzo;

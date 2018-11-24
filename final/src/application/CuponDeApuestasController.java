@@ -329,7 +329,7 @@ public void cargarJinetes() {
     	   System.out.println("Encontro el usuario");
     	   
     	   txtCedulaUsuario.setText(cedula+"");
-   		int numeroCaballo=468;
+   		int numeroCaballo=Integer.parseInt(lblNumeroCaballo.getText());
    		double cuotaCaballo=Double.parseDouble(lblCuotaApuesta.getText());
    		double importe= cantidadApuesta;
    		double pagoPotencial=cantidadApuesta*cuotaCaballo;
@@ -574,26 +574,26 @@ public void cargarJinetes() {
 		});
 		
 		
-		btnGenerarApuesta.setOnAction(new EventHandler<ActionEvent>() {
-
-			@Override
-			public void handle(ActionEvent event) {
-				// TODO Auto-generated method stub
-				
-			}
-			
-		});
-		
-		
-		btnColocado.setOnAction(new EventHandler<ActionEvent>() {
-			
-			@Override
-			public void handle(ActionEvent event) {
-				// TODO Auto-generated method stub
-				
-			}
-		});
-		
+//		btnGenerarApuesta.setOnAction(new EventHandler<ActionEvent>() {
+//
+//			@Override
+//			public void handle(ActionEvent event) {
+//				// TODO Auto-generated method stub
+//				
+//			}
+//			
+//		});
+//		
+//		
+//		btnColocado.setOnAction(new EventHandler<ActionEvent>() {
+//			
+//			@Override
+//			public void handle(ActionEvent event) {
+//				// TODO Auto-generated method stub
+//				
+//			}
+//		});
+//		
 	}
 	
 	
