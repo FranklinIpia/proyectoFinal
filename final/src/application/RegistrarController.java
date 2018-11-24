@@ -67,7 +67,7 @@ public class RegistrarController {
 //		registrarUsuario2();
 		
 //		cargarJugadoresSerializables();
-		guardarUsuariosSerializable();
+//		guardarUsuariosSerializable();
 
 	}
 	public void initialize() {
@@ -109,6 +109,7 @@ public class RegistrarController {
 			
 			
 //			menu.guardarUsuariosSerializable();
+			menu.guardarUsuariosSerializable();
 			main.darSimulador().imprimirUsuarios();
 		} catch (Exception e2) {
 			// TODO: handle exception
@@ -234,7 +235,7 @@ public class RegistrarController {
 		ArrayList<Usuario> usuariosArray=null;
 		
 		try {
-			fileInput= new FileInputStream("archivos/usuarios2.dat");
+			fileInput= new FileInputStream("archivos/usuarios3.dat");
 			entrada= new ObjectInputStream(fileInput);
 			usuariosArray=(ArrayList<Usuario>) entrada.readObject();
 			nuevosUsuarios= new Usuario[SimuladorApuesta.MAX_USUARIOS];
@@ -307,7 +308,7 @@ ArrayList<Usuario> usuarios=null;
 //    usuarios.add(u4);
 //    usuarios.add(u5);
 //    usuarios.add(u6);
-	fileOut= new FileOutputStream("archivos/usuarios.dat");
+	fileOut= new FileOutputStream("archivos/usuarios2.dat");
 	salida= new ObjectOutputStream(fileOut);
 	for (int i = 0; i < main.darSimulador().getUsuarios().length; i++) {
 		if(main.darSimulador().getUsuarios()[i]!=null) {

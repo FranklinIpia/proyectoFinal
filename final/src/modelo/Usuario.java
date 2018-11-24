@@ -24,6 +24,7 @@ public class Usuario extends Administrador implements Comparable<Usuario>,Serial
 		this.correoElectronico = correoElectronico;
 		this.apuestasGanadas=apuestasGanadas;
 		this.apuestaUsuario=apuestaUsuario;
+		this.raizApuesta=apuestaUsuario;
 	}
     
 

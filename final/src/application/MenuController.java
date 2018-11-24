@@ -46,7 +46,7 @@ public class MenuController {
 	
 	public MenuController() {
 		main=new Main();
-		guardarUsuariosSerializable();
+//		guardarUsuariosSerializable();
 cargarJugadoresSerializables();
 	try {
 		guardarUsuariosVip( );
@@ -86,34 +86,46 @@ cargarJugadoresSerializables();
 FileOutputStream fileOut = null;
 ObjectOutputStream salida = null;
 ArrayList<Usuario> usuarios=null;
-//Usuario u2= new Usuario("Sebastian", "Rebolledo", "00000", "00000", 20, 1, 20.000, "issareme@hotmail.com",0, null);
+Usuario u2= new Usuario("Sebastian", "Rebolledo", "00000", "00000", 20, 1, 20.000, "issareme@hotmail.com",0, null);
 
 Usuario u1= new Usuario("Sebastian", "Rebolledo", "1062332841", "12345", 20, 1, 20.000, "issareme@hotmail.com",0, null);
-Usuario u2= new Usuario("Sebastian", "Rebolledo", "1111", "12345", 20, 1, 20.000, "issareme@hotmail.com",0, null);
-Usuario u3= new Usuario("Sebastian", "Rebolledo", "2222", "12345", 20, 1, 20.000, "issareme@hotmail.com",0, null);
-Usuario u4= new Usuario("Sebastian", "Rebolledo", "0000", "12345", 20, 1, 20.000, "issareme@hotmail.com",0, null);
-Usuario u5= new Usuario("Sebastian", "Rebolledo", "4444", "12345", 20, 1, 20.000, "issareme@hotmail.com",0, null);
-Usuario u6= new Usuario("Sebastian", "Rebolledo", "6666", "12345", 20, 1, 20.000, "issareme@hotmail.com",0, null);
+//Usuario u2= new Usuario("Sebastian", "Rebolledo", "1111", "12345", 20, 1, 20.000, "issareme@hotmail.com",0, null);
+//Usuario u3= new Usuario("Sebastian", "Rebolledo", "2222", "12345", 20, 1, 20.000, "issareme@hotmail.com",0, null);
+//Usuario u4= new Usuario("Sebastian", "Rebolledo", "0000", "12345", 20, 1, 20.000, "issareme@hotmail.com",0, null);
+//Usuario u5= new Usuario("Sebastian", "Rebolledo", "4444", "12345", 20, 1, 20.000, "issareme@hotmail.com",0, null);
+//Usuario u6= new Usuario("Sebastian", "Rebolledo", "6666", "12345", 20, 1, 20.000, "issareme@hotmail.com",0, null);
+
+//main.darSimulador().getUsuarios()[0]=u1;
+//main.darSimulador().getUsuarios()[1]=u2;
 
 
     try {
     	
     usuarios=new ArrayList<Usuario>();
-    usuarios.add(u1);
-    usuarios.add(u2);
-    usuarios.add(u2);
-    usuarios.add(u3);
-    usuarios.add(u4);
-    usuarios.add(u5);
-    usuarios.add(u6);
-	fileOut= new FileOutputStream("archivos/usuarios.dat");
+//    usuarios.add(u1);
+//    usuarios.add(u2);
+//    usuarios.add(u2);
+//    usuarios.add(u3);
+//    usuarios.add(u4);
+//    usuarios.add(u5);
+//    usuarios.add(u6);
+	fileOut= new FileOutputStream("archivos/usuarios3.dat");
 	salida= new ObjectOutputStream(fileOut);
 	for (int i = 0; i < main.darSimulador().getUsuarios().length; i++) {
+//		if(main.darSimulador().getUsuarios()[i]!=null) {
+//			usuarios.add(main.darSimulador().getUsuarios()[i]);
+//		}
+		
+		
 		if(main.darSimulador().getUsuarios()[i]!=null) {
-			usuarios.add(main.darSimulador().getUsuarios()[i]);
+			Usuario usuario=main.darSimulador().getUsuarios()[i];
+			salida.writeObject(usuario);
 		}
 	}
-	salida.writeObject(usuarios);
+//	salida.writeObject(usuarios);
+	
+	
+	
 	
 }catch (FileNotFoundException e) {
 	System.out.println(e.getMessage() +"1Excepcion metodo guardarJugadores de menucontroller");
@@ -237,23 +249,35 @@ Usuario u6= new Usuario("Sebastian", "Rebolledo", "6666", "12345", 20, 1, 20.000
 		ArrayList<Usuario> usuariosArray=null;
 		
 		try {
-			fileInput= new FileInputStream("archivos/usuarios.dat");
+			fileInput= new FileInputStream("archivos/usuarios3.dat");
 			entrada= new ObjectInputStream(fileInput);
-			usuariosArray=(ArrayList<Usuario>) entrada.readObject();
-			nuevosUsuarios= new Usuario[SimuladorApuesta.MAX_USUARIOS];
-			System.out.println("No entro");
-			System.out.println(usuariosArray.size());
-			for(int i=0;i<usuariosArray.size();i++) {
-				System.out.println(usuariosArray.get(i).getCedula());
+//			usuariosArray=(ArrayList<Usuario>) entrada.readObject();
+//			nuevosUsuarios= new Usuario[SimuladorApuesta.MAX_USUARIOS];
+//			System.out.println("No entro");
+//			System.out.println(usuariosArray.size());
+			
+			boolean termino=false;
+			for(int i=0;i<main.darSimulador().getUsuarios().length&&!termino;i++) {
+				Usuario u1=(Usuario)entrada.readObject();
+				if(u1!=null) {
+					main.darSimulador().getUsuarios()[i]=u1;
+	
+				}else {
+					termino=true;
+				}
 			}
 			
-			for(int i=0;i<usuariosArray.size();i++) {
-				nuevosUsuarios[i]=usuariosArray.get(i);
-				System.out.println(":D" +nuevosUsuarios[i].getCedula());
-			}
+//			for(int i=0;i<usuariosArray.size();i++) {
+//				System.out.println(usuariosArray.get(i).getCedula());
+//			}
+//			
+//			for(int i=0;i<usuariosArray.size();i++) {
+//				nuevosUsuarios[i]=usuariosArray.get(i);
+//				System.out.println(":D" +nuevosUsuarios[i].getCedula());
+//			}
 
-			System.out.println(usuariosArray.size());
-			main.darSimulador().setUsuarios(nuevosUsuarios);
+//			System.out.println(usuariosArray.size());
+//			main.darSimulador().setUsuarios(nuevosUsuarios);
 			
 			
 		} catch (FileNotFoundException e) {
@@ -342,6 +366,8 @@ Usuario u6= new Usuario("Sebastian", "Rebolledo", "6666", "12345", 20, 1, 20.000
 		System.out.println(main.darSimulador().getUsuarioVipRaiz());
 	}
 
+	
+	
 	
 
 	

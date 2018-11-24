@@ -10,6 +10,7 @@ import java.security.SecureRandom;
 
 import javax.swing.JOptionPane;
 
+import Excepciones.ExcepcionElCaballoNoExiste;
 import Excepciones.ExcepcionNoExisteElUsuarioConId;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
@@ -90,6 +91,35 @@ public class CuponDeApuestasController {
 	private ObservableList<String> dataLista = FXCollections.observableArrayList();
 
 	
+	////////////////////////////////////////////////////////////////////////
+	@FXML
+	private TextField txtCabNombre;
+	
+	@FXML
+	private TextField txtCaballoNum;
+	
+	@FXML
+	private TextField txtCaballoEdad;
+	
+	@FXML
+	private TextField txtCaballoPeso;
+
+	
+	@FXML
+	private TextField txtCaballoCarrerasGanadas;
+	
+	@FXML
+	private TextField txtCarrerasPerdidas;
+	
+	@FXML
+	private TextField txtVelocidadMaxima;
+	
+	@FXML
+	private TextField txtGenero;
+	
+	@FXML
+	private TextField  txtAltura;
+	
 	public CuponDeApuestasController() {
 //		menu=new MenuController();
 		main=new Main();
@@ -99,7 +129,14 @@ public class CuponDeApuestasController {
 	lblCuotaApuesta=new Label();
 	lblImporteApostado=new Label();
 	lblPagoPotencial=new Label();
-	
+	txtAltura=new TextField();
+	txtCaballoCarrerasGanadas=new TextField();
+	txtCaballoEdad= new TextField();
+	txtCaballoNum=new TextField();
+	txtCaballoPeso=new TextField();
+	txtCabNombre=new TextField();
+	txtCarrerasPerdidas=new TextField();	
+	txtVelocidadMaxima=new TextField();
 		cargarJinetes();
 	cargarCaballos() ;
 //	
@@ -314,7 +351,53 @@ public void cargarJinetes() {
 	}
 	
 	
+	
+	
+	public void buscarCaballo(ActionEvent e1) {
+		try {
+			int numero=Integer.parseInt(txtNumeroCaballo.getText());
+			Caballo caballoEncontrado= main.darSimulador().buscarCaballo(numero);
+			if(caballoEncontrado==null) {
+				throw new ExcepcionElCaballoNoExiste("El numero del caballo que dijitaste no existe");
+			}else {
+				
+				txtAltura.setText(caballoEncontrado.getAltura()+"");
+				txtCaballoCarrerasGanadas.setText(caballoEncontrado.getCarrerasGanadas()+"");
+				txtCarrerasPerdidas.setText(caballoEncontrado.getCarrerasPerdidas()+"_D");
+				txtCabNombre.setText(caballoEncontrado.getNombre());
+				txtVelocidadMaxima.setText(caballoEncontrado.getVelocidadMaxima()+"");
+				txtCaballoPeso.setText(caballoEncontrado.getPeso()+"");
+				txtCaballoNum.setText(caballoEncontrado.getNumero()+"");
+				
+//				Thread.sleep(200);
+				openBuscarCaballo(e1);
+				
+			}
 
+		} catch (ExcepcionElCaballoNoExiste e) {
+			JOptionPane.showMessageDialog(null,e.getMessage());
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+			
+		
+	}
+
+	
+	
+	public void buscarJinete() {
+		
+		try {
+			
+			
+			
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
+		
+		
+	}
 	
 	
 	
@@ -435,15 +518,9 @@ public void cargarJinetes() {
 			@Override
 			public void handle(ActionEvent arg0) {
 				// TODO Auto-generated method stub
-				int numeroCaballo=Integer.parseInt(txtNumeroCaballo.getText());
-				Caballo cabEncontrado= main.darSimulador().buscarCaballo(numeroCaballo);
-				
-				if(cabEncontrado==null) {
-					System.out.println("No se encontro el caballo");
-				}else {
-					
-					System.out.println("Entro");
-				}
+				int numeroCaballo=Integer.parseInt(lblNumeroCaballo.getText());
+				double cuota=main.darSimulador().prueba(numeroCaballo);
+				lblCuotaApuesta.setText(cuota+"");
 				
 			}
 		});

@@ -647,7 +647,7 @@ public  class SimuladorApuesta implements FixedCaballo  {
 		double carreras=bo.getCarrerasGanadas();
 		
 		ganador= velocidad/carreras;
-		return ganador;
+		return ganador+1;
 		
 	
 		

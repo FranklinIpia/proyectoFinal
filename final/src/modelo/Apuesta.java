@@ -23,7 +23,6 @@ private double cuotaCaballo;
 
 		this.tipoApuesta = tipoApuesta;
 		this.IdApuesta=IdApuesta;
-		this.cuotaCaballo=cuotaCaballo;
 		this.numeroCaballo=numeroCaballo;
 		
 	}

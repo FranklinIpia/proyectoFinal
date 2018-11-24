@@ -10,7 +10,7 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="502.0" prefWidth="457.0" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.InfoCaballoController">
+<AnchorPane prefHeight="502.0" prefWidth="457.0" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.CuponDeApuestasController">
    <children>
       <GridPane prefHeight="502.0" prefWidth="458.0">
         <columnConstraints>
@@ -31,7 +31,7 @@
                 <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
               </rowConstraints>
                <children>
-                  <Button mnemonicParsing="false" onAction="#openCuponDeApuestas" prefHeight="41.0" prefWidth="83.0" text="Volver" GridPane.columnIndex="1">
+                  <Button mnemonicParsing="false" prefHeight="41.0" prefWidth="83.0" text="Volver" GridPane.columnIndex="1">
                      <GridPane.margin>
                         <Insets left="130.0" />
                      </GridPane.margin>
@@ -108,26 +108,26 @@
                      <font>
                         <Font size="22.0" />
                      </font></Label>
-                  <TextField fx:id="txtNombre" mouseTransparent="true" GridPane.columnIndex="1">
+                  <TextField fx:id="txtCabNombre" mouseTransparent="true" onAction="#openBuscarCaballo" GridPane.columnIndex="1">
                      <opaqueInsets>
                         <Insets />
                      </opaqueInsets>
                      <GridPane.margin>
                         <Insets left="5.0" right="5.0" />
                      </GridPane.margin></TextField>
-                  <TextField fx:id="txtNumero" mouseTransparent="true" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                  <TextField fx:id="txtCaballoNum" mouseTransparent="true" onAction="#openBuscarCaballo" GridPane.columnIndex="1" GridPane.rowIndex="1">
                      <GridPane.margin>
                         <Insets left="5.0" right="5.0" />
                      </GridPane.margin></TextField>
-                  <TextField fx:id="txtEdad" mouseTransparent="true" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                  <TextField fx:id="txtCaballoEdad" mouseTransparent="true" onAction="#openBuscarCaballo" GridPane.columnIndex="1" GridPane.rowIndex="2">
                      <GridPane.margin>
                         <Insets left="5.0" right="5.0" />
                      </GridPane.margin></TextField>
-                  <TextField fx:id="txtPeso" mouseTransparent="true" GridPane.columnIndex="1" GridPane.rowIndex="3">
+                  <TextField fx:id="txtCaballoPeso" mouseTransparent="true" GridPane.columnIndex="1" GridPane.rowIndex="3">
                      <GridPane.margin>
                         <Insets left="5.0" right="5.0" />
                      </GridPane.margin></TextField>
-                  <TextField fx:id="txtCarrerasGanadas" mouseTransparent="true" GridPane.columnIndex="1" GridPane.rowIndex="4">
+                  <TextField fx:id="txtCaballoCarrerasGanadas" mouseTransparent="true" GridPane.columnIndex="1" GridPane.rowIndex="4">
                      <GridPane.margin>
                         <Insets left="5.0" right="5.0" />
                      </GridPane.margin></TextField>
