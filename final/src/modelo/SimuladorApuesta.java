@@ -190,7 +190,7 @@ public  class SimuladorApuesta implements FixedCaballo  {
 	
 	
 	public Usuario[] ordenarUsuariosSeleccionNatural(Usuario[] usuarios) {
-		Usuario[] usuariosSeleccion=usuarios.clone();
+//		Usuario[] usuariosSeleccion=usuarios.clone();
 		
 		for (int i = 0; i < usuarios.length-1; i++) {
 		Usuario menor=usuarios[i];
@@ -219,6 +219,7 @@ public  class SimuladorApuesta implements FixedCaballo  {
 	//Este metodo ordena los usarios en base a un orden parcial el cual 
 	// es la edad
 	public Usuario[] ordenarUsuariosInserccion(Usuario[] usuarios) {
+		
 		Usuario[] usaruisInserccion=usuarios.clone();
 		for (int i = 1; i < usaruisInserccion.length; i++) {
 			ComparadorEdad comEdad= new ComparadorEdad();
@@ -282,22 +283,25 @@ public  class SimuladorApuesta implements FixedCaballo  {
 	
 //METODO PARA IMPLEMENTAR LA BUSQUEDA BINARIA
 
-	public Usuario buscarUsuarioId(String cedula,Usuario[] usuariosOrdenados) {
+	public Usuario buscarUsuarioId(String cedula,Usuario[] usuarios) {
+		Usuario[] usuariosOrdenados=ordenarUsuariosSeleccionNatural(usuarios);
 		boolean encontro=false;
 		Usuario usuarioEncontrado=null;
 		int inicio=0;
 		int fin=usuariosOrdenados.length-1;
 		while(inicio<=fin&&!encontro) {
+			
+			
 			int medio=(inicio+fin)/2;
 			
 			
 			
-				if(usuarios[medio].getCedula().compareTo(cedula)==0) {
-					usuarioEncontrado=usuarios[medio];
+			if(usuariosOrdenados[medio].getCedula().compareTo(cedula)==0) {
+					usuarioEncontrado=usuariosOrdenados[medio];
 					encontro=true;
 			
 			
-			}else if(usuarios[medio].getCedula().compareTo(cedula)>0) {
+			}else if(usuariosOrdenados[medio].getCedula().compareTo(cedula)>0) {
 				fin=medio-1;
 			}else{
 				inicio=medio+1;
@@ -307,9 +311,9 @@ public  class SimuladorApuesta implements FixedCaballo  {
 		return usuarioEncontrado;
 	}
 	
-	public Usuario buscarUsuarioNombre(String nombre) {
+	public Usuario buscarUsuarioNombre(String nombre,Usuario[] usuariosNom) {
 	
-		
+		Usuario[] usuarios= ordenarUsuariosSeleccion(usuariosNom);
 		boolean encontro=false;
 		int inicio=0;
 		int fin=usuarios.length-1;

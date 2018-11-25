@@ -10,6 +10,7 @@ import Comparador.ComparadorApuesta;
 import Comparador.ComparadorNombre;
 import modelo.SimuladorApuesta;
 import modelo.Usuario;
+import modelo.UsuarioVip;
 
 class TestSimuladorApuesta {
 
@@ -123,38 +124,95 @@ assertArrayEquals(usuariosOrdenados, realidad);
 		Usuario u3= new Usuario("Dayan", "Falcao", "3", "12345", 11, 1, 0, "issareme@hotmail.com", 3, null);
 		Usuario u4= new Usuario("Esteban", "Mina", "4", "12345", 10, 1, 0, "issareme@hotmail.com", 4, null);
 		Usuario[] usuariosOrdenados= new Usuario[4];
-		usuariosOrdenados[0]=u1;
-		usuariosOrdenados[1]=u2;
-		usuariosOrdenados[2]=u3;
-		usuariosOrdenados[3]=u4;
+		usuariosOrdenados[0]=u4;
+		usuariosOrdenados[1]=u3;
+		usuariosOrdenados[2]=u2;
+		usuariosOrdenados[3]=u1;
 		String cedula="3";
-		Usuario[] ordenado=simulador.ordenarUsuariosSeleccionNatural(usuariosOrdenados);
-		for(int i=0;i<ordenado.length;i++) {
-			System.out.println(ordenado[i].getNombre());
+
+		Usuario usuarioEncontrado= simulador.buscarUsuarioId(cedula,usuariosOrdenados);
+		if(usuarioEncontrado==null) {
+			System.out.println("Paila");
+		}else {
+			System.out.println(usuarioEncontrado.getCedula());
 		}
-//		Usuario usuarioEncontrado= simulador.buscarUsuarioId(cedula,ordenado);
-//		if(usuarioEncontrado==null) {
-//			System.out.println("Paila");
-//		}
-//		System.out.println(usuarioEncontrado.getCedula() +"nulo");
 		
-//		assertEquals(cedula, usuarioEncontrado.getCedula());
-		
-		
-		
-		
+		assertEquals(cedula, usuarioEncontrado.getCedula());
+	}
 	
+	
+	
+	@Test
+	public void testBuscarUsuarioNombre() {
+		scenario1();
+		
+		
+		Usuario u1= new Usuario("Andrea", "Pirlo", "12345", "12345", 14, 1, 0, "issareme@hotmail.com", 0, null);
+		Usuario u2= new Usuario("Carlos", "Rodriguez", "12345", "12345", 14, 1, 0, "issareme@hotmail.com", 0, null);
+		Usuario u3= new Usuario("Dayan", "Falcao", "12345", "12345", 14, 1, 0, "issareme@hotmail.com", 0, null);
+		Usuario u4= new Usuario("Esteban", "Mina", "12345", "12345", 14, 1, 0, "issareme@hotmail.com", 0, null);
+        Usuario[] usuariosOrdenados= new Usuario[4];
+        usuariosOrdenados[0]=u4;
+        usuariosOrdenados[1]=u2;
+         usuariosOrdenados[2]=u3;
+        usuariosOrdenados[3]=u1;
+        
+        String nombreBuscar="Dayan";
+        Usuario usuarioEncontrado= simulador.buscarUsuarioNombre(nombreBuscar, usuariosOrdenados);
+        assertEquals(nombreBuscar, usuarioEncontrado.getNombre());
+        
 		
 	}
 	
 	
 	
-	
-	
-	
-	
 	//////////////////////////////////////////////////////////////////////////////
 	////////////////////Test para los metodos Recursivos////////////////////////////7
+	
+	
+	@Test
+	public void testInsertarUsuarioVip() {
+		UsuarioVip u1= new UsuarioVip("Sebastian", "Rebolledo","1", "12345", 20, 1, 20.00, "12345", "seereme98@gmail.com", 12, null, 12);
+		UsuarioVip u2= new UsuarioVip("Sebastian", "Rebolledo","1", "12345", 20, 1, 20.00, "12345", "seereme98@gmail.com", 12, null, 5);
+		UsuarioVip u3= new UsuarioVip("Sebastian", "Rebolledo","1", "12345", 20, 1, 20.00, "12345", "seereme98@gmail.com", 12, null, 20);
+		UsuarioVip u4= new UsuarioVip("Sebastian", "Rebolledo","1", "12345", 20, 1, 20.00, "12345", "seereme98@gmail.com", 12, null, 0);
+
+		
+		
+	}
+	
+	@Test
+	public void testInsertarJinete() {
+		
+	}
+	
+	@Test
+	public void testInsertarCaballo() {
+		
+	}
+	
+	@Test
+	public void testEliminarUsuarioVip() {
+		
+	}
+	
+	@Test
+	public void testBuscarUsuarioVip() {
+		
+	}
+	
+	@Test
+	public void testBuscarJinete() {
+		
+	}
+	
+	@Test
+	public void testBuscarCaballo() {
+		
+	}
+	
+	
+	
 	
 	
 	
