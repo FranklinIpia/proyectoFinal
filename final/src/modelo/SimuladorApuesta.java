@@ -4,6 +4,8 @@ package modelo;
 
 import java.util.ArrayList;
 
+import javax.swing.JOptionPane;
+
 import Comparador.ComparadorApuesta;
 import Comparador.ComparadorEdad;
 import Comparador.ComparadorNombre;
@@ -161,35 +163,62 @@ public  class SimuladorApuesta implements FixedCaballo  {
 
 	///Este metodo ordena los usuario en base al orden parcial que
 	//hace referncia al nombre
-	public Usuario[] ordenarUsuariosSeleccion() {
+	public Usuario[] ordenarUsuariosSeleccion(Usuario[] usuarios) {
 		Usuario[] usuariosSeleccion=usuarios.clone();
 		
-		for (int i = 0; i < usuariosSeleccion.length-1; i++) {
-		Usuario menor=usuariosSeleccion[i];
+		for (int i = 0; i < usuarios.length-1; i++) {
+		Usuario menor=usuarios[i];
 		int pos=i;
 		
-		for (int j = i+1; j < usuariosSeleccion.length; j++) {
+		for (int j = i+1; j < usuarios.length; j++) {
 			ComparadorNombre conM=new ComparadorNombre();
 
-			if(conM.compare(usuariosSeleccion[j],menor)<0) {
-				menor=usuariosSeleccion[j];
+			if(conM.compare(usuarios[j],menor)<0) {
+				menor=usuarios[j];
 				pos=j;
 			}
 		}
 		
-		Usuario temp= usuariosSeleccion[i];
-		usuariosSeleccion[i]=menor;
-		usuariosSeleccion[pos]=temp;
+		Usuario temp= usuarios[i];
+		usuarios[i]=menor;
+		usuarios[pos]=temp;
 			
 		}
-		return usuariosSeleccion;
+		return usuarios;
 	}
+	
+	
+	
+	public Usuario[] ordenarUsuariosSeleccionNatural(Usuario[] usuarios) {
+		Usuario[] usuariosSeleccion=usuarios.clone();
+		
+		for (int i = 0; i < usuarios.length-1; i++) {
+		Usuario menor=usuarios[i];
+		int pos=i;
+		
+		for (int j = i+1; j < usuarios.length; j++) {
+
+			if(usuarios[j].compareTo(menor)<0) {
+				menor=usuarios[j];
+				pos=j;
+			}
+			
+		}
+		
+		Usuario temp= usuarios[i];
+		usuarios[i]=menor;
+		usuarios[pos]=temp;
+			
+		}
+		return usuarios;
+	}
+	
 	
 	
 	
 	//Este metodo ordena los usarios en base a un orden parcial el cual 
 	// es la edad
-	public Usuario[] ordenarUsuariosInserccion() {
+	public Usuario[] ordenarUsuariosInserccion(Usuario[] usuarios) {
 		Usuario[] usaruisInserccion=usuarios.clone();
 		for (int i = 1; i < usaruisInserccion.length; i++) {
 			ComparadorEdad comEdad= new ComparadorEdad();
@@ -210,7 +239,7 @@ public  class SimuladorApuesta implements FixedCaballo  {
 	
 	//Este metodo ordena los usuarios en base a un orden parcial
 	//el cual es la apuesta
-	public Usuario[] ordenarUsuariosBurbuja() {
+	public Usuario[] ordenarUsuariosBurbuja(Usuario[] usuarios) {
 
 	Usuario[] usaruosBurbuja=usuarios.clone();
 	
@@ -253,11 +282,11 @@ public  class SimuladorApuesta implements FixedCaballo  {
 	
 //METODO PARA IMPLEMENTAR LA BUSQUEDA BINARIA
 
-	public Usuario buscarUsuarioId(String cedula) {
+	public Usuario buscarUsuarioId(String cedula,Usuario[] usuariosOrdenados) {
 		boolean encontro=false;
 		Usuario usuarioEncontrado=null;
 		int inicio=0;
-		int fin=usuarios.length-1;
+		int fin=usuariosOrdenados.length-1;
 		while(inicio<=fin&&!encontro) {
 			int medio=(inicio+fin)/2;
 			
@@ -335,10 +364,17 @@ public  class SimuladorApuesta implements FixedCaballo  {
 			
 		UsuarioVip nuevoVip= new UsuarioVip(nombre, apellido, cedula, contraseña, edad, genero, dinero, claveUsuario, correoElectronico, apuestasGanadas, apuestaUsuario, tarjetaVip);
 		if(this.usuarioVipRaiz==null) {
+			System.out.println("Hay nula raiz");
 			this.usuarioVipRaiz=nuevoVip;
 			this.cantidadUsuariosVip+=1;
 		}else {
-			usuarioVipRaiz.insertar(nuevoVip);
+			try {
+				this.usuarioVipRaiz.insertar(nuevoVip);
+
+			} catch (Exception e) {
+				// TODO: handle exception
+				JOptionPane.showMessageDialog(null,e.getMessage());
+			}
 			this.cantidadUsuarios+=1;
 		}
 		

@@ -27,6 +27,8 @@ import javafx.stage.FileChooser;
 import javafx.util.Duration;
 import modelo.Caballo;
 import modelo.Jinete;
+import modelo.Usuario;
+import modelo.UsuarioVip;
 
 public class CarreraController {
 	
@@ -229,7 +231,7 @@ public class CarreraController {
 		
 
 	   for (int i = 0; i < caballos.length; i++) {
-		dataListaNombre.add(caballos[i].getNumero()+"");
+		dataListaNombre.add(i+1+"/"+caballos[i].getNumero()+"");
 	}	
 		
 
@@ -265,13 +267,11 @@ public class CarreraController {
 						String[] data= texto.split(";");
 						double cantidadApostada= Double.parseDouble(data[0]);
 						String cedula=data[1];
-//						int numerpCaballo=data[2];
-						
-						String nombreJugador=data[0];
-						int puntaje=Integer.parseInt(data[1]);
-						String pokemon=data[2];
-						
-				
+						int numerpCaballo=Integer.parseInt(data[2]);
+						boolean esVip=Boolean.parseBoolean(data[3]);
+						int tipoApuesta=Integer.parseInt(data[4]);
+						int tarjetaVip=Integer.parseInt(data[5]);
+						verificarApuesta(tipoApuesta, numerpCaballo, cedula, esVip, tarjetaVip, cantidadApostada);
 					}
 					
 					br.close();
@@ -300,7 +300,116 @@ public class CarreraController {
 	
 	
 	
+	public void verificarApuesta(int tipoApuesta,int numero,String cedula,boolean esVip,int tarjetVip,double cantidadApostad) {
+		int numeroCaballo=caballos[0].getNumero();
+		int numeroCaballo2=	caballos[1].getNumero();
+int numeroCaballo3=caballos[2].getNumero();
+
+		if(tipoApuesta==1) {
+		
+		
+			if(esVip==true) {
+				UsuarioVip us= main.darSimulador().buscarUsarioVip(tarjetVip);
+
+				if(numeroCaballo==numero) {
+					JOptionPane.showMessageDialog(null,"Felicitaciones,Reclama tu dinero");
+					
+					us.setApuestasGanadas(us.getApuestasGanadas()+1);	
+				}else {
+					JOptionPane.showMessageDialog(null,"Perdiste la Apuesta, suerte para la proxima");
+				}
+				
+			}else {
+				Usuario us= main.darSimulador().buscarUsuariofor(cedula);
+				
+				if(numeroCaballo==numero) {
+					JOptionPane.showMessageDialog(null,"Felicitaciones,Reclama tu dinero");
+					
+					us.setApuestasGanadas(us.getApuestasGanadas()+1);	
+				}else {
+					JOptionPane.showMessageDialog(null,"Perdiste la Apuesta, suerte para la proxima");
+				}
+				
+			}
+			
+			
+		
+			
+			
+			
+			
+		}else if(tipoApuesta==2) {
+			
+			
 	
+			
+			if(esVip==true) {
+				UsuarioVip us= main.darSimulador().buscarUsarioVip(tarjetVip);
+
+				if(numeroCaballo2==numero) {
+					JOptionPane.showMessageDialog(null,"Felicitaciones,Reclama tu dinero");
+					
+					us.setApuestasGanadas(us.getApuestasGanadas()+1);	
+				}else {
+					JOptionPane.showMessageDialog(null,"Perdiste la Apuesta, suerte para la proxima");
+				}
+				
+			}else {
+				Usuario us= main.darSimulador().buscarUsuariofor(cedula);
+				
+				if(numeroCaballo2==numero) {
+					JOptionPane.showMessageDialog(null,"Felicitaciones,Reclama tu dinero");
+					
+					us.setApuestasGanadas(us.getApuestasGanadas()+1);	
+				}else {
+					JOptionPane.showMessageDialog(null,"Perdiste la Apuesta, suerte para la proxima");
+				}
+				
+			}
+			
+			
+			
+			
+			
+			
+			
+		}else {
+			
+				
+			
+				if(esVip==true) {
+					UsuarioVip us= main.darSimulador().buscarUsarioVip(tarjetVip);
+
+					if(numeroCaballo2==numero||numeroCaballo==numero||numeroCaballo3==numero) {
+						JOptionPane.showMessageDialog(null,"Felicitaciones,Reclama tu dinero");
+						
+						us.setApuestasGanadas(us.getApuestasGanadas()+1);	
+					}else {
+						JOptionPane.showMessageDialog(null,"Perdiste la Apuesta, suerte para la proxima");
+					}
+					
+				}else {
+					Usuario us= main.darSimulador().buscarUsuariofor(cedula);
+					
+					if(numeroCaballo==numero||numeroCaballo2==numero||numeroCaballo3==numero) {
+						JOptionPane.showMessageDialog(null,"Felicitaciones,Reclama tu dinero");
+						
+						us.setApuestasGanadas(us.getApuestasGanadas()+1);	
+					}else {
+						JOptionPane.showMessageDialog(null,"Perdiste la Apuesta, suerte para la proxima");
+					}
+					
+				}
+				
+			
+				
+			
+			
+			
+		}
+		
+		
+	}
 	
 	
 	

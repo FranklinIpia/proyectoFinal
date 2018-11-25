@@ -61,13 +61,13 @@ public class MenuController {
 		main.darSimulador().setAdmin(admin);
 //		guardarUsuariosSerializable();
 cargarJugadoresSerializables();
-	try {
-		guardarUsuariosVip( );
-	} catch (IOException e) {
-		// TODO Auto-generated catch block
-		e.printStackTrace();
-	}
-	
+//	try {
+//		guardarUsuariosVip( );
+//	} catch (IOException e) {
+//		// TODO Auto-generated catch block
+//		e.printStackTrace();
+//	}
+//	
 	cargarUsuariosVip( );
 	impirmirIn();
 	darTotales();
@@ -99,43 +99,21 @@ cargarJugadoresSerializables();
 FileOutputStream fileOut = null;
 ObjectOutputStream salida = null;
 ArrayList<Usuario> usuarios=null;
-Usuario u2= new Usuario("Sebastian", "Rebolledo", "00000", "00000", 20, 1, 20.000, "issareme@hotmail.com",0, null);
-
-Usuario u1= new Usuario("Sebastian", "Rebolledo", "1062332841", "12345", 20, 1, 20.000, "issareme@hotmail.com",0, null);
-//Usuario u2= new Usuario("Sebastian", "Rebolledo", "1111", "12345", 20, 1, 20.000, "issareme@hotmail.com",0, null);
-//Usuario u3= new Usuario("Sebastian", "Rebolledo", "2222", "12345", 20, 1, 20.000, "issareme@hotmail.com",0, null);
-//Usuario u4= new Usuario("Sebastian", "Rebolledo", "0000", "12345", 20, 1, 20.000, "issareme@hotmail.com",0, null);
-//Usuario u5= new Usuario("Sebastian", "Rebolledo", "4444", "12345", 20, 1, 20.000, "issareme@hotmail.com",0, null);
-//Usuario u6= new Usuario("Sebastian", "Rebolledo", "6666", "12345", 20, 1, 20.000, "issareme@hotmail.com",0, null);
-
-//main.darSimulador().getUsuarios()[0]=u1;
-//main.darSimulador().getUsuarios()[1]=u2;
-
 
     try {
     	
     usuarios=new ArrayList<Usuario>();
-//    usuarios.add(u1);
-//    usuarios.add(u2);
-//    usuarios.add(u2);
-//    usuarios.add(u3);
-//    usuarios.add(u4);
-//    usuarios.add(u5);
-//    usuarios.add(u6);
+
 	fileOut= new FileOutputStream("archivos/usuarios3.dat");
 	salida= new ObjectOutputStream(fileOut);
 	for (int i = 0; i < main.darSimulador().getUsuarios().length; i++) {
-//		if(main.darSimulador().getUsuarios()[i]!=null) {
-//			usuarios.add(main.darSimulador().getUsuarios()[i]);
-//		}
-		
+
 		
 		if(main.darSimulador().getUsuarios()[i]!=null) {
 			Usuario usuario=main.darSimulador().getUsuarios()[i];
 			salida.writeObject(usuario);
 		}
 	}
-//	salida.writeObject(usuarios);
 	
 	
 	
@@ -182,11 +160,9 @@ Usuario u1= new Usuario("Sebastian", "Rebolledo", "1062332841", "12345", 20, 1, 
     	
     	
         try{
-        	main.darSimulador().insertarUsuarioVip("Sebastian", "Rebolledo", "1062332841", "12345", 20, 1, 0.0, "12345", "issareme@hotmail.com",10 ,null, 1);
-        	main.darSimulador().insertarUsuarioVip("Franklin", "ipia", "123456", "12345", 21, 2, 0.0, "12345", "franklin@gmail.com", 11, null, 2);
-        	main.darSimulador().insertarUsuarioVip("Alejandra", "Cardona", "1234567", "1234567", 20, 2, 0.0, "1234567", "alejita@gmail.com", 7, null, 3);
-        	main.darSimulador().insertarUsuarioVip("Julian", "Alvarez", "12345678", "12345678", 20, 2, 0.0, "12345678", "alejita@gmail.com", 7, null, 7);
-
+        	
+        	
+        	
             FileOutputStream archivo = new FileOutputStream( "archivos/usuariosVip3.dat");
             ObjectOutputStream objetoSaliente = new ObjectOutputStream( archivo );
             objetoSaliente.writeObject( main.darSimulador().getUsuarioVipRaiz() );
@@ -198,10 +174,7 @@ Usuario u1= new Usuario("Sebastian", "Rebolledo", "1062332841", "12345", 20, 1, 
         	JOptionPane.showMessageDialog(null,e.getMessage() + ":D");
 //            throw new PersistenciaException( "Error al salvar: " + e.getMessage( ) );
         } 
-        catch (ExcepcionElUsuarioYaEstaRegistrado e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+
 
     }
 	
@@ -224,7 +197,7 @@ Usuario u1= new Usuario("Sebastian", "Rebolledo", "1062332841", "12345", 20, 1, 
                 UsuarioVip usuariosVip= ( UsuarioVip )ois.readObject( );
                 main.darSimulador().setUsuarioVipRaiz(usuariosVip);
                  System.out.println("Entro a usuarios vip");
-                
+               
                 ois.close( );
             }
             else
@@ -242,11 +215,15 @@ Usuario u1= new Usuario("Sebastian", "Rebolledo", "1062332841", "12345", 20, 1, 
         	System.out.println(e.getMessage()+"2--");
 //            throw new PersistenciaException( "No fue posible leer el archivo de persistencia. \n " + e.getMessage( ) );
         }
-        catch( ClassNotFoundException e )
-        {
+        catch( ClassNotFoundException e ){
         	System.out.println(e.getMessage()+"3--");
 //            throw new PersistenciaException( "Problemas al cargar el archivo de persistencia. \n " + e.getMessage( ) );
-        }
+        } 
+//        catch (ExcepcionElUsuarioYaEstaRegistrado e) {
+//			// TODO Auto-generated catch block
+////			e.printStackTrace();
+//			System.out.println(e.getMessage());
+//		}
     }
     
     
@@ -264,33 +241,21 @@ Usuario u1= new Usuario("Sebastian", "Rebolledo", "1062332841", "12345", 20, 1, 
 		try {
 			fileInput= new FileInputStream("archivos/usuarios3.dat");
 			entrada= new ObjectInputStream(fileInput);
-//			usuariosArray=(ArrayList<Usuario>) entrada.readObject();
-//			nuevosUsuarios= new Usuario[SimuladorApuesta.MAX_USUARIOS];
-//			System.out.println("No entro");
-//			System.out.println(usuariosArray.size());
+
 			
 			boolean termino=false;
 			for(int i=0;i<main.darSimulador().getUsuarios().length&&!termino;i++) {
 				Usuario u1=(Usuario)entrada.readObject();
 				if(u1!=null) {
 					main.darSimulador().getUsuarios()[i]=u1;
+					System.out.println(u1.getNombre() + u1.getApellido()+ u1.getCedula() +"contra"+ u1.getContraseña() );
 	
 				}else {
 					termino=true;
 				}
 			}
 			
-//			for(int i=0;i<usuariosArray.size();i++) {
-//				System.out.println(usuariosArray.get(i).getCedula());
-//			}
-//			
-//			for(int i=0;i<usuariosArray.size();i++) {
-//				nuevosUsuarios[i]=usuariosArray.get(i);
-//				System.out.println(":D" +nuevosUsuarios[i].getCedula());
-//			}
 
-//			System.out.println(usuariosArray.size());
-//			main.darSimulador().setUsuarios(nuevosUsuarios);
 			
 			
 		} catch (FileNotFoundException e) {

@@ -71,6 +71,9 @@ public UsuarioVip darMenor( )
 public void insertar( UsuarioVip nuevo ) throws ExcepcionElUsuarioYaEstaRegistrado {
 	
 	if(this.tarjetaVip==nuevo.getTarjetaVip()) {
+		System.out.println(nuevo.getGenero()+"genero"+ nuevo.getTarjetaVip()+"tarjeta vip");
+//		System.out.println(this.getGenero()+"generovip"+ this.getTarjetaVip()+"Tarjetavipvip");
+//		System.out.println("El que voy a greegar"+nuevo.getTarjetaVip()+ "-"+ this.tarjetaVip);
 		throw new ExcepcionElUsuarioYaEstaRegistrado("Ya existe un usuarios vip con la tarjera" + nuevo.getTarjetaVip());
 	}
 	

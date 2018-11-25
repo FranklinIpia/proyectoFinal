@@ -90,7 +90,7 @@
                      <children>
                         <ListView fx:id="listaNombre" prefHeight="292.0" prefWidth="193.0" />
                         <Button mnemonicParsing="false" onAction="#toShowListForName" prefHeight="62.0" prefWidth="205.0" text="Ver Posiciones" />
-                        <Button mnemonicParsing="false" prefHeight="56.0" prefWidth="193.0" text="Subir Apuesta" />
+                        <Button fx:id="btnCargar" mnemonicParsing="false" onAction="#cargarJuegoDeMiComputadora" prefHeight="56.0" prefWidth="193.0" text="Subir Apuesta" />
                         <Button mnemonicParsing="false" prefHeight="57.0" prefWidth="193.0" text="Reclamar Dinero" />
                      </children>
                   </VBox>

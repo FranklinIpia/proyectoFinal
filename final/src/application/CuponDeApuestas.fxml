@@ -167,7 +167,7 @@
                                     <Insets left="5.0" />
                                  </GridPane.margin>
                               </Label>
-                              <Label mouseTransparent="true" text="tipo apuesta">
+                              <Label fx:id="lblIpoApusta" mouseTransparent="true" text="tipo apuesta">
                                  <GridPane.margin>
                                     <Insets left="5.0" />
                                  </GridPane.margin>

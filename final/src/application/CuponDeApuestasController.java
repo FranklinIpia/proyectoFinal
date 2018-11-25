@@ -3,16 +3,20 @@ package application;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
+import java.io.FileOutputStream;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.io.ObjectOutputStream;
 import java.security.SecureRandom;
 
 import javax.swing.JOptionPane;
 
 import Excepciones.ExcepcionElCaballoNoExiste;
 import Excepciones.ExcepcionElJineteNoExiste;
+import Excepciones.ExcepcionElUsuarioYaEstaRegistrado;
 import Excepciones.ExcepcionNoExisteElUsuarioConId;
+import Excepciones.ExcepcionNoTieneApuestasGanadas;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
@@ -27,6 +31,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
+import javafx.scene.control.Menu;
 import javafx.scene.control.TextField;
 
 import javafx.scene.image.ImageView;
@@ -44,6 +49,9 @@ public class CuponDeApuestasController {
 
 	@FXML
 	private ListView lista;
+	
+	@FXML
+	private Label lblIpoApusta;
 	
 	@FXML
 	private Label lblNumeroCaballo;
@@ -312,7 +320,7 @@ public void cargarJinetes() {
 	
 	
 	public void gernerarApuesta(ActionEvent e) {
-		 
+		boolean esVip=false;
 		String cedula=JOptionPane.showInputDialog(null,"Confirmar Id");
 		double cantidadApuesta= Double.parseDouble(txtCantidadApuesta.getText());
 		
@@ -335,7 +343,9 @@ public void cargarJinetes() {
    		double pagoPotencial=cantidadApuesta*cuotaCaballo;
 		SecureRandom ran= new SecureRandom();
 		double numeroApuesta=(double) 1+ ran.nextInt(9);
-   		Apuesta apuestaNueva= new Apuesta(Apuesta.APUESTA_GANADOR,pagoPotencial,numeroApuesta+"",numeroCaballo);
+		int tipoApuesta=Integer.parseInt(lblIpoApusta.getText());
+
+   		Apuesta apuestaNueva= new Apuesta(tipoApuesta,pagoPotencial,numeroApuesta+"",numeroCaballo);
 
    		usuarioEncontrado.agregarApuesta(apuestaNueva);
    	
@@ -343,7 +353,7 @@ public void cargarJinetes() {
    		lblPagoPotencial.setText(pagoPotencial+"");
    		txtNumeroCaballo.setText(numeroCaballo+"");
    		txtID.setText(numeroApuesta+"");
-   		guardarArchivoEnComputadora( e);
+   		guardarArchivoEnComputadora(e,esVip,0);
        }
 	} catch (ExcepcionNoExisteElUsuarioConId e2) {
 	JOptionPane.showMessageDialog(null,e2.getMessage());
@@ -352,21 +362,85 @@ public void cargarJinetes() {
 		e1.printStackTrace();
 	}
 		
+	
+	
+	
 		
-		}else {
+	}else {
 			
-			int num=Integer.parseInt(JOptionPane.showInputDialog(null,"Digite el numero del cupon"));
-			UsuarioVip usuarioVip= main.darSimulador().buscarUsarioVip(num);
+			int tarjetaVip=Integer.parseInt(JOptionPane.showInputDialog(null,"Digite el numero del cupon"));
+			UsuarioVip usuarioVip= main.darSimulador().buscarUsarioVip(tarjetaVip);
 			try {
 			
 				if(usuarioVip==null) {
-					throw new ExcepcionNoExisteElUsuarioConId("No existe el cupon" + num);
-				}else {
+					try {
+						throw new ExcepcionNoExisteElUsuarioConId("No existe el cupon" + tarjetaVip);
+
+					} catch(ExcepcionNoExisteElUsuarioConId e3){
+						JOptionPane.showMessageDialog(null,e3.getMessage());
+						
+					}finally {
+						// TODO: handle finally clause
+						String mensaje1="1.Asociate con nostros\n2.No gracias";
+						int opcion=Integer.parseInt(JOptionPane.showInputDialog(null,mensaje1));					
+						if(opcion==1) {
+							int cantidadApuestasGanadas=main.darSimulador().buscarUsuariofor(cedula).getApuestasGanadas();
+							if(cantidadApuestasGanadas==1) {
+								try {
+									throw  new ExcepcionNoTieneApuestasGanadas("No tienes mas de 10 apuestas ganadas");
+								} catch (ExcepcionNoTieneApuestasGanadas e1) {
+									// TODO Auto-generated catch block
+									JOptionPane.showMessageDialog(null,e1.getMessage());
+								}
+							}else {
+								SecureRandom random= new SecureRandom();
+								int newTarjetaVip= 2399;
+								Usuario usua= main.darSimulador().buscarUsuariofor(cedula);
+								
+								MenuController men= new MenuController();
+								try {
+									main.darSimulador().insertarUsuarioVip(usua.getNombre(),usua.getApellido(), usua.getApellido(), usua.getContraseña(), usua.getEdad(),1929299, usua.getDinero(), usua.getContraseña(), usua.getCorreoElectronico(), usua.getApuestasGanadas(), null, 2121);
+								} catch (ExcepcionElUsuarioYaEstaRegistrado e1) {
+									// TODO Auto-generated catch block
+//									e1.printStackTrace();
+									System.out.println(e1.getMessage());
+								}
+							
+								guardarUsuariosVip();
+							}
+						}
+					}
+
 					
+					
+					
+					
+					
+					
+				}else {
+					esVip=true;
+					int numeroCaballo=Integer.parseInt(lblNumeroCaballo.getText());
+			   		double cuotaCaballo=Double.parseDouble(lblCuotaApuesta.getText());
+			   		double importe= cantidadApuesta;
+			   		double pagoPotencial=cantidadApuesta*cuotaCaballo;
+					SecureRandom ran= new SecureRandom();
+					double numeroApuesta=(double) 1+ ran.nextInt(9);
+					int tipoApuesta=Integer.parseInt(lblIpoApusta.getText());
+			   		Apuesta apuestaNueva= new Apuesta(tipoApuesta,pagoPotencial,numeroApuesta+"",numeroCaballo);
+
+					usuarioVip.agregarApuesta(apuestaNueva);
+				   	
+			   		lblImporteApostado.setText(importe+"");
+			   		lblPagoPotencial.setText(pagoPotencial+"");
+			   		txtNumeroCaballo.setText(numeroCaballo+"");
+			   		txtID.setText(numeroApuesta+"");
+			   		guardarArchivoEnComputadora( e,esVip,tarjetaVip);
 			
 				}
-			}catch(ExcepcionNoExisteElUsuarioConId e1) {
-				JOptionPane.showMessageDialog(null,e1.getMessage());
+			
+			} catch (IOException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
 			}
 			
 						
@@ -379,6 +453,54 @@ public void cargarJinetes() {
 		
 		
 	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	 public void guardarUsuariosVip( ) throws IOException{
+	    	
+	    	
+	        try{
+	        	
+	        	
+	        	
+	            FileOutputStream archivo = new FileOutputStream( "archivos/usuariosVip3.dat");
+	            ObjectOutputStream objetoSaliente = new ObjectOutputStream( archivo );
+	            objetoSaliente.writeObject( main.darSimulador().getUsuarioVipRaiz() );
+	            objetoSaliente.close( );
+	            archivo.close( );
+	        }
+	        catch( IOException e ){
+	        	System.out.println(e.getMessage());
+	        	JOptionPane.showMessageDialog(null,e.getMessage() + ":D");
+//	            throw new PersistenciaException( "Error al salvar: " + e.getMessage( ) );
+	        } 
+//	        catch (ExcepcionElUsuarioYaEstaRegistrado e) {
+//				// TODO Auto-generated catch block
+//				e.printStackTrace();
+//			}
+	// catch (ExcepcionElUsuarioYaEstaRegistrado e) {
+//				// TODO Auto-generated catch block
+//				e.printStackTrace();
+//			}
+
+
+	    }
+		
+	
+	
+	
+	
+	
+	
+	
+	
 	
 	
 	
@@ -449,7 +571,7 @@ public void cargarJinetes() {
 	
 	
 	
-	public void guardarArchivoEnComputadora(ActionEvent e) throws IOException {
+	public void guardarArchivoEnComputadora(ActionEvent e,boolean esVip,int tarjetVip) throws IOException {
 	
 		
 		if (e.getSource()==btnGenerarApuesta) {
@@ -478,9 +600,9 @@ public void cargarJinetes() {
 					bw = new BufferedWriter(fw);
 					String importe=lblImporteApostado.getText();
 					String cedula=txtCedulaUsuario.getText();
-					String idApuesta1=txtID.getText();
-					String numeroCaballo1=txtNumeroCaballo.getText();
-					bw.write(importe+";"+cedula+";"+numeroCaballo1+";"+";"+idApuesta1);
+					String numeroCaballo1=lblNumeroCaballo.getText();
+					String tipoApuesta=lblIpoApusta.getText();
+					bw.write(importe+";"+cedula+";"+numeroCaballo1+";"+esVip+";"+tipoApuesta+";"+tarjetVip);
 					
 //					String texto = textArea.getText();
 //					bw.write(texto, 0, texto.length());
@@ -569,6 +691,7 @@ public void cargarJinetes() {
 				int numeroCaballo=Integer.parseInt(lblNumeroCaballo.getText());
 				double cuota=main.darSimulador().prueba(numeroCaballo);
 				lblCuotaApuesta.setText(cuota+"");
+				lblIpoApusta.setText("1");
 				
 			}
 		});
