@@ -12,6 +12,7 @@ public class Jinete implements Comparable<Jinete>{
 	private Jinete anterior;
 	private Jinete siguiente;
 	private Caballo primerCaballo;
+	private  int totalCaballos;
 	
 	public Jinete(String nombre, int edad, double peso,int numero,int carrerasGanadas,int carrerasPerdidas,double altura) {
 		this.nombre=nombre;
@@ -21,6 +22,7 @@ public class Jinete implements Comparable<Jinete>{
 		this.numero=numero;
 		this.cantidadCarrerasGanadas=carrerasGanadas;
 		this.cantidadCarrerasPerdidas=carrerasPerdidas;
+	this.totalCaballos=0;
 	}
 	
 	public int getNumero() {
@@ -118,6 +120,7 @@ public String getNombre() {
 		
 		if(primerCaballo==null) {
 			this.primerCaballo=nuevoCaballo;
+			this.totalCaballos+=1;
 		}else {
 			
 			Caballo actual= primerCaballo;
@@ -127,6 +130,8 @@ public String getNombre() {
 				if(actual.getSiguiente()==null) {
 					actual.setSiguiente(nuevoCaballo);
 					connect=true;
+					this.totalCaballos+=1;
+
 					actual=actual.getSiguiente();	
 				}
 				
@@ -147,6 +152,16 @@ public String getNombre() {
 	}
 	
 	
+	
+	
+	public int getTotalCaballos() {
+		return totalCaballos;
+	}
+
+	public void setTotalCaballos(int totalCaballos) {
+		this.totalCaballos = totalCaballos;
+	}
+
 	public void mostrarCaballo() {
 		if(primerCaballo==null) {
 			System.out.println("No hay caballos");

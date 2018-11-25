@@ -21,7 +21,7 @@ public  class SimuladorApuesta implements FixedCaballo  {
 	private Jinete primerJinete;
 	private UsuarioVip usuarioVipRaiz;
 	private Usuario[] usuarios;
-
+	private int cantidadJientes;
 	private int cantidadUsuarios;
 	private int cantidadUsuariosVip;
 	private int totalUsuariosVip;
@@ -32,6 +32,7 @@ public  class SimuladorApuesta implements FixedCaballo  {
 	public SimuladorApuesta() {
 	this.usuarios= new Usuario[MAX_USUARIOS];
 	cantidadUsuarios=0;
+	cantidadJientes=0;
 //	admin= new Administrador("proyecto", "final", "final", "12345", 21, Administrador.MASCULINO);
 
 	}
@@ -44,6 +45,30 @@ public  class SimuladorApuesta implements FixedCaballo  {
 	
 	
 	
+	public int getCantidadJientes() {
+		return cantidadJientes;
+	}
+
+
+
+
+
+
+
+
+
+	public void setCantidadJientes(int cantidadJientes) {
+		this.cantidadJientes = cantidadJientes;
+	}
+
+
+
+
+
+
+
+
+
 	public Administrador getAdmin() {
 		return admin;
 	}
@@ -385,6 +410,10 @@ public  class SimuladorApuesta implements FixedCaballo  {
 	}
 	
 	
+	public int darTotalUsuariosVip() {
+		return usuarioVipRaiz.darPeso();
+	}
+	
 	
 	 private void imprimirEntre (UsuarioVip reco)
 	    {
@@ -441,7 +470,8 @@ public  class SimuladorApuesta implements FixedCaballo  {
 	public void insertarJinete(Jinete nuevoJinete,Jinete primerJinete) {
 		if(this.primerJinete==null) {
 			this.primerJinete=nuevoJinete;
-			cantidadUsuarios++;
+			this.cantidadJientes+=1;
+//			cantidadUsuarios++;
 		}
 		
 		else {
@@ -450,7 +480,8 @@ public  class SimuladorApuesta implements FixedCaballo  {
 				if(actual.getSiguiente()==null) {
 					actual.setSiguiente(nuevoJinete);
 					nuevoJinete.setAnterior(actual);
-					cantidadUsuarios++;
+this.cantidadJientes+=1;
+//					cantidadUsuarios++;
 				}else {
 					insertarJinete(nuevoJinete,actual.getSiguiente());
 				}
@@ -464,7 +495,8 @@ public  class SimuladorApuesta implements FixedCaballo  {
 					actual.setAnterior(nuevoJinete);
 					nuevoJinete.setSiguiente(actual);
 					this.primerJinete=nuevoJinete;
-					cantidadUsuarios++;
+					this.cantidadJientes+=1;
+//					cantidadUsuarios++;
 				}
 				
 				else if(actual.getAnterior()!=null && actual.getSiguiente()!=null) {
@@ -472,7 +504,8 @@ public  class SimuladorApuesta implements FixedCaballo  {
 					nuevoJinete.setAnterior(actual.getAnterior());
 					actual.getAnterior().setSiguiente(nuevoJinete);
 					actual.setAnterior(nuevoJinete);
-					cantidadUsuarios++;
+					this.cantidadJientes+=1;
+//					cantidadUsuarios++;
 				}
 				
 				else if(actual.getAnterior()!=null&&actual.getSiguiente()==null) {
@@ -480,7 +513,8 @@ public  class SimuladorApuesta implements FixedCaballo  {
 					nuevoJinete.setAnterior(actual.getAnterior());
 					actual.getAnterior().setSiguiente(nuevoJinete);
 					actual.setAnterior(nuevoJinete);
-					cantidadUsuarios++;
+					this.cantidadJientes=+1;
+//					cantidadUsuarios++;
 				}
 				
 			}

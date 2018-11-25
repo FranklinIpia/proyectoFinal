@@ -61,7 +61,12 @@ public UsuarioVip darMenor( )
     return ( derecho == null ) ? this : izquierdo.darMenor( );
 }
 
-
+public int darPeso( )
+{
+    int p1 = ( izquierdo== null ) ? 0 : izquierdo.darPeso( );
+    int p2 = ( derecho == null ) ? 0 : derecho.darPeso( );
+    return 1 + p1 + p2;
+}
 
 /**
  * Inserta un nuevo contacto al árbol que comienza en este nodo.

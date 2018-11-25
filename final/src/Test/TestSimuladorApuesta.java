@@ -2,12 +2,17 @@ package Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+import java.awt.Image;
 import java.util.Arrays;
 
 import org.junit.jupiter.api.Test;
 
 import Comparador.ComparadorApuesta;
 import Comparador.ComparadorNombre;
+import Excepciones.ExcepcionElUsuarioYaEstaRegistrado;
+import javafx.scene.image.ImageView;
+import modelo.Caballo;
+import modelo.Jinete;
 import modelo.SimuladorApuesta;
 import modelo.Usuario;
 import modelo.UsuarioVip;
@@ -172,42 +177,164 @@ assertArrayEquals(usuariosOrdenados, realidad);
 	
 	@Test
 	public void testInsertarUsuarioVip() {
-		UsuarioVip u1= new UsuarioVip("Sebastian", "Rebolledo","1", "12345", 20, 1, 20.00, "12345", "seereme98@gmail.com", 12, null, 12);
-		UsuarioVip u2= new UsuarioVip("Sebastian", "Rebolledo","1", "12345", 20, 1, 20.00, "12345", "seereme98@gmail.com", 12, null, 5);
-		UsuarioVip u3= new UsuarioVip("Sebastian", "Rebolledo","1", "12345", 20, 1, 20.00, "12345", "seereme98@gmail.com", 12, null, 20);
-		UsuarioVip u4= new UsuarioVip("Sebastian", "Rebolledo","1", "12345", 20, 1, 20.00, "12345", "seereme98@gmail.com", 12, null, 0);
+		scenario1();
+		
+		try {
+			simulador.insertarUsuarioVip("Sebastian", "Rebolledo","1", "12345", 20, 1, 20.00, "12345", "seereme98@gmail.com", 12, null, 12);
+			simulador.insertarUsuarioVip("Sebastian", "Rebolledo","1", "12345", 20, 1, 20.00, "12345", "seereme98@gmail.com", 12, null, 5);
+			simulador.insertarUsuarioVip("Sebastian", "Rebolledo","1", "12345", 20, 1, 20.00, "12345", "seereme98@gmail.com", 12, null, 20);
+			simulador.insertarUsuarioVip("Sebastian", "Rebolledo","1", "12345", 20, 1, 20.00, "12345", "seereme98@gmail.com", 12, null, 0);
 
+		} catch (ExcepcionElUsuarioYaEstaRegistrado e) {
+			// TODO Auto-generated catch block
+			System.out.println(e.getMessage());
+		}
+		int numeroAgregados=4;
+		assertEquals(numeroAgregados, simulador.darTotalUsuariosVip());
+
+		
+	}
+	
+	
+	@Test
+	public void testEliminarUsuarioVip() {
+	scenario1();
+		
+		try {
+			simulador.insertarUsuarioVip("Sebastian", "Rebolledo","1", "12345", 20, 1, 20.00, "12345", "seereme98@gmail.com", 12, null, 12);
+			simulador.insertarUsuarioVip("Andrea", "Rebolledo","1", "12345", 20, 1, 20.00, "12345", "seereme98@gmail.com", 12, null, 5);
+			simulador.insertarUsuarioVip("Carlita", "Rebolledo","1", "12345", 20, 1, 20.00, "12345", "seereme98@gmail.com", 12, null, 20);
+			simulador.insertarUsuarioVip("Esteban", "Rebolledo","1", "12345", 20, 1, 20.00, "12345", "seereme98@gmail.com", 12, null, 0);
+
+		} catch (ExcepcionElUsuarioYaEstaRegistrado e) {
+			// TODO Auto-generated catch block
+			System.out.println(e.getMessage());
+		}
+		String nombreEliminar="Carlita";
+	int pesoExpectativa=3;
+		simulador.eliminarUsuarioVip(nombreEliminar);
+		assertEquals(pesoExpectativa, simulador.darTotalUsuariosVip());
+		
+	}
+	
+	
+	@Test
+	public void testBuscarUsuarioVip() {
+		scenario1();
+		try {
+			simulador.insertarUsuarioVip("Sebastian", "Rebolledo","1", "12345", 20, 1, 20.00, "12345", "seereme98@gmail.com", 12, null, 12);
+			simulador.insertarUsuarioVip("Andrea", "Rebolledo","1", "12345", 20, 1, 20.00, "12345", "seereme98@gmail.com", 12, null, 15);
+			simulador.insertarUsuarioVip("Carlita", "Rebolledo","1", "12345", 20, 1, 20.00, "12345", "seereme98@gmail.com", 12, null, 4);
+			simulador.insertarUsuarioVip("Esteban", "Rebolledo","1", "12345", 20, 1, 20.00, "12345", "seereme98@gmail.com", 12, null, 18);
+
+		} catch (ExcepcionElUsuarioYaEstaRegistrado e) {
+			// TODO Auto-generated catch block
+			System.out.println(e.getMessage());
+		}
+		int  tarjetaBuscar=4;
+		UsuarioVip encontrado=simulador.buscarUsarioVip(tarjetaBuscar);
+	
+		assertEquals(tarjetaBuscar, encontrado.getTarjetaVip());
+	}
+	
+	@Test
+	public void testDarPesoUsuariosVip() {
+		
+		
+		scenario1();
+		try {
+			simulador.insertarUsuarioVip("Sebastian", "Rebolledo","1", "12345", 20, 1, 20.00, "12345", "seereme98@gmail.com", 12, null, 12);
+			simulador.insertarUsuarioVip("Andrea", "Rebolledo","1", "12345", 20, 1, 20.00, "12345", "seereme98@gmail.com", 12, null, 15);
+			simulador.insertarUsuarioVip("Carlita", "Rebolledo","1", "12345", 20, 1, 20.00, "12345", "seereme98@gmail.com", 12, null, 4);
+			simulador.insertarUsuarioVip("Esteban", "Rebolledo","1", "12345", 20, 1, 20.00, "12345", "seereme98@gmail.com", 12, null, 18);
+
+		} catch (ExcepcionElUsuarioYaEstaRegistrado e) {
+			// TODO Auto-generated catch block
+			System.out.println(e.getMessage());
+		}
+		int  totalAgregados=4;
+	
+		assertEquals(totalAgregados, simulador.darTotalUsuariosVip());
 		
 		
 	}
 	
+	
+	
+	
 	@Test
 	public void testInsertarJinete() {
+		scenario1();
+		Jinete j1= new Jinete("Alberto", 25, 70.5, 213, 12,5, 1.70);
+		Jinete j2= new Jinete("Alberto", 42, 20.5, 213, 12,5, 1.70);
+		Jinete j3= new Jinete("Alberto", 18, 20.5, 213, 12,5, 1.70);
+		Jinete j4= new Jinete("Alberto", 89, 20.5, 213, 12,5, 1.70);
+		simulador.insertarJinete(j1);
+		simulador.insertarJinete(j2);
+		simulador.insertarJinete(j3);
+		simulador.insertarJinete(j4);
+int cantidadJientes=4;
+assertEquals(cantidadJientes, simulador.getCantidadJientes());
 		
 	}
 	
 	@Test
 	public void testInsertarCaballo() {
+		scenario1();
+		ImageView img1 = null;
+		Jinete j1= new Jinete("Alberto", 25, 70.5, 213, 12,5, 1.70);
+		
+		Caballo cab1= new Caballo(img1, "Zeus", 21, 12, 1.50,10, 12, 1, 1.69, 48.0);
+		Caballo cab2= new Caballo(img1, "Zeus", 21, 12, 1.50,10, 12, 1, 1.69, 48.0);
+		Caballo cab3= new Caballo(img1, "Zeus", 21, 12, 1.50,10, 12, 1, 1.69, 48.0);
+		Caballo cab4= new Caballo(img1, "Zeus", 21, 12, 1.50,10, 12, 1, 1.69, 48.0);
+
+		j1.insertarCaballo(cab1);
+		j1.insertarCaballo(cab2);
+		j1.insertarCaballo(cab3);
+		j1.insertarCaballo(cab4);
+		int totalCaballos=4;
+		assertEquals(totalCaballos, j1.getTotalCaballos());
+		
+		
+
 		
 	}
 	
-	@Test
-	public void testEliminarUsuarioVip() {
-		
-	}
 	
-	@Test
-	public void testBuscarUsuarioVip() {
-		
-	}
+	
+	
 	
 	@Test
 	public void testBuscarJinete() {
+		scenario1();
+		Jinete j1= new Jinete("Alberto", 25, 70.5, 213, 12,5, 1.70);
+		Jinete j2= new Jinete("Alberto", 42, 20.5, 216, 12,5, 1.70);
+		int numeroBuscar=216;
+		simulador.insertarJinete(j1);
+		simulador.insertarJinete(j2);
+		int numeroEncontrado=simulador.buscarJinete(numeroBuscar).getNumero();
+		assertEquals(numeroBuscar, numeroEncontrado);
+		
+		
 		
 	}
 	
 	@Test
 	public void testBuscarCaballo() {
+		
+		scenario1();
+		ImageView img1 = null;
+		Jinete j1= new Jinete("Alberto", 25, 70.5, 213, 12,5, 1.70);
+		Caballo cab1= new Caballo(img1, "Zeus", 21, 12, 1.50,10, 12, 1, 1.69, 48.0);
+		Caballo cab2= new Caballo(img1, "Zeus", 25, 12, 1.50,10, 12, 1, 1.69, 48.0);
+		simulador.insertarJinete(j1);
+		simulador.insertarCaballoAJinete(j1, cab2);
+		simulador.insertarCaballoAJinete(j1, cab1);
+		int numeroAbuscar=25;
+		int numeroEncontrado=simulador.buscarCaballo(numeroAbuscar).getNumero();
+		assertEquals(numeroAbuscar, numeroEncontrado);
+		
 		
 	}
 	
