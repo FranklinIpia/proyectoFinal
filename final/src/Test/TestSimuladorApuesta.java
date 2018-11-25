@@ -168,9 +168,9 @@ assertArrayEquals(usuariosOrdenados, realidad);
 		
 		try {
 			simulador.insertarUsuarioVip("Sebastian", "Rebolledo","1", "12345", 20, 1, 20.00, "12345", "seereme98@gmail.com", 12, null, 12);
-			simulador.insertarUsuarioVip("Sebastian", "Rebolledo","1", "12345", 20, 1, 20.00, "12345", "seereme98@gmail.com", 12, null, 5);
-			simulador.insertarUsuarioVip("Sebastian", "Rebolledo","1", "12345", 20, 1, 20.00, "12345", "seereme98@gmail.com", 12, null, 20);
-			simulador.insertarUsuarioVip("Sebastian", "Rebolledo","1", "12345", 20, 1, 20.00, "12345", "seereme98@gmail.com", 12, null, 0);
+			simulador.insertarUsuarioVip("Juana", "Rebolledo","1", "12345", 20, 1, 20.00, "12345", "seereme98@gmail.com", 12, null, 5);
+			simulador.insertarUsuarioVip("Andrea", "Rebolledo","1", "12345", 20, 1, 20.00, "12345", "seereme98@gmail.com", 12, null, 20);
+			simulador.insertarUsuarioVip("Carla", "Rebolledo","1", "12345", 20, 1, 20.00, "12345", "seereme98@gmail.com", 12, null, 0);
 
 		} catch (ExcepcionElUsuarioYaEstaRegistrado e) {
 			// TODO Auto-generated catch block
