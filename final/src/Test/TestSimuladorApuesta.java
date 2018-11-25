@@ -2,13 +2,10 @@ package Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-import java.awt.Image;
-import java.util.Arrays;
 
 import org.junit.jupiter.api.Test;
 
-import Comparador.ComparadorApuesta;
-import Comparador.ComparadorNombre;
+
 import Excepciones.ExcepcionElUsuarioYaEstaRegistrado;
 import javafx.scene.image.ImageView;
 import modelo.Caballo;
@@ -47,11 +44,6 @@ usuariosAOrdenar[1]=u4;
 usuariosAOrdenar[3]=u3;
 usuariosAOrdenar[0]=u2;
 usuariosAOrdenar[2]=u1;
-//Arrays.sort(usuariosAOrdenar, new ComparadorNombre());
-
-//for(int i=0;i<usuariosAOrdenar.length;i++) {
-//	System.out.println(usuariosAOrdenar[i].getNombre());
-//}
 
 
 Usuario[] realidad=simulador.ordenarUsuariosSeleccion(usuariosAOrdenar);
@@ -79,12 +71,7 @@ assertArrayEquals(usuariosOrdenados, realidad);
 		usuariosAOrdenar[0]=u2;
 		usuariosAOrdenar[2]=u1;
 		
-//		Arrays.sort(usuariosAOrdenar, new ComparadorApuesta());
-//
-//		for(int i=0;i<usuariosAOrdenar.length;i++) {
-//			System.out.println(usuariosAOrdenar[i].getNombre());
-//		}
-//		
+
 		Usuario[] expectactiva= simulador.ordenarUsuariosBurbuja(usuariosAOrdenar);
 		assertArrayEquals(expectactiva, usuariosOrdenados);
 		
@@ -303,8 +290,6 @@ assertEquals(cantidadJientes, simulador.getCantidadJientes());
 	
 	
 	
-	
-	
 	@Test
 	public void testBuscarJinete() {
 		scenario1();
@@ -338,15 +323,5 @@ assertEquals(cantidadJientes, simulador.getCantidadJientes());
 		
 	}
 	
-	
-	
-	
-	
-	
-	
-//	@Test
-//	void test() {
-//		fail("Not yet implemented");
-//	}
 
 }
