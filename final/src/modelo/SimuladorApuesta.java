@@ -213,7 +213,11 @@ public  class SimuladorApuesta implements FixedCaballo  {
 	}
 	
 	
-	
+	/**
+	 * 
+	 * @param usuarios
+	 * @return
+	 */
 	public Usuario[] ordenarUsuariosSeleccionNatural(Usuario[] usuarios) {
 //		Usuario[] usuariosSeleccion=usuarios.clone();
 		
@@ -243,6 +247,11 @@ public  class SimuladorApuesta implements FixedCaballo  {
 	
 	//Este metodo ordena los usarios en base a un orden parcial el cual 
 	// es la edad
+	/***
+	 * 
+	 * @param usuarios
+	 * @return
+	 */
 	public Usuario[] ordenarUsuariosInserccion(Usuario[] usuarios) {
 		
 		Usuario[] usaruisInserccion=usuarios.clone();
@@ -265,6 +274,11 @@ public  class SimuladorApuesta implements FixedCaballo  {
 	
 	//Este metodo ordena los usuarios en base a un orden parcial
 	//el cual es la apuesta
+	/**
+	 * 
+	 * @param usuarios
+	 * @return
+	 */
 	public Usuario[] ordenarUsuariosBurbuja(Usuario[] usuarios) {
 
 	Usuario[] usaruosBurbuja=usuarios.clone();
@@ -307,7 +321,14 @@ public  class SimuladorApuesta implements FixedCaballo  {
 	
 	
 //METODO PARA IMPLEMENTAR LA BUSQUEDA BINARIA
+	
 
+	/**
+	 * 
+	 * @param cedula
+	 * @param usuarios
+	 * @return
+	 */
 	public Usuario buscarUsuarioId(String cedula,Usuario[] usuarios) {
 		Usuario[] usuariosOrdenados=ordenarUsuariosSeleccionNatural(usuarios);
 		boolean encontro=false;
@@ -754,8 +775,6 @@ this.cantidadJientes+=1;
 		
 		ganador= velocidad/carreras;
 		return ganador+1;
-		
-	
 		
 	}
 

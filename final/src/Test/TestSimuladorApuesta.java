@@ -209,16 +209,22 @@ assertArrayEquals(usuariosOrdenados, realidad);
 	public void testBuscarUsuarioVip() {
 		scenario1();
 		try {
-			simulador.insertarUsuarioVip("Sebastian", "Rebolledo","1", "12345", 20, 1, 20.00, "12345", "seereme98@gmail.com", 12, null, 12);
-			simulador.insertarUsuarioVip("Andrea", "Rebolledo","1", "12345", 20, 1, 20.00, "12345", "seereme98@gmail.com", 12, null, 15);
-			simulador.insertarUsuarioVip("Carlita", "Rebolledo","1", "12345", 20, 1, 20.00, "12345", "seereme98@gmail.com", 12, null, 4);
-			simulador.insertarUsuarioVip("Esteban", "Rebolledo","1", "12345", 20, 1, 20.00, "12345", "seereme98@gmail.com", 12, null, 18);
+			String nombre1="Sebastian";
+			String apellido1="Rebolledo";
+			String cedula="12345";
+			String correo="seereme98@gmail.com";
+			int trajetaVip=12;
+			int tarjetaVip=15;
+			String nombre2="Andrea";
+			simulador.insertarUsuarioVip(nombre1, apellido1,"1", cedula, 20, 1, 20.00, cedula, correo, 12, null, trajetaVip);
+			simulador.insertarUsuarioVip(nombre2, apellido1,"1", cedula, 20, 1, 20.00, cedula, correo, 12, null, tarjetaVip);
+			
 
 		} catch (ExcepcionElUsuarioYaEstaRegistrado e) {
 			// TODO Auto-generated catch block
 			System.out.println(e.getMessage());
 		}
-		int  tarjetaBuscar=4;
+		int  tarjetaBuscar=12;
 		UsuarioVip encontrado=simulador.buscarUsarioVip(tarjetaBuscar);
 	
 		assertEquals(tarjetaBuscar, encontrado.getTarjetaVip());
